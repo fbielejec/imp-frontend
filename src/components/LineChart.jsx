@@ -68,11 +68,7 @@ var DataSeries = React.createClass({
   }
 });
 
-var LineChart = React.createClass({
-
-
-
-
+var LinesChart = React.createClass({
   getDefaultProps: function() {
     return {
       width: 600,
@@ -130,11 +126,85 @@ var LineChart = React.createClass({
   }
 });
 
+//TODO
+//////////////////////////////////////////////////////
+
+var LineChart = React.createClass({
+
+  propTypes : {
+		data : React.PropTypes.array.isRequired,
+    width : React.PropTypes.number
+	}, // END: propTypes
+
+  componentWillMount: function () {
+
+ this.line = d3.svg.line();
+  this.xScale = d3.scale.linear();
+  this.yScale = d3.scale.linear();
+  this.update_d3(this.props);
+},//END: componentWillMount
+
+  componentWillReceiveProps: function (newProps) {
+  this.update_d3(newProps);
+},//END : componentWillReceiveProps
+
+  update_d3: function (props) {
+
+var data = props.data;
+
+    // --- X AXIS ---//
+
+  var xmin = d3.min(data, function(d) {
+    return d3.min(d.values, function(v) {
+      return v.time;
+    });
+  });
+
+  var xmax = d3.max(data, function(d) {
+    return d3.max(d.values, function(v) {
+      return v.time;
+    });
+  });
+
+  var xScale = d3.time.scale.utc().domain([xmin, xmax]).range(
+    [0, props.width]);
+
+    // --- Y AXIS ---//
+
+       var ymin = d3.min(data, function(d) {
+         return d3.min(d.values, function(v) {
+           return v.distance;
+         });
+       });
+
+       var ymax = d3.max(data, function(d) {
+         return d3.max(d.values, function(v) {
+           return v.distance;
+         });
+       });
+
+       var yScale = d3.scale.linear() //
+         .domain([ymin, ymax])
+         .range([global.height, 0]);
 
 
 
 
+// console.log("yscale: " +yScale.domain());
 
+
+
+  },//END: update_d3
+
+render: function() {
+
+return(
+<text x="300" y="150" fill="red">Chart will be here</text>
+);
+
+}//END:render
+
+});//END: LineChart
 
 
 module.exports = LineChart;

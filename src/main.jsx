@@ -2,6 +2,8 @@
  * @fbielejec
  */
 
+//---MODULE IMPORTS---//
+
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Tabs = require('react-simpletabs');
@@ -9,6 +11,7 @@ require('./styles/style.css');
 require('./styles/tabs-custom.css');
 var RenderPanel = require('./components/RenderPanel');
 
+//---MAIN---//
 
 var App = React.createClass({
 

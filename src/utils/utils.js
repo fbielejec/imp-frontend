@@ -46,8 +46,6 @@ prepareData = function(json) {
     return (data);
   } //END: prepareData
 
-// exports.prepareData = prepareData;
-
 module.exports = {
   prepareData: prepareData
 };

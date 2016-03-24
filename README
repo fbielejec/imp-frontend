@@ -1,0 +1,18 @@
+LICENSE
+-------
+
+GNU Lesser General Public License v3.0
+ 
+ PURPOSE
+ -------
+Frontend for Imp, spatial stats web-app
+ 
+ USAGE
+ ----- 
+ * DEV
+  npm install
+  npm start
+  Point your browser to http://localhost:8080
+ * DIST
+  npm install
+  npm run build

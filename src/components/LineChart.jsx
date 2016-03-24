@@ -31,8 +31,6 @@ var LineChart = React.createClass({
 
   update_d3: function (props) {
 
-// var data = props.data;
-
     // --- X AXIS ---//
 
   var xmin = d3.min(props.data, function(d) {
@@ -78,7 +76,6 @@ y(function(d) {
   return yScale(d.distance);
 });
 
-
  var paths = props.data.map(function (d) {
    return (line(d.values));
  });
@@ -86,9 +83,6 @@ y(function(d) {
 // console.log("paths: " + paths + (typeof(paths)));
 
 this.setState({paths: paths});
-
-
-
 
   },//END: update_d3
 

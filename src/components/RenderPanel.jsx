@@ -53,15 +53,22 @@ render: function() {
     );
   } else {
 
-var fullWidth = 700;
-
 var params = {
  width : 600,
- height : 300
+ height : 300,
+ topMargin : 50,
+ rightMargin : 50,
+ bottomMargin : 50,
+ leftMargin : 70
 };
 
+var fullWidth = 700;
+var translate = "translate(" + params.leftMargin + "," + params.topMargin + ")";
+
+console.log(translate);
+
     return (
-      <svg width={fullWidth} height={params.height}>
+      <svg width={fullWidth} height={params.height} transform={translate}>
           <LineChart data={this.state.rawData}
                      width = {params.width}
                      height = {params.height}/>

@@ -9,138 +9,19 @@ var d3 = require('d3');
 
 // http://10consulting.com/2014/02/19/d3-plus-reactjs-for-charting/
 
-
-
-var Chart = React.createClass({
-  render: function() {
-    return (
-      <svg
-        width={this.props.width}
-        height={this.props.height}>
-        {this.props.children}
-      </svg>
-    );
-  }
-});
-
-var Line = React.createClass({
-  getDefaultProps: function() {
-    return {path: '', color: 'blue', width: 2}
-  },
-
-  render: function() {
-    return (
-      <path
-        d={this.props.path}
-        stroke={this.props.color}
-        strokeWidth={this.props.width}
-        fill="none"/>
-    );
-  }
-});
-
-
-var DataSeries = React.createClass({
-  getDefaultProps: function() {
-    return {
-      title: '',
-      data: [],
-      interpolate: 'linear'
-    }
-  },
-
-  render: function() {
-    var self = this,
-    props = this.props,
-    yScale = props.yScale,
-    xScale = props.xScale;
-
-    var path = d3.svg.line()
-    .x(function(d) { return xScale(d.x); })
-    .y(function(d) { return yScale(d.y); })
-    .interpolate(this.props.interpolate);
-
-    return (
-      <Line
-        path={path(this.props.data)}
-        color={this.props.color} />
-    )
-  }
-});
-
-var LinesChart = React.createClass({
-  getDefaultProps: function() {
-    return {
-      width: 600,
-      height: 300
-    }
-  },
-
-  render: function() {
-    var data = this.props.data,
-    size = { width: this.props.width, height: this.props.height };
-
-    var max = _.chain(data.series1, data.series2, data.series3)
-    .zip()
-    .map(function(values) {
-      return _.reduce(values, function(memo, value) { return Math.max(memo, value.y); }, 0);
-    })
-    .max()
-    .value();
-
-    var xScale = d3.scale.linear()
-    .domain([0, 6])
-    .range([0, this.props.width]);
-
-    var yScale = d3.scale.linear()
-    .domain([0, max])
-    .range([this.props.height, 0]);
-
-    return (
-      <Chart
-        width={this.props.width}
-        height={this.props.height}>
-        <DataSeries
-          data={data.series1}
-          size={size}
-          xScale={xScale}
-          yScale={yScale}
-          ref="series1"
-          color="cornflowerblue" />
-        <DataSeries
-          data={data.series2}
-          size={size}
-          xScale={xScale}
-          yScale={yScale}
-          ref="series2"
-          color="red" />
-        <DataSeries
-          data={data.series3}
-          size={size}
-          xScale={xScale}
-          yScale={yScale}
-          ref="series3"
-          color="green" />
-      </Chart>
-    );
-  }
-});
-
-//TODO
-//////////////////////////////////////////////////////
-
 var LineChart = React.createClass({
 
   propTypes : {
 		data : React.PropTypes.array.isRequired,
-    width : React.PropTypes.number
+    width : React.PropTypes.number,
+    height : React.PropTypes.number
 	}, // END: propTypes
 
   componentWillMount: function () {
 
- this.line = d3.svg.line();
-  this.xScale = d3.scale.linear();
-  this.yScale = d3.scale.linear();
+ // this.line = d3.svg.line();
+  // this.xScale = d3.scale.linear();
+  // this.yScale = d3.scale.linear();
   this.update_d3(this.props);
 },//END: componentWillMount
 
@@ -150,17 +31,17 @@ var LineChart = React.createClass({
 
   update_d3: function (props) {
 
-var data = props.data;
+// var data = props.data;
 
     // --- X AXIS ---//
 
-  var xmin = d3.min(data, function(d) {
+  var xmin = d3.min(props.data, function(d) {
     return d3.min(d.values, function(v) {
       return v.time;
     });
   });
 
-  var xmax = d3.max(data, function(d) {
+  var xmax = d3.max(props.data, function(d) {
     return d3.max(d.values, function(v) {
       return v.time;
     });
@@ -171,40 +52,92 @@ var data = props.data;
 
     // --- Y AXIS ---//
 
-       var ymin = d3.min(data, function(d) {
+       var ymin = d3.min(props.data, function(d) {
          return d3.min(d.values, function(v) {
            return v.distance;
          });
        });
 
-       var ymax = d3.max(data, function(d) {
+       var ymax = d3.max(props.data, function(d) {
          return d3.max(d.values, function(v) {
            return v.distance;
          });
        });
 
-       var yScale = d3.scale.linear() //
+      var yScale = d3.scale.linear() //
          .domain([ymin, ymax])
-         .range([global.height, 0]);
+         .range([props.height, 0]);
+
+  // ---LINES ---//
+
+var line = d3.svg.line() //
+.x(function(d) {
+  return xScale(d.time);
+}). //
+y(function(d) {
+  return yScale(d.distance);
+});
 
 
+ var paths = props.data.map(function (d) {
+   return (line(d.values));
+ });
 
+// console.log("paths: " + paths + (typeof(paths)));
 
-// console.log("yscale: " +yScale.domain());
+this.setState({paths: paths});
+
 
 
 
   },//END: update_d3
 
+  makeLine: function (path) {
+
+		// var props = {
+		// 		path: path,
+		// 		x: this.props.axisMargin,
+		// 		y: this.yScale(bar.x),
+		// 		width: this.widthScale(bar.y),
+		// 		height: this.yScale(bar.dx),
+		// 		key: "histogram-bar-"+bar.x+"-"+bar.y
+		// }
+
+		return (
+				<Line path={path} />
+		);
+	}, // END: makeBar
+
 render: function() {
 
 return(
-<text x="300" y="150" fill="red">Chart will be here</text>
+  <g className="linesLayer">
+	{ this.state.paths.map(this.makeLine) }
+</g>
 );
 
 }//END:render
 
 });//END: LineChart
 
+/*<text x="300" y="150" fill="red">Chart will be here</text>*/
+
+var Line = React.createClass({
+
+  getDefaultProps: function() {
+    return {path: '', color: 'blue', width: 2}
+  },//END: getDefaultProps
+
+  render: function() {
+    return (
+      <path
+        d={this.props.path}
+        stroke={this.props.color}
+        strokeWidth={this.props.width}
+        fill="none"/>
+    );
+  }//END:render
+
+});
 
 module.exports = LineChart;

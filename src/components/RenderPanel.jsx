@@ -63,7 +63,8 @@ var params = {
     return (
       <svg width={fullWidth} height={params.height}>
           <LineChart data={this.state.rawData}
-                     width = {params.width}/>
+                     width = {params.width}
+                     height = {params.height}/>
       </svg>
     );
   }//END: data loaded check

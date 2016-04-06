@@ -30,7 +30,7 @@ var App = React.createClass({
 
   render: function() {
     return (
-      <Tabs tabActive={2} onBeforeChange={this.onBeforeChange} onAfterChange={this.onAfterChange} onMount={this.onMount}>
+      <Tabs tabActive={1} onBeforeChange={this.onBeforeChange} onAfterChange={this.onAfterChange} onMount={this.onMount}>
         <Tabs.Panel title='Parse'>
         	<ParserPanel/>
         </Tabs.Panel>

@@ -21,6 +21,28 @@ var LoadTrees = React.createClass({
     };
   },
 
+  sendToServer: function() {
+    // TODO: get server repsonse
+
+    var rootURL = "http://localhost:8080";
+
+    $.ajax({
+      type: 'GET',
+      url: rootURL  + '/settings',
+      dataType: "json", // data type of response
+      success: function(data, textStatus, jqXHR){
+        console.log("SUCCESS");
+
+         console.log(data);
+
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+        console.log("ERROR");
+      }
+    });
+
+  },
+
   handleChange: function(event) {
 
     var file = event.target.files[0];
@@ -37,6 +59,8 @@ var LoadTrees = React.createClass({
         treesfile: contents
       });
 
+      this.sendToServer();
+
     }.bind(this);
 
     reader.readAsText(file);
@@ -50,7 +74,7 @@ var LoadTrees = React.createClass({
         <FileInput
           name="Trees file"
           accept=".tree,.trees"
-          placeholder="Browse..."
+          placeholder="Load trees..."
           className="btn btn-lg btn-success"
           onChange={this.handleChange} />
       </form>

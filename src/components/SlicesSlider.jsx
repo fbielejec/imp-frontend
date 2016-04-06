@@ -3,12 +3,10 @@
 */
 
 //---MODULE IMPORTS---//
-
 var React = require('react');
+require('../styles/slices-slider.css');
 
 //---MODULE EXPORTS---//
-
-// https://jsfiddle.net/faria/yw6q3s9L/
 
 var SlicesSlider = React.createClass({
 
@@ -33,22 +31,21 @@ var SlicesSlider = React.createClass({
     var max=50;
     var step=1;
     return (
-      <div id="slider">
-        <div>
+        <div className="wrapper">
           <input
             type="range"
+            id="slider"
             min={min}
             max={max}
             step={step}
             value={this.state.value}
-            onInput={this.handleOnChange }
-            onChange={this.handleOnChange }
+            onInput={this.handleOnChange}
+            onChange={this.handleOnChange}
             />
           <span>
-            {this.state.value}
+          number of slices:  {this.state.value}
           </span>
         </div>
-      </div>
     );
   }
 });

@@ -1,0 +1,10 @@
+/*input[type=range] {
+  width: 75%;
+}*/
+
+#slider {
+  border: #ccc;
+  padding: 10px;
+  min-height: 100px;
+  display: inline-block;
+ }

@@ -8,7 +8,6 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 var LineChart = require('./LineChart');
 var utils = require('../utils/utils.js');
-// require('bootstrap.min.css');
 var SlicesSlider = require('./SlicesSlider');
 
 //---MODULE EXPORTS---//
@@ -20,7 +19,7 @@ var ParserPanel = React.createClass({
   render: function() {
     return (
 
-      <div className="jumbotron col-sm-12 text-center" >
+      <div className="jumbotron col-sm-12 text-center" style={{background: "transparent"}}>
 
         <div className='col-sm-8 col-sm-offset-2'>
           <button

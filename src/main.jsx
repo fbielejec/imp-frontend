@@ -7,8 +7,8 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Tabs = require('react-simpletabs');
-require('./styles/style.css');
-require('./styles/tabs-custom.css');
+require('./styles/main.css');
+require('./styles/tabs.css');
 var RenderPanel = require('./components/RenderPanel');
 var ParserPanel = require('./components/ParserPanel');
 

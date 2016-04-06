@@ -13,39 +13,40 @@ formDate = function(dateString) {
     return (date);
   } // END: formDate
 
-prepareData = function(json) {
-
-    var nTrees = json[d3.keys(json)[0]].length;
-    var nSlices = d3.keys(json).length;
-
-    // console.log(nTrees);
-    // console.log(nSlices);
-
-    var data = [];
-    for (var i = 0; i < nTrees; i++) {
-
-      data[i] = {
-        name: "tree_" + i,
-        values: []
-      }
-
-      for (var j = 0; j < nSlices; j++) {
-
-        var time = d3.keys(json)[j];
-
-        // console.log(formDate(time));
-
-        data[i].values[j] = {
-          time: formDate(time),
-          distance: +json[time][i]
-        };
-
-      } //END: j loop
-    } //END: i loop
-
-    return (data);
-  } //END: prepareData
+// prepareData = function(json) {
+//
+//     var nTrees = json[d3.keys(json)[0]].length;
+//     var nSlices = d3.keys(json).length;
+//
+//     // console.log(nTrees);
+//     // console.log(nSlices);
+//
+//     var data = [];
+//     for (var i = 0; i < nTrees; i++) {
+//
+//       data[i] = {
+//         name: "tree_" + i,
+//         values: []
+//       }
+//
+//       for (var j = 0; j < nSlices; j++) {
+//
+//         var time = d3.keys(json)[j];
+//
+//         // console.log(formDate(time));
+//
+//         data[i].values[j] = {
+//           time: formDate(time),
+//           distance: +json[time][i]
+//         };
+//
+//       } //END: j loop
+//     } //END: i loop
+//
+//     return (data);
+//   } //END: prepareData
 
 module.exports = {
-  prepareData: prepareData
+  // prepareData: prepareData,
+  formDate : formDate
 };

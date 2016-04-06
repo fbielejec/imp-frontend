@@ -6,6 +6,7 @@
 
 var React = require('react');
 var d3 = require('d3');
+var utils = require('../utils/utils.js');
 
 //---MODULE EXPORTS---//
 
@@ -34,18 +35,20 @@ var LineChart = React.createClass({
 
     var xmin = d3.min(props.data, function(d) {
       return d3.min(d.values, function(v) {
-        return v.time;
+        return utils.formDate(v.time);
       });
     });
 
     var xmax = d3.max(props.data, function(d) {
       return d3.max(d.values, function(v) {
-        return v.time;
+        return utils.formDate(v.time);
       });
     });
 
     var xScale = d3.time.scale.utc().domain([xmin, xmax]).range(
       [0, props.width]);
+
+// console.log("min " + (typeof xmin) + " max " + xmax);
 
       // --- Y AXIS ---//
 
@@ -69,7 +72,8 @@ var LineChart = React.createClass({
 
       var line = d3.svg.line() //
       .x(function(d) {
-        return xScale(d.time);
+        var time = utils.formDate(d.time)
+        return xScale(time);
       }). //
       y(function(d) {
         return yScale(d.distance);
@@ -77,42 +81,31 @@ var LineChart = React.createClass({
 
       var paths = props.data.map(function (d) {
 
-          // console.log(d.name);
+        var pathMap = {
+          key : d.name,
+          path : line(d.values)
+        }
 
-var pathMap = {
-  key : d.name,
-  path : line(d.values)
-}
-
-return(pathMap);
-        // return (line(d.values));
+        return(pathMap);
       });
 
       this.setState({paths: paths});
-
-    },//END: update_d3
+    },//END:update_d3
 
     makeLine: function (path) {
-
-      // var props = {
-      // 		path: path,
-      // 		key: "histogram-bar-"+bar.x+"-"+bar.y
-      // }
-
       return (
-        <Line path={path.path}
-               key={path.key}/>
+        <Line
+          path={path.path}
+          key={path.key}/>
       );
-    }, // END: makeBar
+    }, //END:makeLine
 
     render: function() {
-
       return(
         <g className="linesLayer">
           { this.state.paths.map(this.makeLine) }
         </g>
       );
-
     }//END:render
 
   });//END: LineChart

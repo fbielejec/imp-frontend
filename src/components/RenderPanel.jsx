@@ -26,8 +26,8 @@ var RenderPanel = React.createClass({
         console.error(error);
         console.error(error.stack);
       } else {
-        //TODO: serve clean JSON
-        this.setState({rawData: utils.prepareData(rows)});
+        // this.setState({rawData: utils.prepareData(rows)});
+        this.setState({rawData: rows });
       }
       // inner this is outer this
     }.bind(this));

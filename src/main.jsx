@@ -10,6 +10,7 @@ var Tabs = require('react-simpletabs');
 require('./styles/style.css');
 require('./styles/tabs-custom.css');
 var RenderPanel = require('./components/RenderPanel');
+var ParserPanel = require('./components/ParserPanel');
 
 //---MAIN---//
 
@@ -31,10 +32,10 @@ var App = React.createClass({
     return (
       <Tabs tabActive={2} onBeforeChange={this.onBeforeChange} onAfterChange={this.onAfterChange} onMount={this.onMount}>
         <Tabs.Panel title='Parse'>
-          <h2>Parser here</h2>
+        	<ParserPanel/>
         </Tabs.Panel>
         <Tabs.Panel title='Render'>
-        	<RenderPanel  url='data.json'/>
+        	<RenderPanel url='data.json'/>
         </Tabs.Panel>
       </Tabs>
     );

@@ -1,4 +1,8 @@
-var d3 = require('d3');
+/**
+* @fbielejec
+*/
+
+// var d3 = require('d3');
 
 formDate = function(dateString) {
 

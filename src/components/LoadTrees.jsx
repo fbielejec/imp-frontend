@@ -21,27 +21,6 @@ var LoadTrees = React.createClass({
     };
   },
 
-  sendToServer: function() {
-    // TODO: get server repsonse
-
-    var rootURL = "http://localhost:8080";
-
-    $.ajax({
-      type: 'GET',
-      url: rootURL  + '/settings',
-      dataType: "json", // data type of response
-      success: function(data, textStatus, jqXHR){
-        console.log("SUCCESS");
-
-         console.log(data);
-
-      },
-      error: function(jqXHR, textStatus, errorThrown){
-        console.log("ERROR");
-      }
-    });
-
-  },
 
   handleChange: function(event) {
 

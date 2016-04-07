@@ -1,0 +1,28 @@
+#!/bin/bash
+
+SERVER_LOCATION=/home/filip/Dropbox/ClojureProjects/imp-rest/
+
+#################
+#---FUNCTIONS---#
+#################
+
+function run_server {
+
+cd $SERVER_LOCATION
+
+lein run
+
+}
+
+##############
+#---SCRIPT---#
+##############
+
+npm run build
+
+cp dist/index.html $SERVER_LOCATION/resources/public/index.html
+cp dist/bundle.js $SERVER_LOCATION/resources/public/bundle.js
+
+run_server
+
+exit 0

@@ -7,6 +7,7 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 var FileInput = require('react-file-input');
+var server = require('../utils/server.js');
 
 //---MODULE EXPORTS---//
 
@@ -20,7 +21,6 @@ var LoadTrees = React.createClass({
       treesfile: null,
     };
   },
-
 
   handleChange: function(event) {
 
@@ -38,12 +38,13 @@ var LoadTrees = React.createClass({
         treesfile: contents
       });
 
-      this.sendToServer();
+      // TODO: FIX
+      server.putSetting("coordinateName","location");
+      server.getSettings();
 
     }.bind(this);
 
     reader.readAsText(file);
-
   },
 
   render: function() {

@@ -24,43 +24,49 @@ var LoadTrees = React.createClass({
 
   handleChange: function(event) {
 
+// TODO: path to file on disk
     var file = event.target.files[0];
     if (!file) {
       return;
     }
 
-    var reader = new FileReader();
+   var tmppath = URL.createObjectURL(file);
+       this.setState({
+         treesfile: tmppath
+       });
 
-    reader.onload = function(e) {
+server.putSetting(server.treesfile, tmppath);
 
-      var contents = reader.result;
-      this.setState({
-        treesfile: contents
-      });
+  //   var reader = new FileReader();
+  //
+  //   reader.onload = function(e) {
+  //
+  //     var contents = reader.result;
+  //     this.setState({
+  //       treesfile: contents
+  //     });
+  //
+  //     server.putSetting(server.treesfile, contents);
+  //
+  // }.bind(this);
+  //
+  // reader.readAsText(file);
+},
 
-      // TODO: FIX
-      server.putSetting("coordinateName","location");
-      server.getSettings();
+render: function() {
 
-    }.bind(this);
+  return (
+    <form>
+      <FileInput
+        name="Trees file"
+        accept=".tree,.trees"
+        placeholder="Load trees..."
+        className="btn btn-lg btn-success"
+        onChange={this.handleChange} />
+    </form>
+  )
 
-    reader.readAsText(file);
-  },
-
-  render: function() {
-
-    return (
-      <form>
-        <FileInput
-          name="Trees file"
-          accept=".tree,.trees"
-          placeholder="Load trees..."
-          className="btn btn-lg btn-success"
-          onChange={this.handleChange} />
-      </form>
-    )
-
-  },
+},
 });
 
 module.exports = LoadTrees;

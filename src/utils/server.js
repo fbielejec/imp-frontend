@@ -2,7 +2,15 @@
 * @fbielejec
 */
 
+//---MODULE EXPORTS---//
+
 var rootURL = "http://localhost:8080";
+var treesfile = "filename";
+var coordinateName = "coordinateName";
+var burnin = "burnin";
+var nslices = "nslices";
+var mrsd = "mrsd";
+
 
 getSettings = function() {
 
@@ -11,12 +19,10 @@ getSettings = function() {
     url: rootURL  + '/settings',
     dataType: "json", // data type of response
     success: function(data, textStatus, jqXHR){
-
        console.log(data);
-
     },
     error: function(jqXHR, textStatus, errorThrown){
-      console.log("ERROR GET SETTINGS");
+      console.log("ERROR IN GET SETTINGS");
     }
   });
 
@@ -29,18 +35,15 @@ getSetting = function(id) {
     url: rootURL  + '/settings/' + id,
     dataType: "json", // data type of response
     success: function(data, textStatus, jqXHR){
-
        console.log(data);
-
     },
     error: function(jqXHR, textStatus, errorThrown) {
-      console.log("ERROR GET SETTING " + "ID=" + id);
+      console.log("ERROR IN GET SETTING " + "ID=" + id);
     }
   });
 
 }
 
-// TODO: fix
 putSetting = function(id, value) {
 
   $.ajax({
@@ -49,20 +52,18 @@ putSetting = function(id, value) {
         url: rootURL + '/settings',
         dataType: "json",
         data: JSON.stringify({
-          "id": "coordinateName",
-          "value": "location"
+          "id": id,
+          "value": value
         }),
         success: function(data, textStatus, jqXHR) {
-
                console.log("SUCCESS");
-
+               getSetting(id);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log("ERROR IN PUT SETTING " + "ID="+ id + " VALUE=" + value);
-            console.log(jqXHR);
-            console.log(textStatus);
-            console.log(errorThrown)
-
+            // console.log(jqXHR);
+            // console.log(textStatus);
+            // console.log(errorThrown)
         }
     });
 
@@ -70,6 +71,7 @@ putSetting = function(id, value) {
 
 
 module.exports = {
+  treesfile : treesfile,
   getSettings : getSettings,
   getSetting : getSetting,
   putSetting : putSetting

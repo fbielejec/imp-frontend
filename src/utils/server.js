@@ -5,7 +5,7 @@
 //---MODULE EXPORTS---//
 
 var rootURL = "http://localhost:8080";
-var treesfile = "filename";
+var treesfile = "trees";
 var coordinateName = "coordinateName";
 var burnin = "burnin";
 var nslices = "nslices";
@@ -48,8 +48,8 @@ putSetting = function(id, value) {
 
   $.ajax({
         type: 'PUT',
-        contentType: 'application/json',
         url: rootURL + '/settings',
+        contentType: 'application/json',
         dataType: "json",
         data: JSON.stringify({
           "id": id,
@@ -61,9 +61,9 @@ putSetting = function(id, value) {
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.log("ERROR IN PUT SETTING " + "ID="+ id + " VALUE=" + value);
-            // console.log(jqXHR);
-            // console.log(textStatus);
-            // console.log(errorThrown)
+            console.log(jqXHR);
+            console.log(textStatus);
+            console.log(errorThrown)
         }
     });
 

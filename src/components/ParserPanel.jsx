@@ -11,6 +11,7 @@ var utils = require('../utils/utils.js');
 
 var LoadTrees = require('./LoadTrees');
 var SlicesSlider = require('./SlicesSlider');
+var SelectAttributes = require('./SelectAttributes');
 
 //---MODULE EXPORTS---//
 
@@ -19,9 +20,6 @@ var ParserPanel = React.createClass({
   propTypes : {
   }, // END: propTypes
 
-  // <div className='col-sm-8 col-sm-offset-2'>
-  //   <input type="text" value="location" />
-  // </div>
   //
   // <div className='col-sm-8 col-sm-offset-2'>
   //   <input type="text" value="burnin" />
@@ -46,6 +44,9 @@ var ParserPanel = React.createClass({
           <LoadTrees/>
         </div>
 
+        <div className='col-sm-8 col-sm-offset-2' style={{marginTop: '25px'}}>
+          <SelectAttributes />
+        </div>
 
       </div>
     );

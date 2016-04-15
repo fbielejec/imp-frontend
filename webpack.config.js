@@ -22,10 +22,10 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
-//     new webpack.ProvidePlugin({
-//         'Promise': 'es6-promise'//, // Thanks Aaron (https://gist.github.com/Couto/b29676dd1ab8714a818f#gistcomment-1584602)
-// //            'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-//     }),
+    new webpack.ProvidePlugin({
+        'Promise': 'es6-promise'//, // Thanks Aaron (https://gist.github.com/Couto/b29676dd1ab8714a818f#gistcomment-1584602)
+//            'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+    }),
     new HtmlWebpackPlugin({
       template: __dirname + '/src/index.html'
     }),
@@ -46,11 +46,18 @@ module.exports = {
   module: {
     loaders: [
 
+      // {
+      //   test: /\.js|\.jsx$/,
+      //   loaders: ['babel'],
+      //   include: path.join(__dirname, 'src')
+      // },
+
       {
-        test: /\.js|\.jsx$/,
-        loaders: ['babel'],
-        include: path.join(__dirname, 'src')
-      },
+          test: /\.js|\.jsx$/,
+          include: path.join(__dirname, 'src'),
+            exclude: /node_modules/,
+            loader: 'babel'
+          },
 
       {
         test: /\.css$/,

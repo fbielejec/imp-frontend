@@ -13,9 +13,9 @@ var server = require('../utils/server.js');
 
 var LoadTrees = React.createClass({
 
-  getInitialState: function() {
-    return {treesfile: null};
-  },//END: getInitialState
+  // getInitialState: function() {
+  //   return {treesfile: null};
+  // },//END: getInitialState
 
   handleChange: function(event) {
 
@@ -31,25 +31,41 @@ var LoadTrees = React.createClass({
 
     reader.onload = function(e) {
       var content = e.target.result;
-       server.putTrees(content);
-    }
 
-  }, //END: handleChange
+      var a1 = server.putTrees(content)
+      .then(
+        function() {
+          server.getAttributes().done(function(data) {
+            console.log(data);
+          });
+        });
 
-  render: function() {
+      }
 
-    return (
-      <form>
-        <FileInput
-          name="Trees file"
-          accept=".tree,.trees"
-          placeholder="Load trees..."
-          className="btn btn-lg btn-success"
-          onChange={this.handleChange}/>
-      </form>
-    )
+      // var a2 = server.getAttributes();
+      // $.when(a1, a2).done(function(r1, r2) {
+      //    //  console.log(r1[0]);
+      //     console.log(r2[0]);
+      // });
 
-  } //END: render
-});
 
-module.exports = LoadTrees;
+
+    }, //END: handleChange
+
+    render: function() {
+
+      return (
+        <form>
+          <FileInput
+            name="Trees file"
+            accept=".tree,.trees"
+            placeholder="Load trees..."
+            className="btn btn-lg btn-success"
+            onChange={this.handleChange}/>
+        </form>
+      )
+
+    } //END: render
+  });
+
+  module.exports = LoadTrees;

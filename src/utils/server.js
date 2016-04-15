@@ -7,12 +7,11 @@
 var rootURL = "http://localhost:8080";
 
 var settings = {
-  coordinateName: "coordinateName",
+  attribute: "attribute",
   burnin: "burnin",
   nslices: "nslices",
   mrsd: "mrsd"
 };
-
 
 getSettings = function() {
     $.ajax({
@@ -66,7 +65,7 @@ putSetting = function(id, value) {
   } //END: putSetting
 
 putTrees = function(content) {
-    $.ajax({
+  return $.ajax({
       type: 'PUT',
       url: rootURL + '/trees',
       // contentType: false,
@@ -78,18 +77,41 @@ putTrees = function(content) {
         "input": content
       }),
       success: function(data, textStatus, jqXHR) {
-        console.log("SUCCESS");
+        console.log("SUCCESS IN PUT TREES");
       },
       error: function(jqXHR, textStatus, errorThrown) {
-        console.log("ERROR");
+        console.log("ERROR IN PUT TREES");
       }
     });
   } //END: putTrees
+
+// https://stackoverflow.com/questions/16026942/how-do-i-chain-three-asynchronous-calls-using-jquery-promises
+  getAttributes = function() {
+     return $.ajax({
+        type: 'GET',
+        url: rootURL + '/attributes',
+        dataType: "json", // data type of response
+        // success: function(data, textStatus, jqXHR) {
+        //  console.log("SUCCESS IN GET SETTINGS");
+        // },
+        // error: function(jqXHR, textStatus, errorThrown) {
+        //   console.log("ERROR IN GET SETTINGS");
+        // }
+      })
+      // .done(function(data) {
+      //  console.log("SUCCESS IN GET SETTINGS");
+      // })
+      .fail(function(jqXHR, textStatus, errorThrown) {
+          console.log("ERROR IN GET SETTINGS");
+      });
+    } //END: getAttributes
+
 
 module.exports = {
   settings: settings,
   getSettings: getSettings,
   getSetting: getSetting,
   putSetting: putSetting,
-  putTrees: putTrees
+  putTrees: putTrees,
+  getAttributes : getAttributes
 };

@@ -7,7 +7,7 @@ var PropTypes = React.PropTypes;
 var server = require('../utils/server.js');
 var Selector = require('../components/Selector');
 
-var SelectAttributes = React.createClass({
+var SelectAttributesContainer = React.createClass({
 
   propTypes: {
     attributes: React.PropTypes.array.isRequired
@@ -24,12 +24,12 @@ var SelectAttributes = React.createClass({
 
   render: function() {
     return (
-
-<Selector values={this.props.attributes} handleChange={this.handleChange}/>
-
+      <Selector
+        values={this.props.attributes}
+        handleChange={this.handleChange}/>
     );
   }//END:render
 
 });
 
-module.exports = SelectAttributes;
+module.exports = SelectAttributesContainer;

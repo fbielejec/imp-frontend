@@ -3,15 +3,15 @@ var PropTypes = React.PropTypes;
 var server = require('../utils/server.js');
 var LoadTrees = require('../components/LoadTrees');
 var SelectAttributesContainer = require('./SelectAttributesContainer');
-var BurninSlider = require('../components/BurninSlider');
+var BurninSliderContainer = require('./BurninSliderContainer');
 
-var LoadTreesContainer = React.createClass({
+var MainContainer = React.createClass({
 
   getInitialState: function() {
     return {
       treesLoaded: false,
       attributes: [],
-      ntrees: 0
+      ntrees: 1
     };
   },//END: getInitialState
 
@@ -84,7 +84,7 @@ var LoadTreesContainer = React.createClass({
               key={1}
               className='col-sm-8 col-sm-offset-2'
               style={{marginTop: '25px'}}>
-              <BurninSlider maxValue={this.state.ntrees - 1}/>
+              <BurninSliderContainer maxValue={this.state.ntrees - 1}/>
             </div>
 
           ]
@@ -96,4 +96,4 @@ var LoadTreesContainer = React.createClass({
 
   });
 
-  module.exports = LoadTreesContainer;
+  module.exports = MainContainer;

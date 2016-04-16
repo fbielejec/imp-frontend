@@ -6,10 +6,11 @@
 
 var React = require('react');
 require('../styles/slices-slider.css');
+var server = require('../utils/server.js');
 
 //---MODULE EXPORTS---//
 
-var BurninSlider = React.createClass({
+var BurninSliderContainer = React.createClass({
 
   propTypes: {
     maxValue: React.PropTypes.number.isRequired
@@ -29,6 +30,7 @@ var BurninSlider = React.createClass({
     this.setState({
       value: event.target.value
     });
+server.putSetting(server.settings.burnin, event.target.value);
   },
 
   render: function() {
@@ -55,4 +57,4 @@ var BurninSlider = React.createClass({
 });
 
 
-module.exports = BurninSlider;
+module.exports = BurninSliderContainer;

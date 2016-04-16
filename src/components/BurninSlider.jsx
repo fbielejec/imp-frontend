@@ -3,20 +3,21 @@
 */
 
 //---MODULE IMPORTS---//
+
 var React = require('react');
 require('../styles/slices-slider.css');
 
 //---MODULE EXPORTS---//
 
-var SlicesSlider = React.createClass({
+var BurninSlider = React.createClass({
 
   propTypes: {
-    initialValue: React.PropTypes.number
+    maxValue: React.PropTypes.number.isRequired
   },
 
   getInitialState: function() {
     return {
-      value: 1//this.props.initialValue
+      value: 1
     };
   },
 
@@ -27,8 +28,7 @@ var SlicesSlider = React.createClass({
   },
 
   render: function() {
-    var min=1;
-    var max=50;
+    var min=0;
     var step=1;
     return (
         <div className="wrapper">
@@ -36,14 +36,14 @@ var SlicesSlider = React.createClass({
             type="range"
             id="slider"
             min={min}
-            max={max}
+            max={this.props.maxValue}
             step={step}
             value={this.state.value}
             onInput={this.handleOnChange}
             onChange={this.handleOnChange}
             />
           <span>
-          number of slices:  {this.state.value}
+          burnin: {this.state.value}
           </span>
         </div>
     );
@@ -51,4 +51,4 @@ var SlicesSlider = React.createClass({
 });
 
 
-module.exports = SlicesSlider;
+module.exports = BurninSlider;

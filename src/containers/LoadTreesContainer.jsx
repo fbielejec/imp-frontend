@@ -3,14 +3,15 @@ var PropTypes = React.PropTypes;
 var server = require('../utils/server.js');
 var LoadTrees = require('../components/LoadTrees');
 var SelectAttributes = require('../components/SelectAttributes');
-var SlicesSlider = require('../components/SlicesSlider');
+var BurninSlider = require('../components/BurninSlider');
 
 var LoadTreesContainer = React.createClass({
 
   getInitialState: function() {
     return {
       treesLoaded: false,
-      attributes: []
+      attributes: [],
+      nTrees: 0
     };
   },//END: getInitialState
 
@@ -26,25 +27,64 @@ var LoadTreesContainer = React.createClass({
     var reader = new FileReader();
     reader.readAsText(file, 'UTF-8');
     var self = this;
+
+
+
     reader.onload = function(e) {
       var content = e.target.result;
 
-      server.putTrees(content)
-      .then(
-        function() {
-          server.getAttributes().done(function(attributes) {
+      $.when(server.putTrees(content)).done(function() {
 
-            self.setState({
-              treesLoaded: true,
-              attributes: attributes
-            });
+// TODO: chain multiple calls here
+      var attributes_call = server.getAttributes();
 
-            // console.log(self.state);
+  $.when(attributes_call).done(function(attributes) {
 
-          });
-        });
+                self.setState({
+                  treesLoaded: true,
+                  attributes: attributes,
+                // nTrees: nTrees
+                });
+
+});
+
+      });
+
 
       }
+
+
+
+
+
+
+
+
+
+
+
+//     reader.onload = function(e) {
+//       var content = e.target.result;
+//
+// // https://medium.com/coding-design/writing-better-ajax-8ee4a7fb95f#.qlyy0jurn
+//
+//       server.putTrees(content)
+//       .then(
+//         function() {
+//           server.getAttributes().done(function(attributes) {
+//
+//             self.setState({
+//               treesLoaded: true,
+//               attributes: attributes,
+//             // nTrees: nTrees
+//             });
+//
+//             // console.log(self.state);
+//
+//           });
+//         });
+//
+//       }
 
     }, //END: handleChange
 
@@ -70,7 +110,7 @@ var LoadTreesContainer = React.createClass({
               <div key={1}
                 className='col-sm-8 col-sm-offset-2'
                 style={{marginTop: '25px'}}>
-                <SlicesSlider/>
+                <BurninSlider maxValue={this.state.nTrees}/>
               </div>
 
             ]

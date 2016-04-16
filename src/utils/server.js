@@ -15,96 +15,87 @@ var settings = {
 
 getSettings = function() {
     $.ajax({
-      type: 'GET',
-      url: rootURL + '/settings',
-      dataType: "json", // data type of response
-      success: function(data, textStatus, jqXHR) {
-        console.log(data);
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-        console.log("ERROR IN GET SETTINGS");
-      }
-    });
+        type: 'GET',
+        url: rootURL + '/settings',
+        dataType: "json"
+      })
+      .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("ERROR IN PUT TREES");
+      })
+      // .done(function(data) {
+      //  console.log("SUCCESS IN GET SETTINGS");
+      // })
+    ;
   } //END: getSettings
 
 getSetting = function(id) {
     $.ajax({
-      type: 'GET',
-      url: rootURL + '/settings/' + id,
-      dataType: "json", // data type of response
-      success: function(data, textStatus, jqXHR) {
-        console.log(data);
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-        console.log("ERROR IN GET SETTING " + "ID=" + id);
-      }
-    });
+        type: 'GET',
+        url: rootURL + '/settings/' + id,
+        dataType: "json"
+      })
+      .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("ERROR IN GET SETTING");
+      })
+      // .done(function(data) {
+      //  console.log("SUCCESS IN GET SETTINGS");
+      // })
+    ;
   } //END: getSetting
 
 putSetting = function(id, value) {
     $.ajax({
-      type: 'PUT',
-      url: rootURL + '/settings',
-      contentType: 'application/json',
-      dataType: "json",
-      data: JSON.stringify({
-        "id": id,
-        "value": value
-      }),
-      success: function(data, textStatus, jqXHR) {
-        console.log("SUCCESS");
-        getSetting(id);
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
-        console.log("ERROR IN PUT SETTING " + "ID=" + id + " VALUE=" + value);
-        console.log(jqXHR);
-        console.log(textStatus);
-        console.log(errorThrown)
-      }
-    });
+        type: 'PUT',
+        url: rootURL + '/settings',
+        contentType: 'application/json',
+        dataType: "json",
+        data: JSON.stringify({
+          "id": id,
+          "value": value
+        })
+      })
+      .fail(function(jqXHR, textStatus, errorThrown) {
+        console.log("ERROR IN PUT SETTING");
+      })
+      // .done(function(data) {
+      //  console.log("SUCCESS IN GET SETTINGS");
+      // })
+    ;
   } //END: putSetting
 
 putTrees = function(content) {
-  return $.ajax({
-      type: 'PUT',
-      url: rootURL + '/trees',
-      // contentType: false,
-      // processData: false,
-      // data: content,
-      contentType: 'application/json',
-      dataType: "json",
-      data: JSON.stringify({
-        "input": content
-      }),
-      success: function(data, textStatus, jqXHR) {
-        console.log("SUCCESS IN PUT TREES");
-      },
-      error: function(jqXHR, textStatus, errorThrown) {
+    return $.ajax({
+        type: 'PUT',
+        url: rootURL + '/trees',
+        contentType: 'application/json',
+        dataType: "json",
+        data: JSON.stringify({
+          "input": content
+        })
+      })
+      .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("ERROR IN PUT TREES");
-      }
-    });
+      })
+      // .done(function(data) {
+      //  console.log("SUCCESS IN GET SETTINGS");
+      // })
+    ;
   } //END: putTrees
 
 // https://stackoverflow.com/questions/16026942/how-do-i-chain-three-asynchronous-calls-using-jquery-promises
-  getAttributes = function() {
-     return $.ajax({
+getAttributes = function() {
+    return $.ajax({
         type: 'GET',
         url: rootURL + '/attributes',
-        dataType: "json", // data type of response
-        // success: function(data, textStatus, jqXHR) {
-        //  console.log("SUCCESS IN GET SETTINGS");
-        // },
-        // error: function(jqXHR, textStatus, errorThrown) {
-        //   console.log("ERROR IN GET SETTINGS");
-        // }
+        dataType: "json",
       })
       // .done(function(data) {
       //  console.log("SUCCESS IN GET SETTINGS");
       // })
       .fail(function(jqXHR, textStatus, errorThrown) {
-          console.log("ERROR IN GET SETTINGS");
+        console.log("ERROR IN GET ATTRIBUTES");
       });
-    } //END: getAttributes
+  } //END: getAttributes
 
 
 module.exports = {
@@ -113,5 +104,5 @@ module.exports = {
   getSetting: getSetting,
   putSetting: putSetting,
   putTrees: putTrees,
-  getAttributes : getAttributes
+  getAttributes: getAttributes
 };

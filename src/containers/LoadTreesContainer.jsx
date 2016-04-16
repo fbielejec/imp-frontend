@@ -3,6 +3,7 @@ var PropTypes = React.PropTypes;
 var server = require('../utils/server.js');
 var LoadTrees = require('../components/LoadTrees');
 var SelectAttributes = require('../components/SelectAttributes');
+var SlicesSlider = require('../components/SlicesSlider');
 
 var LoadTreesContainer = React.createClass({
 
@@ -57,21 +58,23 @@ var LoadTreesContainer = React.createClass({
             <LoadTrees handleChange={this.handleChange}/>
           </div>
 
-          <div>
-            {this.state.treesLoaded ?
-              [
-                <div
-                  className='col-sm-8 col-sm-offset-2'
-                  style={{marginTop: '25px'}}>
-                  <SelectAttributes attributes={this.state.attributes}/>
-                  ,
-                  <p>
-                    REMAINING COMPONENTS
-                  </p>
-                </div>
-              ]
-              : null}
-            </div>
+          {this.state.treesLoaded ?
+            [
+              <div key={0}
+                className='col-sm-8 col-sm-offset-2'
+                style={{marginTop: '25px'}}>
+                <SelectAttributes attributes={this.state.attributes}/>
+              </div>
+              ,
+
+              <div key={1}
+                className='col-sm-8 col-sm-offset-2'
+                style={{marginTop: '25px'}}>
+                <SlicesSlider/>
+              </div>
+
+            ]
+            : null}
 
           </div>
         );

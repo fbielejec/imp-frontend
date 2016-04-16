@@ -27,7 +27,7 @@ console.log(event.target.value);
         {this.props.attributes.map(function(attribute, i) {
 
                 return (
-                  <option value={attribute}>{attribute}</option>
+                  <option key={i} value={attribute}>{attribute}</option>
                 );
               })}
 

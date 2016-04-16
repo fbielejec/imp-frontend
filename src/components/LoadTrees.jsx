@@ -8,6 +8,8 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 var FileInput = require('react-file-input');
 
+//---MODULE IMPORTS---//
+
 var LoadTrees = React.createClass({
 
   propTypes : {

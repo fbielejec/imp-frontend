@@ -11,12 +11,12 @@ require('../styles/slices-slider.css');
 var SlicesSlider = React.createClass({
 
   propTypes: {
-    initialValue: React.PropTypes.number.isRequired
+    initialValue: React.PropTypes.number
   },
 
   getInitialState: function() {
     return {
-      value: this.props.initialValue
+      value: 1//this.props.initialValue
     };
   },
 

@@ -7,17 +7,16 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 require('../styles/slices-slider.css');
-var server = require('../utils/server.js');
 
 //---MODULE EXPORTS---//
 
 var Slider = React.createClass({
 
   propTypes: {
-    maxValue: React.PropTypes.number.isRequired,
-    value: React.PropTypes.number.isRequired,
-    handleChange: React.PropTypes.func.isRequired,
-    label: React.PropTypes.string.isRequired
+    maxValue: React.PropTypes.number,
+    value: React.PropTypes.number,
+    handleChange: React.PropTypes.func,
+    label: React.PropTypes.string
   },
 
   render: function() {

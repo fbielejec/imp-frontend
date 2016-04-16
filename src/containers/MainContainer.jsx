@@ -9,7 +9,10 @@ var MainContainer = React.createClass({
 
   getInitialState: function() {
     return {
-      treesLoaded: false,
+  // TODO: debugging
+        treesLoaded: false,
+      // treesLoaded: true,
+
       attributes: [],
       ntrees: 1
     };

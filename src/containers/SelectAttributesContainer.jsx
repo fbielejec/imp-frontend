@@ -5,8 +5,13 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 var server = require('../utils/server.js');
+var Selector = require('../components/Selector');
 
 var SelectAttributes = React.createClass({
+
+  propTypes: {
+    attributes: React.PropTypes.array.isRequired
+  },
 
   getInitialState: function() {
     return ({value: ""})
@@ -19,15 +24,9 @@ var SelectAttributes = React.createClass({
 
   render: function() {
     return (
-      <select onChange={this.handleChange}>
-        {this.props.attributes.map(function(attribute, i) {
-          return (
-            <option key={i} value={attribute}>
-              {attribute}
-            </option>
-          );
-        })}
-      </select>
+
+<Selector values={this.props.attributes} handleChange={this.handleChange}/>
+
     );
   }//END:render
 

@@ -2,7 +2,7 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 var server = require('../utils/server.js');
 var LoadTrees = require('../components/LoadTrees');
-var SelectAttributes = require('../components/SelectAttributes');
+var SelectAttributesContainer = require('./SelectAttributesContainer');
 var BurninSlider = require('../components/BurninSlider');
 
 var LoadTreesContainer = React.createClass({
@@ -76,7 +76,7 @@ var LoadTreesContainer = React.createClass({
               key={0}
               className='col-sm-8 col-sm-offset-2'
               style={{marginTop: '25px'}}>
-              <SelectAttributes attributes={this.state.attributes}/>
+              <SelectAttributesContainer attributes={this.state.attributes}/>
             </div>
             ,
 

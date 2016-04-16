@@ -21,11 +21,7 @@ getSettings = function() {
       })
       .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("ERROR IN PUT TREES");
-      })
-      // .done(function(data) {
-      //  console.log("SUCCESS IN GET SETTINGS");
-      // })
-    ;
+      });
   } //END: getSettings
 
 getSetting = function(id) {
@@ -36,11 +32,7 @@ getSetting = function(id) {
       })
       .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("ERROR IN GET SETTING");
-      })
-      // .done(function(data) {
-      //  console.log("SUCCESS IN GET SETTINGS");
-      // })
-    ;
+      });
   } //END: getSetting
 
 putSetting = function(id, value) {
@@ -56,11 +48,7 @@ putSetting = function(id, value) {
       })
       .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("ERROR IN PUT SETTING");
-      })
-      // .done(function(data) {
-      //  console.log("SUCCESS IN GET SETTINGS");
-      // })
-    ;
+      });
   } //END: putSetting
 
 putTrees = function(content) {
@@ -75,27 +63,30 @@ putTrees = function(content) {
       })
       .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("ERROR IN PUT TREES");
-      })
-      // .done(function(data) {
-      //  console.log("SUCCESS IN GET SETTINGS");
-      // })
-    ;
+      });
   } //END: putTrees
 
-// https://stackoverflow.com/questions/16026942/how-do-i-chain-three-asynchronous-calls-using-jquery-promises
 getAttributes = function() {
     return $.ajax({
         type: 'GET',
         url: rootURL + '/attributes',
         dataType: "json",
       })
-      // .done(function(data) {
-      //  console.log("SUCCESS IN GET SETTINGS");
-      // })
       .fail(function(jqXHR, textStatus, errorThrown) {
         console.log("ERROR IN GET ATTRIBUTES");
       });
   } //END: getAttributes
+
+  getnTrees = function() {
+      return $.ajax({
+          type: 'GET',
+          url: rootURL + '/ntrees',
+          dataType: "json",
+        })
+        .fail(function(jqXHR, textStatus, errorThrown) {
+          console.log("ERROR IN GET ATTRIBUTES");
+        });
+    } //END: getAttributes
 
 
 module.exports = {
@@ -104,5 +95,6 @@ module.exports = {
   getSetting: getSetting,
   putSetting: putSetting,
   putTrees: putTrees,
-  getAttributes: getAttributes
+  getAttributes: getAttributes,
+  getnTrees: getnTrees
 };

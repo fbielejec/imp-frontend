@@ -11,7 +11,7 @@ var LoadTreesContainer = React.createClass({
     return {
       treesLoaded: false,
       attributes: [],
-      nTrees: 0
+      ntrees: 0
     };
   },//END: getInitialState
 
@@ -35,91 +35,65 @@ var LoadTreesContainer = React.createClass({
 
       $.when(server.putTrees(content)).done(function() {
 
-// TODO: chain multiple calls here
-      var attributes_call = server.getAttributes();
+        // chaining multiple AJAX calls
+        var attributes_call = server.getAttributes();
+        var ntrees_call = server.getnTrees();
 
-  $.when(attributes_call).done(function(attributes) {
+        $.when(attributes_call, ntrees_call).done(function(attributes, ntrees) {
 
-                self.setState({
-                  treesLoaded: true,
-                  attributes: attributes,
-                // nTrees: nTrees
-                });
+          // console.log(attributes[0]);
+          // console.log(ntrees[0]);
 
-});
+          self.setState({
+            treesLoaded: true,
+            attributes: attributes[0],
+            ntrees: ntrees[0]
+          });
+
+        });
 
       });
 
 
-      }
+    }
 
 
+  }, //END: handleChange
 
+  render: function() {
+    return (
+      <div
+        className="jumbotron col-sm-12 text-center"
+        style={{background: "transparent"}}>
 
+        <div className='col-sm-8 col-sm-offset-2'>
+          <LoadTrees handleChange={this.handleChange}/>
+        </div>
 
+        {this.state.treesLoaded ?
+          [
+            <div
+              key={0}
+              className='col-sm-8 col-sm-offset-2'
+              style={{marginTop: '25px'}}>
+              <SelectAttributes attributes={this.state.attributes}/>
+            </div>
+            ,
 
+            <div
+              key={1}
+              className='col-sm-8 col-sm-offset-2'
+              style={{marginTop: '25px'}}>
+              <BurninSlider maxValue={this.state.ntrees - 1}/>
+            </div>
 
+          ]
+          : null}
 
+        </div>
+      );
+    }
 
+  });
 
-
-//     reader.onload = function(e) {
-//       var content = e.target.result;
-//
-// // https://medium.com/coding-design/writing-better-ajax-8ee4a7fb95f#.qlyy0jurn
-//
-//       server.putTrees(content)
-//       .then(
-//         function() {
-//           server.getAttributes().done(function(attributes) {
-//
-//             self.setState({
-//               treesLoaded: true,
-//               attributes: attributes,
-//             // nTrees: nTrees
-//             });
-//
-//             // console.log(self.state);
-//
-//           });
-//         });
-//
-//       }
-
-    }, //END: handleChange
-
-    render: function() {
-      return (
-        <div
-          className="jumbotron col-sm-12 text-center"
-          style={{background: "transparent"}}>
-
-          <div className='col-sm-8 col-sm-offset-2'>
-            <LoadTrees handleChange={this.handleChange}/>
-          </div>
-
-          {this.state.treesLoaded ?
-            [
-              <div key={0}
-                className='col-sm-8 col-sm-offset-2'
-                style={{marginTop: '25px'}}>
-                <SelectAttributes attributes={this.state.attributes}/>
-              </div>
-              ,
-
-              <div key={1}
-                className='col-sm-8 col-sm-offset-2'
-                style={{marginTop: '25px'}}>
-                <BurninSlider maxValue={this.state.nTrees}/>
-              </div>
-
-            ]
-            : null}
-
-          </div>
-        );
-      }
-
-    });
-
-    module.exports = LoadTreesContainer;
+  module.exports = LoadTreesContainer;

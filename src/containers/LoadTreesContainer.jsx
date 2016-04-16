@@ -1,9 +1,8 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-var FileInput = require('react-file-input');
 var server = require('../utils/server.js');
-// var LoadTrees = require('../components/LoadTrees');
- var SelectAttributes = require('../components/SelectAttributes');
+var LoadTrees = require('../components/LoadTrees');
+var SelectAttributes = require('../components/SelectAttributes');
 
 var LoadTreesContainer = React.createClass({
 
@@ -29,7 +28,7 @@ var LoadTreesContainer = React.createClass({
     reader.onload = function(e) {
       var content = e.target.result;
 
-     server.putTrees(content)
+      server.putTrees(content)
       .then(
         function() {
           server.getAttributes().done(function(attributes) {
@@ -39,7 +38,7 @@ var LoadTreesContainer = React.createClass({
               attributes: attributes
             });
 
-  console.log(self.state);
+            // console.log(self.state);
 
           });
         });
@@ -48,32 +47,36 @@ var LoadTreesContainer = React.createClass({
 
     }, //END: handleChange
 
-  render: function() {
-    return (
-      <div>
-      <form>
-        <FileInput
-          name="Trees file"
-          accept=".tree,.trees"
-          placeholder="Load trees..."
-          className="btn btn-lg btn-success"
-          onChange={this.handleChange}/>
-      </form>
+    render: function() {
+      return (
+        <div
+          className="jumbotron col-sm-12 text-center"
+          style={{background: "transparent"}}>
 
-      <div>
-        {this.state.treesLoaded ?
-          [
-          <SelectAttributes attributes={this.state.attributes}/>,
-            <p>REMAINING COMPONENTS</p>
-          ]
-        : null}
-      </div>
-        </div>
-    );
-  }
+          <div className='col-sm-8 col-sm-offset-2'>
+            <LoadTrees handleChange={this.handleChange}/>
+          </div>
 
-});
+          <div>
+            {this.state.treesLoaded ?
+              [
+                <div
+                  className='col-sm-8 col-sm-offset-2'
+                  style={{marginTop: '25px'}}>
+                  <SelectAttributes attributes={this.state.attributes}/>
+                  ,
+                  <p>
+                    REMAINING COMPONENTS
+                  </p>
+                </div>
+              ]
+              : null}
+            </div>
 
-  // <SelectAttributes attributes={['Apple', 'Banana', 'Cranberry']}/>,
+          </div>
+        );
+      }
 
-module.exports = LoadTreesContainer;
+    });
+
+    module.exports = LoadTreesContainer;

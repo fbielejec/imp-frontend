@@ -28,7 +28,6 @@ var BurninSliderContainer = React.createClass({
   },
 
   handleChange: function(event) {
-    
     this.setState({
       value: Number(event.target.value)
     });

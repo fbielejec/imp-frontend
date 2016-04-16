@@ -4,15 +4,15 @@ var server = require('../utils/server.js');
 var LoadTrees = require('../components/LoadTrees');
 var SelectAttributesContainer = require('./SelectAttributesContainer');
 var BurninSliderContainer = require('./BurninSliderContainer');
+var SelectSlicesContainer = require('./SelectSlicesContainer');
 
 var MainContainer = React.createClass({
 
   getInitialState: function() {
     return {
-  // TODO: debugging
-        treesLoaded: false,
+      // TODO: debugging
+      treesLoaded: false,
       // treesLoaded: true,
-
       attributes: [],
       ntrees: 1
     };
@@ -31,36 +31,23 @@ var MainContainer = React.createClass({
     reader.readAsText(file, 'UTF-8');
     var self = this;
 
-
-
     reader.onload = function(e) {
       var content = e.target.result;
 
       $.when(server.putTrees(content)).done(function() {
-
         // chaining multiple AJAX calls
         var attributes_call = server.getAttributes();
         var ntrees_call = server.getnTrees();
 
         $.when(attributes_call, ntrees_call).done(function(attributes, ntrees) {
-
-          // console.log(attributes[0]);
-          // console.log(ntrees[0]);
-
           self.setState({
             treesLoaded: true,
             attributes: attributes[0],
             ntrees: ntrees[0]
           });
-
         });
-
       });
-
-
-    }
-
-
+    }//END: onLoad
   }, //END: handleChange
 
   render: function() {
@@ -88,6 +75,14 @@ var MainContainer = React.createClass({
               className='col-sm-8 col-sm-offset-2'
               style={{marginTop: '25px'}}>
               <BurninSliderContainer maxValue={this.state.ntrees - 1}/>
+            </div>
+            ,
+
+            <div
+              key={2}
+              className='col-sm-8 col-sm-offset-2'
+              style={{marginTop: '25px'}}>
+              <SelectSlicesContainer/>
             </div>
 
           ]

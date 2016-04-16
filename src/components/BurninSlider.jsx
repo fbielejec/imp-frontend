@@ -16,9 +16,7 @@ var BurninSlider = React.createClass({
   },
 
   componentDidMount: function() {
-
-console.log(this.props.maxValue);
-
+    //  console.log(this.props.maxValue);
   },
 
   getInitialState: function() {

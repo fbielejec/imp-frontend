@@ -4,14 +4,18 @@
 
 var React = require('react');
 var PropTypes = React.PropTypes;
+var server = require('../utils/server.js');
 
 var SelectAttributes = React.createClass({
 
+  getInitialState: function() {
+    return ({value: ""})
+  }, //END: getInitialState
+
   handleChange: function(event) {
     this.setState({value: event.target.value});
-    // console.log(event.target.value);
+    server.putSetting(server.settings.attribute, event.target.value);
   },//END: handleChange
-
 
   render: function() {
     return (

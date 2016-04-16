@@ -11,25 +11,26 @@ var PropTypes = React.PropTypes;
 
 var SelectAttributes = React.createClass({
 
-  getInitialState: function() {
-          return {
-              value: 'select location attribute name'
-          }
-      },//END: getInitialState
 
   handleChange: function(event) {
 
       this.setState({value: event.target.value});
+
+console.log(event.target.value);
 
 },//END: handleChange
 
 
   render: function() {
     return (
-      <select value={this.state.value} onChange={this.handleChange}>
-        <option value="A">Apple</option>
-        <option value="B">Banana</option>
-        <option value="C">Cranberry</option>
+      <select onChange={this.handleChange}>
+        {this.props.attributes.map(function(attribute, i) {
+
+                return (
+                  <option value={attribute}>{attribute}</option>
+                );
+              })}
+
       </select>
     );
   }//END:render

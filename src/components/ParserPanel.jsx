@@ -9,9 +9,9 @@ var PropTypes = React.PropTypes;
 var LineChart = require('./LineChart');
 var utils = require('../utils/utils.js');
 
-var LoadTrees = require('./LoadTrees');
-var SlicesSlider = require('./SlicesSlider');
-var SelectAttributes = require('./SelectAttributes');
+var LoadTreesContainer = require('../containers/LoadTreesContainer');
+// var SlicesSlider = require('./SlicesSlider');
+// var SelectAttributes = require('./SelectAttributes');
 
 //---MODULE EXPORTS---//
 
@@ -33,6 +33,10 @@ var ParserPanel = React.createClass({
   //   <input type="text" value="mrsd" />
   // </div>
 
+  // <div className='col-sm-8 col-sm-offset-2' style={{marginTop: '25px'}}>
+  //   <SelectAttributes />
+  // </div>
+
   render: function() {
     return (
 
@@ -41,11 +45,7 @@ var ParserPanel = React.createClass({
         style={{background: "transparent"}}>
 
         <div className='col-sm-8 col-sm-offset-2'>
-          <LoadTrees/>
-        </div>
-
-        <div className='col-sm-8 col-sm-offset-2' style={{marginTop: '25px'}}>
-          <SelectAttributes />
+          <LoadTreesContainer/>
         </div>
 
       </div>

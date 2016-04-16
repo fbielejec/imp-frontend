@@ -13,10 +13,10 @@ require('../styles/slices-slider.css');
 var Slider = React.createClass({
 
   propTypes: {
+    label: React.PropTypes.string,
     maxValue: React.PropTypes.number,
-    value: React.PropTypes.number,
     handleChange: React.PropTypes.func,
-    label: React.PropTypes.string
+    value: React.PropTypes.number
   },
 
   render: function() {

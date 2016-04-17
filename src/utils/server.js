@@ -90,6 +90,7 @@ getAttributes = function() {
 
 
 module.exports = {
+  rootURL : rootURL,
   settings: settings,
   getSettings: getSettings,
   getSetting: getSetting,

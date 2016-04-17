@@ -37,7 +37,7 @@ var BurninSliderContainer = React.createClass({
   render: function() {
     return (
       <Slider
-        label={"burnin"}
+        label={"burn-in"}
         maxValue={this.props.maxValue}
         handleChange={this.handleChange}
         value={this.state.value} />

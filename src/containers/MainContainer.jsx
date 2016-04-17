@@ -20,8 +20,8 @@ var MainContainer = React.createClass({
   getInitialState: function() {
     return {
       // TODO: debugging
-      treesLoaded: false,
-      // treesLoaded: true,
+      // treesLoaded: false,
+      treesLoaded: true,
       attributes: [],
       ntrees: 1
     };
@@ -59,53 +59,89 @@ var MainContainer = React.createClass({
     }//END: onLoad
   }, //END: handleChange
 
-  // TODO: use form layout with labels
-  // http://bootsnipp.com/snippets/338Xq
-  // http://bootsnipp.com/snippets/featured/billing-address-formj
-  // http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-forms.php
   render: function() {
     return (
       <div
-        className="jumbotron col-sm-12 text-center"
+        className="container"
         style={{background: "transparent"}}>
+        <div className="row">
+          <div className="span8">
+            <form className="form-horizontal">
 
-        <div className='col-sm-8 col-sm-offset-2'>
-          <LoadTrees handleChange={this.handleChange}/>
-        </div>
+              <div
+                className="control-group"
+                style={{marginTop: '25px'}}>
+                <label
+                  htmlFor="load-trees"
+                  className="control-label">
+                  Load trees file
+                </label>
+                <div className="controls">
+                  <LoadTrees
+                    name="load-trees"
+                    handleChange={this.handleChange}/>
+                </div>
+              </div>
 
-        {this.state.treesLoaded ?
-          [
-            <div
-              key={0}
-              className='col-sm-8 col-sm-offset-2'
-              style={{marginTop: '25px'}}>
-              <SelectAttributesContainer attributes={this.state.attributes}/>
+              {this.state.treesLoaded ?
+                [
+                  <div key={0} className="control-group">
+                    <label
+                      htmlFor="select-attributes"
+                      className="control-label">
+                      Select location attribute name
+                    </label>
+                    <div className="controls">
+                      <SelectAttributesContainer
+                        name="select-attributes"
+                        attributes={this.state.attributes}/>
+                    </div>
+                  </div>
+                  ,
+
+                  <div key={1} className="control-group">
+                    <label
+                      htmlFor="burnin-slider"
+                      className="control-label">
+                      Select burn-in
+                    </label>
+                    <div className="controls">
+                      <BurninSliderContainer
+                        name="burnin-slider"
+                        maxValue={this.state.ntrees - 1}/>
+                    </div>
+                  </div>
+                  ,
+
+                  <div key={2} className="control-group">
+                    <label
+                      htmlFor="select-slices"
+                      className="control-label">
+                      Select number of slices
+                    </label>
+                    <div className="controls">
+                      <SelectSlicesContainer name="select-slices"/>
+                    </div>
+                  </div>
+                  ,
+
+                  <div key={3} className="control-group">
+                    <label
+                      htmlFor="decimal-date"
+                      className="control-label">
+                      Most recent sampling date
+                    </label>
+                    <div className="controls">
+                      <DecimalDateContainer name="decimal-date"/>
+                    </div>
+                  </div>
+
+                ]
+                : null}
+
+              </form>
             </div>
-            ,
-
-            <div
-              key={1}
-              className='col-sm-8 col-sm-offset-2'
-              style={{marginTop: '25px'}}>
-              <BurninSliderContainer maxValue={this.state.ntrees - 1}/>
-            </div>
-            ,
-
-            <div
-              key={2}
-              className='col-sm-8 col-sm-offset-2'
-              style={{marginTop: '25px'}}>
-              <SelectSlicesContainer/>
-            </div>
-            ,
-            <div className='col-sm-8 col-sm-offset-2'>
-              <DecimalDateContainer/>
-            </div>
-
-
-          ]
-          : null}
-
+          </div>
         </div>
       );
     }

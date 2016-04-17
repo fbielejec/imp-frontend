@@ -1,10 +1,14 @@
-/*input[type=range] {
-  width: 75%;
-}*/
 
 #slider {
   border: #ccc;
   padding: 10px;
-  min-height: 100px;
-  display: inline-block;
+  min-height: 50px;
+  width: 300px;
  }
+
+ #span {
+   display: inline-block;
+   padding: 10px;
+   min-height: 50px;
+   width: 100px;
+  }

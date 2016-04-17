@@ -9,6 +9,7 @@ var ReactDOM = require('react-dom');
 var Tabs = require('react-simpletabs');
 require('./styles/app.css');
 require('./styles/tabs.css');
+// require('script!react-bootstrap');
 var RenderPanel = require('./components/RenderPanel');
 var ParserPanel = require('./components/ParserPanel');
 

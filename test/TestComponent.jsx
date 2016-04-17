@@ -4,7 +4,7 @@ var VeryFirstDiv = React.createClass ({
   render: function() {
     return (
       <div className="veryFirstDiv">
-        <span>Lovely! Here it is - my very first React component!</span>
+        <span>FUBAR</span>
       </div>
     );
   }

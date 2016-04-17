@@ -5,18 +5,20 @@ var jsdom = require('mocha-jsdom');
 var assert = require('chai').assert;
 var React = require('react');
 var TestUtils = require('react-addons-test-utils');
-var VeryFirstDiv = require('./TestComponent');
+var TestComponent = require('./TestComponent');
 
-
-describe('Testing my div', function() {
+describe('TestComponent tests', function() {
   jsdom({ skipWindowCheck: true });
 
-  it('should contain text: Lovely! Here it is - my very first React component!', function() {
-    var myDiv = TestUtils.renderIntoDocument(
-      <VeryFirstDiv />
+  it('should contain text: FUBAR', function() {
+    var renderedComponent = TestUtils.renderIntoDocument(
+      <TestComponent />
     );
-    var divText = TestUtils.findRenderedDOMComponentWithTag(myDiv, 'span');
 
-    assert.equal(divText.textContent, 'Lovely! Here it is - my very first React component!');
+// console.log(renderedComponent);
+
+    var divText = TestUtils.findRenderedDOMComponentWithTag(renderedComponent, 'span');
+    assert.equal(divText.textContent, 'FUBAR');
   });
+
 });

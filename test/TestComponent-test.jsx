@@ -5,13 +5,13 @@ var jsdom = require('mocha-jsdom');
 var assert = require('chai').assert;
 var React = require('react');
 var TestUtils = require('react-addons-test-utils');
-// var TestUtils = React.addons.TestUtils;
+var VeryFirstDiv = require('./TestComponent');
+
 
 describe('Testing my div', function() {
   jsdom({ skipWindowCheck: true });
 
   it('should contain text: Lovely! Here it is - my very first React component!', function() {
-    var VeryFirstDiv = require('./TestComponent');
     var myDiv = TestUtils.renderIntoDocument(
       <VeryFirstDiv />
     );

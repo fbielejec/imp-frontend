@@ -2,7 +2,7 @@ var assert = require('chai').assert;
 var request = require('request');
 var server = require('../src/utils/server.js');
 
-describe("Frontend tests", function() {
+describe("Mocha tests", function() {
 
   var url = server.rootURL;
   it("server returns status 200", function(done) {
@@ -12,13 +12,9 @@ describe("Frontend tests", function() {
     });
   });
 
-// TODO: test react
-// http://www.hammerlab.org/2015/02/14/testing-react-web-apps-with-mocha/
-// http://www.asbjornenge.com/wwc/testing_react_components.html
-
-  it('should return an array', function() {
-    assert(Array.isArray('a,b,c'.split(',')));
-  });
+  // it('should return an array', function() {
+  //   assert(Array.isArray('a,b,c'.split(',')));
+  // });
 
 
 });

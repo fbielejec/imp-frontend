@@ -8,8 +8,10 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 var FileInput = require('react-file-input');
 
-//---MODULE IMPORTS---//
+//---MODULE EXPORTS---//
 
+// TODO: loading indicator
+// http://bootsnipp.com/snippets/featured/loading-button
 var LoadTrees = React.createClass({
 
   propTypes : {
@@ -19,14 +21,12 @@ var LoadTrees = React.createClass({
     render: function() {
 
       return (
-        <form>
           <FileInput
             name="Trees file"
             accept=".tree,.trees"
             placeholder="Load trees..."
             className="btn btn-lg btn-success"
             onChange={this.props.handleChange}/>
-        </form>
       )} //END: render
   });
 

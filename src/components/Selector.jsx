@@ -2,8 +2,12 @@
 * @fbielejec
 */
 
+//---MODULE IMPORTS---//
+
 var React = require('react');
 var PropTypes = React.PropTypes;
+
+//---MODULE EXPORTS---//
 
 var Selector = React.createClass({
 

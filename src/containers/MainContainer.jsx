@@ -1,3 +1,9 @@
+/**
+* @fbielejec
+*/
+
+//---MODULE IMPORTS---//
+
 var React = require('react');
 var PropTypes = React.PropTypes;
 var server = require('../utils/server.js');
@@ -5,6 +11,9 @@ var LoadTrees = require('../components/LoadTrees');
 var SelectAttributesContainer = require('./SelectAttributesContainer');
 var BurninSliderContainer = require('./BurninSliderContainer');
 var SelectSlicesContainer = require('./SelectSlicesContainer');
+var DecimalDateContainer = require('./DecimalDateContainer');
+
+//---MODULE EXPORTS---//
 
 var MainContainer = React.createClass({
 
@@ -50,6 +59,10 @@ var MainContainer = React.createClass({
     }//END: onLoad
   }, //END: handleChange
 
+  // TODO: use form layout with labels
+  // http://bootsnipp.com/snippets/338Xq
+  // http://bootsnipp.com/snippets/featured/billing-address-formj
+  // http://www.tutorialrepublic.com/twitter-bootstrap-tutorial/bootstrap-forms.php
   render: function() {
     return (
       <div
@@ -84,6 +97,11 @@ var MainContainer = React.createClass({
               style={{marginTop: '25px'}}>
               <SelectSlicesContainer/>
             </div>
+            ,
+            <div className='col-sm-8 col-sm-offset-2'>
+              <DecimalDateContainer/>
+            </div>
+
 
           ]
           : null}

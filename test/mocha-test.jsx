@@ -12,7 +12,9 @@ describe("Frontend tests", function() {
     });
   });
 
-
+// TODO: test react
+// http://www.hammerlab.org/2015/02/14/testing-react-web-apps-with-mocha/
+// http://www.asbjornenge.com/wwc/testing_react_components.html
 
   it('should return an array', function() {
     assert(Array.isArray('a,b,c'.split(',')));

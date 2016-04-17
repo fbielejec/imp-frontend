@@ -4,7 +4,7 @@
   "description": "Frontend for Imp, spatial stats web-app",
   "license": "GNU LGPL",
   "scripts": {
-    "test": "mocha --reporter landing",
+    "test": "mocha --compilers js:babel-core/register --recursive --reporter nyan test/*.jsx",
     "start": "node devServer.js",
     "build": "webpack",
     "build_mini": "webpack -p"
@@ -18,6 +18,7 @@
     "react-simpletabs": "^0.7.0"
   },
   "devDependencies": {
+     "react-addons-test-utils": "~0.14.0",
     "babel-cli": "^6.7.5",
     "babel-core": "^6.7.6",
     "babel-loader": "^6.2.1",
@@ -28,9 +29,12 @@
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.13.3",
     "html-webpack-plugin": "^2.7.1",
+    "jsdom": ">= 0.1.23 < 4.0.0",
     "mocha": "^2.4.5",
+    "mocha-jsdom": "^1.1.0",
     "request": "^2.71.0",
     "style-loader": "^0.13.0",
+    "underscore": "^1.8.3",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.11",
     "webpack-dev-middleware": "^1.4.0",

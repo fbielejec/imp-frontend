@@ -19,7 +19,6 @@ var MainContainer = React.createClass({
 
   getInitialState: function() {
     return {
-      // TODO: debugging
       treesLoaded: false,
       // treesLoaded: true,
       attributes: [],

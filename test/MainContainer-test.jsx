@@ -2,52 +2,62 @@
 * @fbielejec
 */
 
-require('./testdom')('<html><body></body></html>');
-
 var React = require('react');
-var jsdom = require('mocha-jsdom');
 var assert = require('chai').assert;
 var TestUtils = require('react-addons-test-utils');
 var MainContainer = require('../src/containers/MainContainer');
 var LoadTrees = require('../src/components/LoadTrees');
-var Selector = require('../src/components/Selector');
+var SelectAttributesContainer = require('../src/containers/SelectAttributesContainer');
+var BurninSliderContainer = require('../src/containers/BurninSliderContainer');
+var SelectSlicesContainer = require('../src/containers/SelectSlicesContainer');
+var DecimalDateContainer = require('../src/containers/DecimalDateContainer');
 
-// http://www.asbjornenge.com/wwc/testing_react_components.html
-// https://www.toptal.com/react/how-react-components-make-ui-testing-easy
-// http://reactkungfu.com/2015/07/approaches-to-testing-react-components-an-overview/
-
+var renderedComponent;
 describe('MainContainer tests', function () {
-  jsdom({ skipWindowCheck: true });
 
-  it("renders a view", function () {
-    var renderedComponent = TestUtils.renderIntoDocument(
+  before(function(done) {
+    renderedComponent = TestUtils.renderIntoDocument(
       <MainContainer />
     );
+    done();
+  });
 
+  it("render a view", function () {
     var _LoadTrees = TestUtils.scryRenderedComponentsWithType(
       renderedComponent, LoadTrees
     );
 
-    // there should be only one LoadTrees button rendered at this point
+    // there should be exacly one LoadTrees button rendered at this point
     assert(_LoadTrees.length == 1);
   });
 
+  it("change state", function () {
 
-  it("state change", function () {
-    var renderedComponent = TestUtils.renderIntoDocument(
-      <MainContainer />
+    // change state
+    renderedComponent.setState({
+      treesLoaded: true,
+    });
+
+    var _SelectAttributesContainer = TestUtils.scryRenderedComponentsWithType(
+      renderedComponent, SelectAttributesContainer
     );
+    assert(_SelectAttributesContainer.length == 1);
 
-// change state
-renderedComponent.setState({
-  treesLoaded: true,
-});
+    var _BurninSliderContainer = TestUtils.scryRenderedComponentsWithType(
+      renderedComponent, BurninSliderContainer
+    );
+    assert(_BurninSliderContainer.length == 1);
 
-// assert if other elements have rendered
-// var _selector = TestUtils.findRenderedComponentWithType(
-//   renderedComponent, Selector
-// );
+    var _SelectSlicesContainer = TestUtils.scryRenderedComponentsWithType(
+      renderedComponent, SelectSlicesContainer
+    );
+    assert(_SelectSlicesContainer.length == 1);
 
+
+    var _DecimalDateContainer = TestUtils.scryRenderedComponentsWithType(
+      renderedComponent, DecimalDateContainer
+    );
+    assert(_DecimalDateContainer.length == 1);
 
   });
 

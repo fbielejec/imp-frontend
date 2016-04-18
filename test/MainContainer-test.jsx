@@ -5,6 +5,7 @@
 var React = require('react');
 var assert = require('chai').assert;
 var TestUtils = require('react-addons-test-utils');
+
 var MainContainer = require('../src/containers/MainContainer');
 var LoadTrees = require('../src/components/LoadTrees');
 var SelectAttributesContainer = require('../src/containers/SelectAttributesContainer');
@@ -52,7 +53,6 @@ describe('MainContainer tests', function () {
       renderedComponent, SelectSlicesContainer
     );
     assert(_SelectSlicesContainer.length == 1);
-
 
     var _DecimalDateContainer = TestUtils.scryRenderedComponentsWithType(
       renderedComponent, DecimalDateContainer

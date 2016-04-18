@@ -13,10 +13,10 @@ require('../styles/decimal-date.css');
 var DecimalDate = React.createClass({
 
   propTypes: {
-    value: React.PropTypes.number,
-    handleChange: React.PropTypes.func,
-    handleBlur: React.PropTypes.func,
-    value: React.PropTypes.number
+    value: React.PropTypes.number.isRequired,
+    handleChange: React.PropTypes.func.isRequired,
+    handleBlur: React.PropTypes.func.isRequired,
+    value: React.PropTypes.number.isRequired
   },
 
   render: function() {

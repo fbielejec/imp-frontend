@@ -15,8 +15,6 @@ describe('TestComponent tests', function() {
       <TestComponent />
     );
 
-// console.log(renderedComponent);
-
     var divText = TestUtils.findRenderedDOMComponentWithTag(renderedComponent, 'span');
     assert.equal(divText.textContent, 'FUBAR');
   });

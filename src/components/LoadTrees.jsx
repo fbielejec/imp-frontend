@@ -6,7 +6,7 @@
 
 var React = require('react');
 var PropTypes = React.PropTypes;
-var FileInput = require('react-file-input');
+var FileInput = require('../react-file-input/react-file-input');
 
 //---MODULE EXPORTS---//
 

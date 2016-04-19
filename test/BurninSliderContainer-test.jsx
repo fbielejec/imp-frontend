@@ -32,9 +32,14 @@ describe('BurninSliderContainer tests', function () {
   });
 
   it("user action", function () {
+    var SliderInstance = TestUtils.findRenderedComponentWithType(
+      renderedComponent, Slider
+    );
 
+    var slider = TestUtils.findRenderedDOMComponentWithTag(SliderInstance, 'input');
+    TestUtils.Simulate.change(slider, { target: { value: 50 } });
 
-
+    assert(renderedComponent.state.value == 50 );
 
   });
 

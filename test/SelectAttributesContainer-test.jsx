@@ -32,17 +32,14 @@ describe('SelectAttributesContainer tests', function () {
   });
 
   it("user action", function () {
-
     var SelectorInstance = TestUtils.findRenderedComponentWithType(
       renderedComponent, Selector
     );
 
     var select = TestUtils.findRenderedDOMComponentWithTag(SelectorInstance, 'select');
-
     TestUtils.Simulate.change(select, { target: { value: 'location2' } });
 
     assert(renderedComponent.state.value == 'location2' );
-
   });
 
 });

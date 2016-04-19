@@ -1,3 +1,6 @@
+/**
+* @fbielejec
+*/
 
 // also do var $ = require('jquery') in the test
 global.document = require('jsdom').jsdom('<html></html>');

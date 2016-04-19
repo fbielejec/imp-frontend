@@ -22,7 +22,7 @@ var MainContainer = React.createClass({
       treesLoaded: false,
       // treesLoaded: true,
       attributes: [],
-      ntrees: 1
+      ntrees: 0
     };
   },//END: getInitialState
 

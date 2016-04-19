@@ -8,7 +8,6 @@ var assert = chai.assert;
 var TestUtils = require('react-addons-test-utils');
 var $ = require('jquery');
 
-// http://www.undefinednull.com/2015/05/03/react-tdd-example-unit-testing-and-building-a-react-component-with-jest-gulp-and-react-test-utils/
 
 var RenderButtonContainer = require('../src/containers/RenderButtonContainer');
 var RenderButton = require('../src/components/RenderButton');

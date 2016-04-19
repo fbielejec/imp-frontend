@@ -19,5 +19,7 @@ Frontend for Imp, spatial stats web-app
 
  TESTING
  ----- 
- ./run_server
+ * Frontend
  npm run test
+ * with backend
+ ./run_server

@@ -6,7 +6,7 @@ var RenderButtonContainer = React.createClass({
 
 handleChange : function() {
 
-// TODo
+// TODO
 
 },
 

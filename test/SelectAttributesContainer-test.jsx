@@ -5,46 +5,41 @@
 var React = require('react');
 var assert = require('chai').assert;
 var TestUtils = require('react-addons-test-utils');
+var $ = require('jquery');
+
 
 var SelectAttributesContainer = require('../src/containers/SelectAttributesContainer');
 var Selector = require('../src/components/Selector');
-// var BurninSliderContainer = require('../src/containers/BurninSliderContainer');
-// var SelectSlicesContainer = require('../src/containers/SelectSlicesContainer');
-// var DecimalDateContainer = require('../src/containers/DecimalDateContainer');
+
 
 var renderedComponent;
 describe('SelectAttributesContainer tests', function () {
 
   before(function(done) {
+    require('./setup.js');
     renderedComponent = TestUtils.renderIntoDocument(
-      <SelectAttributesContainer attributes = {["rate", "location"]} />
+      <SelectAttributesContainer attributes = {['location1', 'location2']} />
     );
     done();
   });
 
-  it("render a view", function () {
-    var _Selector = TestUtils.scryRenderedComponentsWithType(
+  it("renders a view", function () {
+    var SelectorInstances = TestUtils.scryRenderedComponentsWithType(
       renderedComponent, Selector
     );
 
-    assert(_Selector.length == 1);
+    assert(SelectorInstances.length == 1);
   });
 
-  it("change state", function () {
-    // change state
-    renderedComponent.setState({
-      value: "location",
-    });
+  it("user action", function () {
 
-    var _Selector = TestUtils.findRenderedComponentWithType(
+    var SelectorInstance = TestUtils.findRenderedComponentWithType(
       renderedComponent, Selector
     );
 
-    var select = TestUtils.
-    findRenderedDOMComponentWithTag(_Selector, 'select');
+    var select = TestUtils.findRenderedDOMComponentWithTag(SelectorInstance, 'select');
 
-
-    // console.log(select.selectedIndex);
+    TestUtils.Simulate.change(select, { target: { value: 'location2' } });
 
 
 

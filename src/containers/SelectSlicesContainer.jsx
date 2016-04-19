@@ -14,7 +14,7 @@ var Selector = require('../components/Selector');
 var SelectSlicesContainer = React.createClass({
 
   getInitialState: function() {
-    return ({value: ""})
+    return ({value: 0})
   }, //END: getInitialState
 
   handleChange: function(event) {

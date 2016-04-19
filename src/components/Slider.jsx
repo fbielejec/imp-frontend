@@ -19,7 +19,6 @@ var Slider = React.createClass({
     value: React.PropTypes.number
   },
 
-
   render: function() {
     var min=0;
     var step=1;

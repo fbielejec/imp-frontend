@@ -36,7 +36,7 @@ describe('SelectSlicesContainer tests', function () {
       renderedComponent, Selector
     );
 
-    var values = SelectorInstance.props.values
+    var values = SelectorInstance.props.values;
 
     var select = TestUtils.findRenderedDOMComponentWithTag(SelectorInstance, 'select');
     TestUtils.Simulate.change(select, { target: { value: values[0] } });

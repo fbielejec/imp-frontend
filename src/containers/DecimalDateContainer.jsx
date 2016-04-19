@@ -24,9 +24,15 @@ var DecimalDateContainer = React.createClass({
   },
 
   handleChange: function(event) {
+
     // prevent from typing non-numeric values
-    var nonNumericRegex = /[^0-9.]+/g;/[^0-9.]+/g;
-    this.setState({value: Number(event.target.value.replace(nonNumericRegex, ""))});
+    var nonNumericRegex = /[^0-9.]+/g;
+    this.setState({value:
+      Number(
+        event.target.value
+        .replace(nonNumericRegex, "")
+      )
+    });
   },
 
   handleBlur: function(event) {

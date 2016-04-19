@@ -41,7 +41,7 @@ describe('SelectAttributesContainer tests', function () {
 
     TestUtils.Simulate.change(select, { target: { value: 'location2' } });
 
-
+    assert(renderedComponent.state.value == 'location2' );
 
   });
 

@@ -20,9 +20,6 @@ var DecimalDateContainer = React.createClass({
   },
 
   componentDidMount: function() {
-    // var date = new Date();
-    // var decimalDate = date.getFullYear() + (date.getMonth()/12);
-    // this.setState({value: decimalDate});
     server.putSetting(server.settings.mrsd, this.state.value);
   },
 

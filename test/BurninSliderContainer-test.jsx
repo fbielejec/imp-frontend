@@ -5,17 +5,24 @@
 var React = require('react');
 var assert = require('chai').assert;
 var TestUtils = require('react-addons-test-utils');
+var nock = require("nock");
 var $ = require('jquery');
-
 
 var BurninSliderContainer = require('../src/containers/BurninSliderContainer');
 var Slider = require('../src/components/Slider');
 
-
+var api;
 var renderedComponent;
 describe('BurninSliderContainer tests', function () {
 
   before(function(done) {
+      api = nock("http://localhost:8080")
+              .persist()
+              .put("/settings", {id: "burnin"})
+              .reply(200, {
+              })
+              ;
+
     require('./setup.js');
     renderedComponent = TestUtils.renderIntoDocument(
       <BurninSliderContainer maxValue = {100} />
@@ -23,10 +30,15 @@ describe('BurninSliderContainer tests', function () {
     done();
   });
 
+  after(function() {
+  nock.cleanAll();
+  });
+
   it("renders a view", function () {
     var SliderInstances = TestUtils.scryRenderedComponentsWithType(
       renderedComponent, Slider
     );
+
 
     assert(SliderInstances.length == 1);
   });
@@ -40,7 +52,11 @@ describe('BurninSliderContainer tests', function () {
     TestUtils.Simulate.change(slider, { target: { value: 50 } });
 
     assert(renderedComponent.state.value == 50 );
+  });
 
+
+  it("server accepts", function () {
+    assert(api.isDone() );
   });
 
 });

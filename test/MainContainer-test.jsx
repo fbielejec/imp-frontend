@@ -55,9 +55,9 @@ var fakeF = fs.readFile(filename, 'utf8', function(err, data) {
 
 // console.log(fakeF);
 
-TestUtils.Simulate.change(fileInput, { target: { value: fakeF } });
-
-assert(renderedComponent.state.treesLoaded === true);
+// TestUtils.Simulate.change(fileInput, { target: { value: fakeF } });
+//
+// assert(renderedComponent.state.treesLoaded === true);
 });
 
 

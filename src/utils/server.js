@@ -20,7 +20,7 @@ getSettings = function() {
         dataType: "json"
       })
       .fail(function(jqXHR, textStatus, errorThrown) {
-        console.log("ERROR IN PUT TREES");
+        console.log("ERROR IN GET SETTINGS");
       });
   } //END: getSettings
 
@@ -47,7 +47,7 @@ putSetting = function(id, value) {
         })
       })
       .fail(function(jqXHR, textStatus, errorThrown) {
-        console.log("ERROR IN PUT SETTING");
+        console.log("ERROR IN PUT SETTING ID " + id );
       });
   } //END: putSetting
 
@@ -84,7 +84,7 @@ getAttributes = function() {
           dataType: "json",
         })
         .fail(function(jqXHR, textStatus, errorThrown) {
-          console.log("ERROR IN GET ATTRIBUTES");
+          console.log("ERROR IN GET N TREES");
         });
     } //END: getAttributes
 

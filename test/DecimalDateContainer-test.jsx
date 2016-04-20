@@ -5,6 +5,7 @@
 var React = require('react');
 var assert = require('chai').assert;
 var TestUtils = require('react-addons-test-utils');
+var nock = require("nock");
 var $ = require('jquery');
 
 
@@ -16,6 +17,11 @@ var renderedComponent;
 describe('DecimalDateContainer tests', function () {
 
   before(function(done) {
+    var api = nock("http://localhost:8080")
+             .persist()
+             .get("/mrsd")
+             .reply(200, "SUCCESS");
+
     require('./setup.js');
     renderedComponent = TestUtils.renderIntoDocument(
       <DecimalDateContainer />

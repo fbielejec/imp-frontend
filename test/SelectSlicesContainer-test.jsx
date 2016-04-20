@@ -18,7 +18,7 @@ describe('SelectSlicesContainer tests', function () {
   before(function(done) {
     require('./setup.js');
     renderedComponent = TestUtils.renderIntoDocument(
-      <SelectSlicesContainer />
+      <SelectSlicesContainer values = {[10,20,30,40,50]}/>
     );
     done();
   });

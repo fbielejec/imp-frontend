@@ -53,7 +53,7 @@ var fakeF = fs.readFile(filename, 'utf8', function(err, data) {
   // console.log(data)
 });
 
-console.log(fakeF);
+// console.log(fakeF);
 
 TestUtils.Simulate.change(fileInput, { target: { value: fakeF } });
 

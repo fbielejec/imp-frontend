@@ -19,7 +19,6 @@ var LoadTrees = React.createClass({
 	}, // END: propTypes
 
     render: function() {
-
       return (
           <FileInput
             name="Trees file"

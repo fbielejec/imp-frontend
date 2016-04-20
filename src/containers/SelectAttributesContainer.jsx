@@ -6,6 +6,7 @@
 
 var React = require('react');
 var PropTypes = React.PropTypes;
+
 var server = require('../utils/server.js');
 var Selector = require('../components/Selector');
 
@@ -14,17 +15,21 @@ var Selector = require('../components/Selector');
 var SelectAttributesContainer = React.createClass({
 
   propTypes: {
-    attributes: React.PropTypes.array.isRequired
+    attributes: PropTypes.array.isRequired
   },
 
   getInitialState: function() {
-    return ({value: ""})
-  }, //END: getInitialState
+    return ({value: this.props.attributes[0]})
+  },
+
+  componentDidMount: function() {
+    server.putSetting(server.settings.attribute, this.state.value);
+  },
 
   handleChange: function(event) {
     this.setState({value: event.target.value});
     server.putSetting(server.settings.attribute, event.target.value);
-  },//END: handleChange
+  },
 
   render: function() {
     return (
@@ -32,7 +37,7 @@ var SelectAttributesContainer = React.createClass({
         values={this.props.attributes}
         handleChange={this.handleChange}/>
     );
-  }//END:render
+  }
 
 });
 

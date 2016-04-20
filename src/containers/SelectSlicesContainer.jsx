@@ -13,20 +13,27 @@ var Selector = require('../components/Selector');
 
 var SelectSlicesContainer = React.createClass({
 
+  PropTypes : {
+    values: PropTypes.array.isRequired
+  },
+
   getInitialState: function() {
-    return ({value: 0})
-  }, //END: getInitialState
+    return ({value: this.props.values[0]})
+  },
+
+  componentDidMount: function() {
+    server.putSetting(server.settings.nslices, this.state.value);
+  },
 
   handleChange: function(event) {
     this.setState({value: event.target.value});
     server.putSetting(server.settings.nslices, event.target.value);
-  },//END: handleChange
+  },
 
   render: function() {
-    var values = [10,20,30,40,50];
     return (
       <Selector
-        values={values}
+        values={this.props.values}
         handleChange={this.handleChange}/>
     );
   }

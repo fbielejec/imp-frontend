@@ -14,13 +14,16 @@ var DecimalDate = require('../components/DecimalDate');
 var DecimalDateContainer = React.createClass({
 
   getInitialState: function() {
-    return {value: 0.0};
+    var date = new Date();
+    var decimalDate = date.getFullYear() + (date.getMonth()/12);
+    return {value: decimalDate};
   },
 
   componentDidMount: function() {
-    var date = new Date();
-    var decimalDate = date.getFullYear() + (date.getMonth()/12);
-    this.setState({value: decimalDate});
+    // var date = new Date();
+    // var decimalDate = date.getFullYear() + (date.getMonth()/12);
+    // this.setState({value: decimalDate});
+    server.putSetting(server.settings.mrsd, this.state.value);
   },
 
   handleChange: function(event) {

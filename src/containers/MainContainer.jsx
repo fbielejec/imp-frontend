@@ -119,7 +119,9 @@ var MainContainer = React.createClass({
                       Select number of slices
                     </label>
                     <div className="controls">
-                      <SelectSlicesContainer name="select-slices"/>
+                      <SelectSlicesContainer
+                        name="select-slices"
+                        values = {[10,20,30,40,50]}/>
                     </div>
                   </div>
                   ,

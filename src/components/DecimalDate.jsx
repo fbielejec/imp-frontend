@@ -13,15 +13,15 @@ require('../styles/decimal-date.css');
 var DecimalDate = React.createClass({
 
   propTypes: {
-    value: React.PropTypes.number.isRequired,
-    handleChange: React.PropTypes.func.isRequired,
-    handleBlur: React.PropTypes.func.isRequired
+    value:  PropTypes.number.isRequired,
+    handleChange:  PropTypes.func.isRequired,
+    handleBlur:  PropTypes.func.isRequired
   },
 
   render: function() {
-  var step = 0.01;
+    var step = 0.01;
     return (
-       <input
+      <input
         type="number"
         step={step}
         value={this.props.value}

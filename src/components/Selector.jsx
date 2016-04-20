@@ -12,8 +12,8 @@ var PropTypes = React.PropTypes;
 var Selector = React.createClass({
 
   propTypes: {
-    values: React.PropTypes.array.isRequired,
-    handleChange: React.PropTypes.func.isRequired
+    values:  PropTypes.array.isRequired,
+    handleChange: PropTypes.func.isRequired
   },
 
   render: function() {

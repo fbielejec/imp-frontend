@@ -5,6 +5,7 @@
 //---MODULE IMPORTS---//
 
 var React = require('react');
+var PropTypes = React.PropTypes;
 var LineChart = require('./LineChart');
 var utils = require('../utils/utils.js');
 
@@ -13,7 +14,7 @@ var utils = require('../utils/utils.js');
 var RenderPanel = React.createClass({
 
   propTypes : {
-    url : React.PropTypes.string
+    url : PropTypes.string
   }, // END: propTypes
 
   componentWillMount: function() {

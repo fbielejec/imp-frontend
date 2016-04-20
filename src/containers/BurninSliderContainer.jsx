@@ -17,14 +17,14 @@ var BurninSliderContainer = React.createClass({
     maxValue: React.PropTypes.number.isRequired
   },
 
-  componentDidMount: function() {
-    //  console.log(this.props.maxValue);
-  },
-
   getInitialState: function() {
     return {
       value: 1
     };
+  },
+
+  componentDidMount: function() {
+     server.putSetting(server.settings.burnin, this.state.value);
   },
 
   handleChange: function(event) {

@@ -12,21 +12,22 @@ var FileInput = require('../react-file-input/react-file-input');
 
 // TODO: loading indicator
 // http://bootsnipp.com/snippets/featured/loading-button
+
 var LoadTrees = React.createClass({
 
   propTypes : {
-		handleChange : React.PropTypes.func.isRequired
-	}, // END: propTypes
+    handleChange : PropTypes.func.isRequired
+  },
 
-    render: function() {
-      return (
-          <FileInput
-            name="Trees file"
-            accept=".tree,.trees"
-            placeholder="Load trees..."
-            className="btn btn-lg btn-success"
-            onChange={this.props.handleChange}/>
-      )} //END: render
+  render: function() {
+    return (
+      <FileInput
+        name="Trees file"
+        accept=".tree,.trees"
+        placeholder="Load trees..."
+        className="btn btn-lg btn-success"
+        onChange={this.props.handleChange}/>
+    )}
   });
 
   module.exports = LoadTrees;

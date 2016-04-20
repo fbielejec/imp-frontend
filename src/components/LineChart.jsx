@@ -5,6 +5,7 @@
 //---MODULE IMPORTS---//
 
 var React = require('react');
+var PropTypes = React.PropTypes;
 var d3 = require('d3');
 var utils = require('../utils/utils.js');
 
@@ -13,9 +14,9 @@ var utils = require('../utils/utils.js');
 var LineChart = React.createClass({
 
   propTypes : {
-    data : React.PropTypes.array.isRequired,
-    width : React.PropTypes.number,
-    height : React.PropTypes.number
+    data :  PropTypes.array.isRequired,
+    width :  PropTypes.number,
+    height :  PropTypes.number
   }, // END: propTypes
 
   componentWillMount: function () {

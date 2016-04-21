@@ -5,12 +5,11 @@
 var React = require('react');
 var assert = require('chai').assert;
 var TestUtils = require('react-addons-test-utils');
+var nock = require("nock");
 var $ = require('jquery');
-
 
 var SelectAttributesContainer = require('../src/containers/SelectAttributesContainer');
 var Selector = require('../src/components/Selector');
-
 
 var renderedComponent;
 describe('SelectAttributesContainer tests', function () {

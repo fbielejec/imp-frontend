@@ -20,8 +20,7 @@ describe('BurninSliderContainer tests', function () {
               .persist()
               .put("/settings", {id: "burnin"})
               .reply(200, {
-              })
-              ;
+              });
 
     require('./setup.js');
     renderedComponent = TestUtils.renderIntoDocument(
@@ -53,7 +52,6 @@ describe('BurninSliderContainer tests', function () {
 
     assert(renderedComponent.state.value == 50 );
   });
-
 
   it("server accepts", function () {
     assert(api.isDone() );

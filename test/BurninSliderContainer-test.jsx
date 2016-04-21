@@ -19,11 +19,11 @@ var renderedComponent;
 describe('BurninSliderContainer tests', function () {
 
   before(function(done) {
-      api = nock("http://localhost:8080")
-              .persist()
-              .put("/settings", {id: server.settings.burnin})
-              .reply(200, {
-              });
+    api = nock("http://localhost:8080")
+    .persist()
+    .put("/settings", {id: server.settings.burnin})
+    .reply(200, {
+    });
 
     require('./setup.js');
     renderedComponent = TestUtils.renderIntoDocument(
@@ -33,11 +33,11 @@ describe('BurninSliderContainer tests', function () {
   });
 
   after(function() {
-  nock.cleanAll();
+    nock.cleanAll();
   });
 
   it("renders a view", function () {
-        assert(TestUtils.isCompositeComponent(renderedComponent));
+    assert(TestUtils.isCompositeComponent(renderedComponent));
   });
 
   it("user action", function () {
@@ -46,9 +46,17 @@ describe('BurninSliderContainer tests', function () {
     );
 
     var slider = TestUtils.findRenderedDOMComponentWithTag(SliderInstance, 'input');
-    TestUtils.Simulate.change(slider, { target: { value: 50 } });
 
-    assert(renderedComponent.state.value == 50 );
+    it("state change", function () {
+      TestUtils.Simulate.change(slider, { target: { value: 50 } });
+      assert(renderedComponent.state.value === 50 );
+    });
+
+    it("state is numeric", function () {
+      TestUtils.Simulate.change(slider, { target: { value: "50" } });
+      assert(renderedComponent.state.value === 50 );
+    });
+
   });
 
   it("server accepts", function () {

@@ -26,8 +26,8 @@ var SelectSlicesContainer = React.createClass({
   },
 
   handleChange: function(event) {
-    this.setState({value: event.target.value});
-    server.putSetting(server.settings.nslices, event.target.value);
+    this.setState({value: Number(event.target.value)});
+    server.putSetting(server.settings.nslices, Number(event.target.value));
   },
 
   render: function() {

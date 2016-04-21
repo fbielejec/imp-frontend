@@ -42,11 +42,18 @@ describe('SelectSlicesContainer tests', function () {
     );
 
     var values = SelectorInstance.props.values;
-
     var select = TestUtils.findRenderedDOMComponentWithTag(SelectorInstance, 'select');
-    TestUtils.Simulate.change(select, { target: { value: values[0] } });
 
-    assert(renderedComponent.state.value == values[0]);
+  it("default state", function () {
+    TestUtils.Simulate.change(select, { target: { value: values[0] } });
+    assert(renderedComponent.state.value === values[0]);
+  });
+
+  it("state is always numeric", function () {
+    TestUtils.Simulate.change(select, { target: { value: values[1].toString() } });
+    assert(renderedComponent.state.value === values[1]);
+  });
+
   });
 
   it("server accepts", function () {

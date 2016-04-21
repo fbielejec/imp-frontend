@@ -24,14 +24,14 @@ var BurninSliderContainer = React.createClass({
   },
 
   componentDidMount: function() {
-     server.putSetting(server.settings.burnin, this.state.value);
+    server.putSetting(server.settings.burnin, this.state.value);
   },
 
   handleChange: function(event) {
     this.setState({
       value: Number(event.target.value)
     });
-    server.putSetting(server.settings.burnin, event.target.value);
+    server.putSetting(server.settings.burnin, Number(event.target.value));
   },
 
   render: function() {
@@ -44,6 +44,5 @@ var BurninSliderContainer = React.createClass({
     );
   }
 });
-
 
 module.exports = BurninSliderContainer;

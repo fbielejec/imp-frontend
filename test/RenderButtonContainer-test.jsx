@@ -2,6 +2,8 @@
 * @fbielejec
 */
 
+"use strict";
+
 var React = require('react');
 var chai = require('chai');
 var assert = chai.assert;

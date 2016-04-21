@@ -2,12 +2,15 @@
 * @fbielejec
 */
 
+"use strict";
+
 var React = require('react');
 var assert = require('chai').assert;
 var TestUtils = require('react-addons-test-utils');
 var nock = require("nock");
 var $ = require('jquery');
 
+var server = require('../src/utils/server');
 var BurninSliderContainer = require('../src/containers/BurninSliderContainer');
 var Slider = require('../src/components/Slider');
 
@@ -18,7 +21,7 @@ describe('BurninSliderContainer tests', function () {
   before(function(done) {
       api = nock("http://localhost:8080")
               .persist()
-              .put("/settings", {id: "burnin"})
+              .put("/settings", {id: server.settings.burnin})
               .reply(200, {
               });
 
@@ -34,12 +37,7 @@ describe('BurninSliderContainer tests', function () {
   });
 
   it("renders a view", function () {
-    var SliderInstances = TestUtils.scryRenderedComponentsWithType(
-      renderedComponent, Slider
-    );
-
-
-    assert(SliderInstances.length == 1);
+        assert(TestUtils.isCompositeComponent(renderedComponent));
   });
 
   it("user action", function () {

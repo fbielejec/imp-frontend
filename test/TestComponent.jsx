@@ -1,3 +1,7 @@
+/**
+* @fbielejec
+*/
+
 var React = require('react');
 
 var VeryFirstDiv = React.createClass ({

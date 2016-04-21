@@ -2,6 +2,8 @@
 * @fbielejec
 */
 
+"use strict";
+
 var React = require('react');
 var assert = require('chai').assert;
 var TestUtils = require('react-addons-test-utils');
@@ -26,7 +28,7 @@ describe('MainContainer tests', function () {
     done();
   });
 
-  it("should exists", function () {
+  it("renders a view", function () {
         assert(TestUtils.isCompositeComponent(renderedComponent));
   });
 
@@ -38,9 +40,11 @@ describe('MainContainer tests', function () {
 // TODO: sends .trees server way
 it("user action", function () {
 
-  var api = nock("http://localhost:8080/")
-            .put("/trees/")
-            .reply(200, "SUCCESS");
+  var api = nock("http://localhost:8080")
+            .put("/trees", {input: "input"})
+            .reply(200, {
+            });
+
 
 var fileInput = TestUtils.findAllInRenderedTree(renderedComponent, function(comp) { return(comp.type == "text");});
 

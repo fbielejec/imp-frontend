@@ -6,20 +6,20 @@
 
 var React = require('react');
 var PropTypes = React.PropTypes;
-var LineChart = require('./LineChart');
+var LineChart = require('../charts/LineChart');
 var utils = require('../utils/utils.js');
 
 //---MODULE EXPORTS---//
 
-var RenderPanel = React.createClass({
+var RenderPanelContainer = React.createClass({
 
   propTypes : {
     url : PropTypes.string
-  }, // END: propTypes
+  },
 
   componentWillMount: function() {
     this.loadRawData();
-  }, //END: componentWillMount
+  },
 
   loadRawData : function() {
     d3.json(this.props.url).get(function(error, rows) {
@@ -27,16 +27,15 @@ var RenderPanel = React.createClass({
         console.error(error);
         console.error(error.stack);
       } else {
-        // this.setState({rawData: utils.prepareData(rows)});
         this.setState({rawData: rows });
       }
       // inner this is outer this
     }.bind(this));
-  }, //END: loadRawData
+  },
 
   getInitialState : function() {
     return {rawData: []};
-  },//END: getInitialState
+  },
 
   render: function() {
 
@@ -70,9 +69,9 @@ var RenderPanel = React.createClass({
             height = {params.height}/>
         </svg>
       );
-    }//END: data loaded check
-  }//END: render
+    }
+  }
 
 });
 
-module.exports = RenderPanel;
+module.exports = RenderPanelContainer;

@@ -6,13 +6,16 @@
 
 var React = require('react');
 var PropTypes = React.PropTypes;
+
 var server = require('../utils/server.js');
+
 var LoadTrees = require('../components/LoadTrees');
+var RenderButton = require('../components/RenderButton');
+
 var SelectAttributesContainer = require('./SelectAttributesContainer');
 var BurninSliderContainer = require('./BurninSliderContainer');
 var SelectSlicesContainer = require('./SelectSlicesContainer');
 var DecimalDateContainer = require('./DecimalDateContainer');
-var RenderButtonContainer = require('./RenderButtonContainer');
 
 //---MODULE EXPORTS---//
 
@@ -144,7 +147,7 @@ var MainContainer = React.createClass({
                     className="control-group"
                     style={{marginTop: '25px'}}>
                     <div className="controls">
-                      <RenderButtonContainer />
+                      <RenderButton />
                     </div>
                   </div>
 

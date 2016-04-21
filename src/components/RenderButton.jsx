@@ -2,12 +2,7 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 var Link = require('react-router').Link;
 
-var RenderButtonContainer = React.createClass({
-
-handleChange : function() {
-
-},
-
+var RenderButton = React.createClass({
 
   render: function() {
     return (
@@ -22,4 +17,4 @@ handleChange : function() {
 
 });
 
-module.exports = RenderButtonContainer;
+module.exports = RenderButton;

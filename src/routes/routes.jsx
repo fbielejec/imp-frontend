@@ -5,16 +5,14 @@ var Route = ReactRouter.Route;
 var hashHistory = ReactRouter.hashHistory;
 var IndexRoute = ReactRouter.IndexRoute;
 
-var RenderPanel = require('../containers/RenderPanel');
+var RenderPanelContainer = require('../containers/RenderPanelContainer');
 var MainContainer = require('../containers/MainContainer');
 
-var RenderPanelWrapper = React.createClass({
-  render: function () {
+var RenderPanelWrapper = function () {
     return (
-        <RenderPanel url='/results'/>
+        <RenderPanelContainer url='/results'/>
     );
   }
-});
 
 var routes = (
   <Router history= { hashHistory } >

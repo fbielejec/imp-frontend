@@ -12,6 +12,7 @@ var SelectAttributesContainer = require('./SelectAttributesContainer');
 var BurninSliderContainer = require('./BurninSliderContainer');
 var SelectSlicesContainer = require('./SelectSlicesContainer');
 var DecimalDateContainer = require('./DecimalDateContainer');
+var RenderButtonContainer = require('./RenderButtonContainer');
 
 //---MODULE EXPORTS---//
 
@@ -134,6 +135,16 @@ var MainContainer = React.createClass({
                     </label>
                     <div className="controls">
                       <DecimalDateContainer name="decimal-date"/>
+                    </div>
+                  </div>
+                  ,
+
+                  <div
+                    key={4}
+                    className="control-group"
+                    style={{marginTop: '25px'}}>
+                    <div className="controls">
+                      <RenderButtonContainer />
                     </div>
                   </div>
 

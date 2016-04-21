@@ -36,7 +36,7 @@ var App = React.createClass({
         	<ParserPanel/>
         </Tabs.Panel>
         <Tabs.Panel title='Render'>
-        	<RenderPanel url='data.json'/>
+        	<RenderPanel url='/results'/>
         </Tabs.Panel>
       </Tabs>
     );

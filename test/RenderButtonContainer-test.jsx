@@ -10,9 +10,7 @@ var assert = chai.assert;
 var TestUtils = require('react-addons-test-utils');
 var $ = require('jquery');
 
-
 var RenderButtonContainer = require('../src/containers/RenderButtonContainer');
-var RenderButton = require('../src/components/RenderButton');
 
 var renderedComponent;
 describe('RenderButtomContainer tests', function () {
@@ -25,21 +23,11 @@ describe('RenderButtomContainer tests', function () {
     done();
   });
 
-  it("should exists", function () {
+  it("renders a view", function () {
         assert(TestUtils.isCompositeComponent(renderedComponent));
   });
 
-  it("renders a component", function () {
-
-    var RenderButtonInstance = TestUtils.findRenderedComponentWithType(
-      renderedComponent, RenderButton
-    );
-
-        assert(TestUtils.isCompositeComponent(RenderButtonInstance));
-  });
-
-
-// TODO: when clicked gets the settings from all (and sends server side);
+// TODO: focus on Render tab
 
   // it("user action", function () {
   // });

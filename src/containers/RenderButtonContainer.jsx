@@ -1,21 +1,19 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
-var RenderButton = require('../components/RenderButton');
 
 var RenderButtonContainer = React.createClass({
 
 handleChange : function() {
-
-// TODO
 
 },
 
 
   render: function() {
     return (
-<div>
-<RenderButton handleChange={this.handleChange}/>
-</div>
+      <button
+        type='button'
+        className='btn btn-lg btn-danger'
+        onClick={this.handleChange}>Render</button>
     );
   }
 

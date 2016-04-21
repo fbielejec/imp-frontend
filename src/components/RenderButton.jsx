@@ -6,12 +6,13 @@ var RenderButton = React.createClass({
 
   render: function() {
     return (
-    <Link to='/render'>
-      <button
-        type='button'
-        className='btn btn-lg btn-danger'
-        onClick={this.handleChange}>Render</button>
-    </Link>
+      <Link to='/render'>
+        <button
+          type='button'
+          className='btn btn-lg btn-danger'>
+          Render
+        </button>
+      </Link>
     );
   }
 

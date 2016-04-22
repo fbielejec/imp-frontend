@@ -26,9 +26,22 @@ var LineChart = React.createClass({
     this.update_d3(this.props);
   },//END: componentWillMount
 
+  // componentDidMount: function () {
+  //   this.renderAxis();
+  // },
+
+  // componentWillUpdate: function () {
+  //   this.renderAxis();
+  // },
+
   componentWillReceiveProps: function (newProps) {
     this.update_d3(newProps);
   },//END : componentWillReceiveProps
+
+  // renderAxis : function() {
+  //   var node = this.getDOMNode();
+  //   d3.select(node).call(this.axis);
+  // },
 
   update_d3: function (props) {
 
@@ -49,7 +62,7 @@ var LineChart = React.createClass({
     var xScale = d3.time.scale.utc().domain([xmin, xmax]).range(
       [0, props.width]);
 
-// console.log("min " + (typeof xmin) + " max " + xmax);
+      // console.log("min " + (typeof xmin) + " max " + xmax);
 
       // --- Y AXIS ---//
 

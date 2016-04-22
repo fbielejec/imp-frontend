@@ -9,15 +9,24 @@ var RenderPanelContainer = require('../containers/RenderPanelContainer');
 var MainContainer = require('../containers/MainContainer');
 
 var RenderPanelWrapper = function () {
-    return (
-        <RenderPanelContainer url='/results'/>
-    );
+  return (
+      <RenderPanelContainer url='/data.json'/>
+  );
+    // return (
+    //     <RenderPanelContainer url='/results'/>
+    // );
   }
+
+// var routes = (
+//   <Router history= { hashHistory } >
+//     <Route path='/' component={MainContainer}/>
+//     <Route path='render' component={RenderPanelWrapper} />
+//   </Router>
+// );
 
 var routes = (
   <Router history= { hashHistory } >
-    <Route path='/' component={MainContainer}/>
-    <Route path='render' component={RenderPanelWrapper} />
+    <Route path='/' component={RenderPanelWrapper} />
   </Router>
 );
 

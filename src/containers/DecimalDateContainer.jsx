@@ -6,8 +6,11 @@
 
 var React = require('react');
 var PropTypes = React.PropTypes;
+
+var utils = require('../utils/utils');
 var server = require('../utils/server.js');
 var DecimalDate = require('../components/DecimalDate');
+
 
 //---MODULE EXPORTS---//
 
@@ -15,7 +18,11 @@ var DecimalDateContainer = React.createClass({
 
   getInitialState: function() {
     var date = new Date();
-    var decimalDate = date.getFullYear() + (date.getMonth()/12);
+    var decimalDate = utils.round(date.getFullYear() + (date.getMonth()/12), 2);
+
+
+console.log(decimalDate);
+
     return {value: decimalDate};
   },
 

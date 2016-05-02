@@ -8,10 +8,11 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 var LineChart = require('../charts/LineChart');
 var utils = require('../utils/utils.js');
+require('../styles/chart.css');
 
 //---MODULE EXPORTS---//
 
-var RenderPanelContainer = React.createClass({
+var ChartContainer = React.createClass({
 
   propTypes : {
     url : PropTypes.string
@@ -74,4 +75,4 @@ var RenderPanelContainer = React.createClass({
 
 });
 
-module.exports = RenderPanelContainer;
+module.exports = ChartContainer;

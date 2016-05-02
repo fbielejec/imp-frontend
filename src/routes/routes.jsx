@@ -5,29 +5,29 @@ var Route = ReactRouter.Route;
 var hashHistory = ReactRouter.hashHistory;
 var IndexRoute = ReactRouter.IndexRoute;
 
-var RenderPanelContainer = require('../containers/RenderPanelContainer');
+var ChartContainer = require('../containers/ChartContainer');
 var MainContainer = require('../containers/MainContainer');
 
-var RenderPanelWrapper = function () {
-  return (
-      <RenderPanelContainer url='/data.json'/>
-  );
-    // return (
-    //     <RenderPanelContainer url='/results'/>
-    // );
+var ChartContainerWrapper = function () {
+  // return (
+  //     <ChartContainer url='/data.json'/>
+  // );
+    return (
+        <ChartContainer url='/results'/>
+    );
   }
-
-// var routes = (
-//   <Router history= { hashHistory } >
-//     <Route path='/' component={MainContainer}/>
-//     <Route path='render' component={RenderPanelWrapper} />
-//   </Router>
-// );
 
 var routes = (
   <Router history= { hashHistory } >
-    <Route path='/' component={RenderPanelWrapper} />
+    <Route path='/' component={MainContainer}/>
+    <Route path='render' component={ChartContainerWrapper} />
   </Router>
 );
+
+// var routes = (
+//   <Router history= { hashHistory } >
+//     <Route path='/' component={ChartContainerWrapper} />
+//   </Router>
+// );
 
 module.exports=routes;

@@ -14,7 +14,7 @@ var settings = {
 };
 
 getSettings = function() {
-    $.ajax({
+  return  $.ajax({
         type: 'GET',
         url: rootURL + '/settings',
         dataType: "json"
@@ -25,7 +25,7 @@ getSettings = function() {
   } //END: getSettings
 
 getSetting = function(id) {
-    $.ajax({
+  return  $.ajax({
         type: 'GET',
         url: rootURL + '/settings/' + id,
         dataType: "json"
@@ -36,7 +36,7 @@ getSetting = function(id) {
   } //END: getSetting
 
 putSetting = function(id, value) {
-    $.ajax({
+  return  $.ajax({
         type: 'PUT',
         url: rootURL + '/settings',
         contentType: 'application/json',

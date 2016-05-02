@@ -28,7 +28,7 @@ var MainContainer = React.createClass({
       attributes: [],
       ntrees: 0
     };
-  },//END: getInitialState
+  },
 
   handleChange: function(event) {
 

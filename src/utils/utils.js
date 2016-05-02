@@ -21,7 +21,13 @@ formDate = function(dateString) {
     return <pre> {JSON.stringify(obj, 2, ' ')} </pre>
   }
 
+function round(num, place) {
+  var pow = Math.pow(10, place);
+  return (Math.round(num * pow) / pow);
+}
+
 module.exports = {
   puke : puke,
-  formDate : formDate
+  formDate : formDate,
+  round : round
 };

@@ -8,6 +8,7 @@ var React = require('react');
 var PropTypes = React.PropTypes;
 var d3 = require('d3');
 var utils = require('../utils/utils.js');
+var Axis = require('./Axis');
 
 //---MODULE EXPORTS---//
 
@@ -15,33 +16,17 @@ var LineChart = React.createClass({
 
   propTypes : {
     data :  PropTypes.array.isRequired,
-    width :  PropTypes.number,
-    height :  PropTypes.number
+    width :  PropTypes.number.isRequired,
+    height :  PropTypes.number.isRequired
   }, // END: propTypes
 
   componentWillMount: function () {
-    // this.line = d3.svg.line();
-    // this.xScale = d3.scale.linear();
-    // this.yScale = d3.scale.linear();
     this.update_d3(this.props);
   },//END: componentWillMount
-
-  // componentDidMount: function () {
-  //   this.renderAxis();
-  // },
-
-  // componentWillUpdate: function () {
-  //   this.renderAxis();
-  // },
 
   componentWillReceiveProps: function (newProps) {
     this.update_d3(newProps);
   },//END : componentWillReceiveProps
-
-  // renderAxis : function() {
-  //   var node = this.getDOMNode();
-  //   d3.select(node).call(this.axis);
-  // },
 
   update_d3: function (props) {
 
@@ -61,8 +46,6 @@ var LineChart = React.createClass({
 
     var xScale = d3.time.scale.utc().domain([xmin, xmax]).range(
       [0, props.width]);
-
-      // console.log("min " + (typeof xmin) + " max " + xmax);
 
       // --- Y AXIS ---//
 
@@ -116,8 +99,11 @@ var LineChart = React.createClass({
 
     render: function() {
       return(
-        <g className="linesLayer">
-          { this.state.paths.map(this.makeLine) }
+        <g>
+          <g className="linesLayer">
+            { this.state.paths.map(this.makeLine) }
+          </g>
+          <Axis data={this.props.data} width={this.props.width} />
         </g>
       );
     }//END:render
@@ -126,8 +112,14 @@ var LineChart = React.createClass({
 
   var Line = React.createClass({
 
+    propTypes : {
+      path :  PropTypes.string,
+      color :  PropTypes.string,
+      strokeWidth :  PropTypes.number
+    }, // END: propTypes
+
     getDefaultProps: function() {
-      return {path: '', color: 'blue', width: 2}
+      return {path: '', color: 'blue', strokeWidth: 2}
     },//END: getDefaultProps
 
     render: function() {
@@ -135,7 +127,7 @@ var LineChart = React.createClass({
         <path
           d={this.props.path}
           stroke={this.props.color}
-          strokeWidth={this.props.width}
+          strokeWidth={this.props.strokeWidth}
           fill="none"/>
       );
     }//END:render

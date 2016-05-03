@@ -6,7 +6,7 @@
 
 var React = require('react');
 var PropTypes = React.PropTypes;
-require('../styles/slices-slider.css');
+require('../styles/Slider.css');
 
 //---MODULE EXPORTS---//
 

@@ -7,8 +7,8 @@
     "test": "mocha --compilers js:babel-core/register,css:test/css-null-compiler.js --recursive --reporter nyan test/*.jsx",
     "coverage": "istanbul cover _mocha",
     "start": "node devServer.js",
-    "build": "webpack",
-    "build_mini": "webpack -p"
+    "dist": "webpack",
+    "dist_mini": "webpack -p"
   },
   "dependencies": {
     "classnames": "^2.2.3",

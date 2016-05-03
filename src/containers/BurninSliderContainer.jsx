@@ -5,7 +5,7 @@
 //---MODULE IMPORTS---//
 
 var React = require('react');
-require('../styles/slices-slider.css');
+// require('../styles/slices-slider.css');
 var server = require('../utils/server.js');
 var Slider = require('../components/Slider');
 

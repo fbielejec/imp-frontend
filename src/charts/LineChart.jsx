@@ -7,6 +7,7 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 var d3 = require('d3');
+
 var utils = require('../utils/utils.js');
 var Axis = require('./Axis');
 
@@ -18,15 +19,15 @@ var LineChart = React.createClass({
     data :  PropTypes.array.isRequired,
     width :  PropTypes.number.isRequired,
     height :  PropTypes.number.isRequired
-  }, // END: propTypes
+  },
 
   componentWillMount: function () {
     this.update_d3(this.props);
-  },//END: componentWillMount
+  },
 
   componentWillReceiveProps: function (newProps) {
     this.update_d3(newProps);
-  },//END : componentWillReceiveProps
+  },
 
   update_d3: function (props) {
 
@@ -87,7 +88,7 @@ var LineChart = React.createClass({
       });
 
       this.setState({paths: paths});
-    },//END:update_d3
+    },
 
     makeLine: function (path) {
       return (
@@ -95,15 +96,22 @@ var LineChart = React.createClass({
           path={path.path}
           key={path.key}/>
       );
-    }, //END:makeLine
+    },
 
     render: function() {
+
+      // xAxisLayer.attr("transform", "translate(0," + global.height + ")")
+
+  // TODO: two axis g's one for x one for y, different transforms
+  // TODO: pass scales to axis [no need to pass whole data] ?
+  var xtransform = "translate(0," + this.props.height + ")";
+
       return(
-        <g>
+        <g >
           <g className="linesLayer">
             { this.state.paths.map(this.makeLine) }
           </g>
-          <Axis data={this.props.data} width={this.props.width} />
+          <Axis data={this.props.data} width={this.props.width} xtransform={xtransform} />
         </g>
       );
     }//END:render

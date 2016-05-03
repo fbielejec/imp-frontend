@@ -18,7 +18,7 @@ lein run
 #---SCRIPT---#
 ##############
 
-npm run build
+npm run dist
 
 cp dist/index.html $SERVER_LOCATION/resources/public/index.html
 cp dist/bundle.js $SERVER_LOCATION/resources/public/bundle.js

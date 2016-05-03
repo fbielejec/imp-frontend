@@ -6,7 +6,7 @@
 
 var React = require('react');
 var PropTypes = React.PropTypes;
-require('../styles/decimal-date.css');
+require('../styles/DecimalDate.css');
 
 //---MODULE EXPORTS---//
 

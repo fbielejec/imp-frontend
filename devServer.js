@@ -1,3 +1,7 @@
+/**
+ * @author fbielejec
+ */
+
 var path = require('path');
 var express = require('express');
 var webpack = require('webpack');
@@ -7,7 +11,8 @@ var app = express();
 var compiler = webpack(config);
 
 app.use(require('webpack-dev-middleware')(compiler, {
-  noInfo: true,
+  noInfo: false,
+  stats: {colors: true} ,
   publicPath: config.output.publicPath
 }));
 

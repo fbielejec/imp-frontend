@@ -6,9 +6,13 @@
 
 var React = require('react');
 var PropTypes = React.PropTypes;
+
+
+
 var LineChart = require('../charts/LineChart');
+var setup = require('../charts/setup');
 var utils = require('../utils/utils.js');
-require('../styles/chart.css');
+// require('../styles/chart.css');
 
 //---MODULE EXPORTS---//
 
@@ -47,27 +51,19 @@ var ChartContainer = React.createClass({
       );
     } else {
 
-      var params = {
-        width : 600,
-        height : 300,
-        topMargin : 50,
-        rightMargin : 50,
-        bottomMargin : 50,
-        leftMargin : 70
-      };
-
-      var fullWidth = 700;
-      var translate = "translate(" + params.leftMargin + "," + params.topMargin + ")";
+var preserveAspectRatio = "xMinYMin meet";
+var viewBox = "0 0 " + (setup.width + setup.margin.left + setup.margin.right) + " " + (setup.height + setup.margin.top + setup.margin.bottom);
+var translate = "translate(" + setup.margin.left + "," + setup.margin.top + ")";
 
       return (
         <svg
-          width={fullWidth}
-          height={params.height}
+          preserveAspectRatio={preserveAspectRatio}
+          viewBox={viewBox}
           transform={translate}>
           <LineChart
             data={this.state.rawData}
-            width = {params.width}
-            height = {params.height}/>
+            width = {setup.width}
+            height = {setup.height}/>
         </svg>
       );
     }

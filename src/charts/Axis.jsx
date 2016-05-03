@@ -8,7 +8,9 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var PropTypes = React.PropTypes;
 var d3 = require('d3');
+
 var utils = require('../utils/utils.js');
+require('../styles/Axis.css');
 
 //---MODULE EXPORTS---//
 
@@ -16,20 +18,13 @@ var Axis = React.createClass({
 
   propTypes : {
     data :  PropTypes.array.isRequired,
-    width :  PropTypes.number.isRequired
+    width :  PropTypes.number.isRequired,
+    xtransform : PropTypes.string.isRequired,
+    height :  PropTypes.number,
+    ytransform : PropTypes.string
   },
 
   componentWillMount: function () {
-
-    // this.yScale = d3.scale.linear();
-    //
-    // this.axis = d3.svg.axis()
-    // .scale(this.yScale)
-    // .orient("left")
-    // .tickFormat(function (d) {
-    //   return "$"+this.yScale.tickFormat()(d);
-    // }.bind(this));
-
     this.update_d3(this.props);
   },
 
@@ -38,21 +33,6 @@ var Axis = React.createClass({
   },
 
   update_d3: function (props) {
-
-    // this.yScale
-    // .domain([0,
-    //   d3.max(props.data.map(
-    //     function (d) {
-    //       return d.x + d.dx;
-    //     }))])
-    //     .range([0, props.height-props.topMargin-props.bottomMargin]);
-    //
-    //     this.axis
-    //     .ticks(props.data.length)
-    //     .tickValues(props.data.map(function (d) {
-    //       return d.x;
-    //     })
-    //     .concat(props.data[props.data.length - 1].x + props.data[props.data.length - 1].dx));
 
     var xmin = d3.min(props.data, function(d) {
       return d3.min(d.values, function(v) {
@@ -69,11 +49,7 @@ var Axis = React.createClass({
     var xScale = d3.time.scale.utc().domain([xmin, xmax]).range(
       [0, props.width]);
 
-// console.log(xScale.range());
-
     this.xAxis = d3.svg.axis().scale(xScale).orient("bottom");
-
-
 
       },
 
@@ -86,18 +62,15 @@ var Axis = React.createClass({
       },
 
       renderAxis: function () {
-
- // console.log(this.xAxis);
-
         var node = ReactDOM.findDOMNode(this);
-
         d3.select(node).call(this.xAxis);
       },
 
       render: function () {
-        // var translate = "translate("+(this.props.axisMargin-3)+", 0)";
         return (
-          <g className="axis">
+          <g className="x axis" transform={this.props.xtransform}>
+          </g>
+          <g className="y axis" transform={this.props.ytransform}>
           </g>
         );
       }

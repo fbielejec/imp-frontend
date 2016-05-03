@@ -7,8 +7,6 @@
 var React = require('react');
 var PropTypes = React.PropTypes;
 
-
-
 var LineChart = require('../charts/LineChart');
 var setup = require('../charts/setup');
 var utils = require('../utils/utils.js');
@@ -20,6 +18,10 @@ var ChartContainer = React.createClass({
 
   propTypes : {
     url : PropTypes.string
+  },
+
+  getInitialState : function() {
+    return {rawData: []};
   },
 
   componentWillMount: function() {
@@ -38,10 +40,6 @@ var ChartContainer = React.createClass({
     }.bind(this));
   },
 
-  getInitialState : function() {
-    return {rawData: []};
-  },
-
   render: function() {
 
     if (!this.state.rawData.length) {
@@ -51,9 +49,9 @@ var ChartContainer = React.createClass({
       );
     } else {
 
-var preserveAspectRatio = "xMinYMin meet";
-var viewBox = "0 0 " + (setup.width + setup.margin.left + setup.margin.right) + " " + (setup.height + setup.margin.top + setup.margin.bottom);
-var translate = "translate(" + setup.margin.left + "," + setup.margin.top + ")";
+      var preserveAspectRatio = "xMinYMin meet";
+      var viewBox = "0 0 " + (setup.width + setup.margin.left + setup.margin.right) + " " + (setup.height + setup.margin.top + setup.margin.bottom);
+      var translate = "translate(" + setup.margin.left + "," + setup.margin.top + ")";
 
       return (
         <svg

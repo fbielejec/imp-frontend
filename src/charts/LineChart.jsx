@@ -21,6 +21,13 @@ var LineChart = React.createClass({
     height :  PropTypes.number.isRequired
   },
 
+  getInitialState : function() {
+    return {
+      paths: [],
+      xScale :null
+    };
+  },
+
   componentWillMount: function () {
     this.update_d3(this.props);
   },
@@ -87,7 +94,13 @@ var LineChart = React.createClass({
         return(pathMap);
       });
 
-      this.setState({paths: paths});
+// console.log(paths);
+
+      this.setState({
+        paths: paths,
+        xScale : xScale,
+        yScale : yScale
+      });
     },
 
     makeLine: function (path) {
@@ -100,18 +113,23 @@ var LineChart = React.createClass({
 
     render: function() {
 
-      // xAxisLayer.attr("transform", "translate(0," + global.height + ")")
-
-  // TODO: two axis g's one for x one for y, different transforms
-  // TODO: pass scales to axis [no need to pass whole data] ?
   var xtransform = "translate(0," + this.props.height + ")";
+var xorient = "bottom";
+var xclassName = "x axis"
+
+var ytransform = "translate(" + 0.1 +",0)";
+var yorient = "left";
+var yclassName = "y axis"
+
+  var ytransform;
 
       return(
         <g >
           <g className="linesLayer">
             { this.state.paths.map(this.makeLine) }
           </g>
-          <Axis data={this.props.data} width={this.props.width} xtransform={xtransform} />
+          <Axis className={xclassName} scale={this.state.xScale} orient={xorient} transform={xtransform}/>
+            <Axis className={yclassName} scale={this.state.yScale} orient={yorient} transform={ytransform}/>
         </g>
       );
     }//END:render

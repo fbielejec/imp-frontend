@@ -11,18 +11,22 @@ var colorbrewer = require('colorbrewer');
 var setup = require('../charts/setup');
 var utils = require('../utils/utils.js');
 
+var Slider = require('../components/Slider');
 var Selector = require('../components/Selector');
 var LineChart = require('../charts/LineChart');
 
 //---MODULE EXPORTS---//
 
 var styles = {
-  header: {
+  row: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
+    // justifyContent: 'center',
     alignItems: 'center',
-    alignSelf: 'center'
+    // alignSelf: 'center',
+  },
+  controls: {
+    maxWidth: 300
   }
 };
 
@@ -52,12 +56,17 @@ var ChartContainer = React.createClass({
     }.bind(this));
   },
 
-handleColorChange: function(event) {
-// set steate
-console.log(event.target.value);
+  handleColorChange: function(event) {
+    // set steate, pass state to chart
+    console.log(event.target.value);
 
-},
+  },
 
+  handleOpacityChange: function(event) {
+    // set steate, pass state to chart
+    console.log(event.target.value);
+
+  },
 
   render: function() {
 
@@ -73,27 +82,37 @@ console.log(event.target.value);
       var translate = "translate(" + setup.margin.left + "," + setup.margin.top + ")";
 
       return (
-        <div style={styles.header}>
+        <div style={styles.row}>
+          <div style={styles.controls}>
 
-        <Selector
-          values={colorbrewer.Set3[12]}
-          handleChange={this.handleColorChange}/>
+            <Selector
+              values={colorbrewer.Set3[12]}
+              handleChange={this.handleColorChange}/>
 
-        <svg
-          preserveAspectRatio={preserveAspectRatio}
-          viewBox={viewBox}
-          transform={translate}>
-          <LineChart
-            data={this.state.rawData}
-            width = {setup.width}
-            height = {setup.height}/>
-        </svg>
+            <Slider
+              label={"opacity"}
+              maxValue={1.0}
+              step={0.1}
+              handleChange={this.handleOpacityChange}
+              value={this.state.value} />
+
+          </div>
+
+          <svg
+            preserveAspectRatio={preserveAspectRatio}
+            viewBox={viewBox}
+            transform={translate}>
+            <LineChart
+              data={this.state.rawData}
+              width = {setup.width}
+              height = {setup.height}/>
+          </svg>
+
         </div>
       );
 
     }
   }
-
 });
 
 module.exports = ChartContainer;

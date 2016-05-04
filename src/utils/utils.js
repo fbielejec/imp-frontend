@@ -26,8 +26,13 @@ function round(num, place) {
   return (Math.round(num * pow) / pow);
 }
 
+function getArrayMax(array) {
+  return Math.max.apply(null, array);
+}
+
 module.exports = {
   puke : puke,
   formDate : formDate,
-  round : round
+  round : round,
+  getArrayMax : getArrayMax
 };

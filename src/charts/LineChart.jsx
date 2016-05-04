@@ -9,6 +9,8 @@ var PropTypes = React.PropTypes;
 var d3 = require('d3');
 
 var utils = require('../utils/utils.js');
+var setup = require('./setup.jsx');
+
 var Axis = require('./Axis');
 
 //---MODULE EXPORTS---//
@@ -94,8 +96,6 @@ var LineChart = React.createClass({
         return(pathMap);
       });
 
-// console.log(paths);
-
       this.setState({
         paths: paths,
         xScale : xScale,
@@ -111,15 +111,14 @@ var LineChart = React.createClass({
       );
     },
 
-    render: function() {
-
+render : function() {
   var xtransform = "translate(0," + this.props.height + ")";
-var xorient = "bottom";
-var xclassName = "x axis"
+  var xorient = "bottom";
+  var xclassName = "x axis"
 
-var ytransform = "translate(" + 0.1 +",0)";
-var yorient = "left";
-var yclassName = "y axis"
+  var ytransform = "translate(" + 0.1 + ",0)";
+  var yorient = "left";
+  var yclassName = "y axis"
 
   var ytransform;
 
@@ -128,13 +127,13 @@ var yclassName = "y axis"
           <g className="linesLayer">
             { this.state.paths.map(this.makeLine) }
           </g>
-          <Axis className={xclassName} scale={this.state.xScale} orient={xorient} transform={xtransform}/>
-            <Axis className={yclassName} scale={this.state.yScale} orient={yorient} transform={ytransform}/>
+          <Axis className={xclassName} scale={this.state.xScale}  orient={xorient} innerTickSize={-setup.height} transform={xtransform}/>
+          <Axis className={yclassName} scale={this.state.yScale} orient={yorient} innerTickSize={-setup.width} transform={ytransform}/>
         </g>
       );
-    }//END:render
+    }
 
-  });//END: LineChart
+  });
 
   var Line = React.createClass({
 
@@ -142,11 +141,11 @@ var yclassName = "y axis"
       path :  PropTypes.string,
       color :  PropTypes.string,
       strokeWidth :  PropTypes.number
-    }, // END: propTypes
+    },
 
     getDefaultProps: function() {
       return {path: '', color: 'blue', strokeWidth: 2}
-    },//END: getDefaultProps
+    },
 
     render: function() {
       return (
@@ -156,8 +155,8 @@ var yclassName = "y axis"
           strokeWidth={this.props.strokeWidth}
           fill="none"/>
       );
-    }//END:render
+    }
 
-  });//END: Line
+  });
 
   module.exports = LineChart;

@@ -6,13 +6,25 @@
 
 var React = require('react');
 var PropTypes = React.PropTypes;
+var colorbrewer = require('colorbrewer');
 
-var LineChart = require('../charts/LineChart');
 var setup = require('../charts/setup');
 var utils = require('../utils/utils.js');
-// require('../styles/chart.css');
+
+var Selector = require('../components/Selector');
+var LineChart = require('../charts/LineChart');
 
 //---MODULE EXPORTS---//
+
+var styles = {
+  header: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center'
+  }
+};
 
 var ChartContainer = React.createClass({
 
@@ -40,6 +52,13 @@ var ChartContainer = React.createClass({
     }.bind(this));
   },
 
+handleColorChange: function(event) {
+// set steate
+console.log(event.target.value);
+
+},
+
+
   render: function() {
 
     if (!this.state.rawData.length) {
@@ -54,6 +73,12 @@ var ChartContainer = React.createClass({
       var translate = "translate(" + setup.margin.left + "," + setup.margin.top + ")";
 
       return (
+        <div style={styles.header}>
+
+        <Selector
+          values={colorbrewer.Set3[12]}
+          handleChange={this.handleColorChange}/>
+
         <svg
           preserveAspectRatio={preserveAspectRatio}
           viewBox={viewBox}
@@ -63,7 +88,9 @@ var ChartContainer = React.createClass({
             width = {setup.width}
             height = {setup.height}/>
         </svg>
+        </div>
       );
+
     }
   }
 

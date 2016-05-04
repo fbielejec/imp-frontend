@@ -7,37 +7,27 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
+  //devtool: 'cheap-module-eval-source-map',
   entry: [
-    // 'eventsource-polyfill', // necessary for hot reloading with IE
-    // 'webpack-hot-middleware/client',
     './src/app.jsx'
   ],
 
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
-    // ,
-    // publicPath: '/static/'
   },
 
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    // new webpack.NoErrorsPlugin(),
-//     new webpack.ProvidePlugin({
-//         'Promise': 'es6-promise'//, // Thanks Aaron (https://gist.github.com/Couto/b29676dd1ab8714a818f#gistcomment-1584602)
-// //            'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-//     }),
+  //  new webpack.HotModuleReplacementPlugin(),
+
     new HtmlWebpackPlugin({
       template: __dirname + '/src/index.html'
     }),
-  //   new webpack.ProvidePlugin({
-  //      _: "underscore"
-  //  }),
-   new webpack.ProvidePlugin({
-       $: "jquery",
-       jQuery: "jquery"
-   })
+
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery"
+    })
 
   ],
 
@@ -48,18 +38,12 @@ module.exports = {
   module: {
     loaders: [
 
-      // {
-      //   test: /\.js|\.jsx$/,
-      //   loaders: ['babel'],
-      //   include: path.join(__dirname, 'src')
-      // },
-
       {
-          test: /\.js|\.jsx$/,
-          include: path.join(__dirname, 'src'),
-            exclude: /node_modules/,
-            loader: 'babel'
-          },
+        test: /\.js|\.jsx$/,
+        include: path.join(__dirname, 'src'),
+        exclude: /node_modules/,
+        loader: 'babel-loader'
+      },
 
       {
         test: /\.css$/,

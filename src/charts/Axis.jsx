@@ -16,36 +16,37 @@ require('../styles/Axis.css');
 
 var Axis = React.createClass({
 
-  propTypes : {
+  propTypes: {
     className: PropTypes.string,
-    orient : PropTypes.string,
-    scale : PropTypes.func,
-    transform : PropTypes.string,
+    orient: PropTypes.string,
+    scale: PropTypes.func,
+    innerTickSize: PropTypes.number,
+    transform: PropTypes.string
   },
 
-  componentWillMount: function () {
+  componentWillMount: function() {
     this.update_d3(this.props);
   },
 
-  componentWillReceiveProps: function (newProps) {
+  componentWillReceiveProps: function(newProps) {
     this.update_d3(newProps);
   },
 
-  update_d3: function (props) {
-    this.xAxis = d3.svg.axis().scale(props.scale).orient(props.orient);
+  update_d3: function(props) {
+    this.axis = d3.svg.axis().scale(props.scale).orient(props.orient).innerTickSize(props.innerTickSize).outerTickSize(0);
   },
 
-  componentDidUpdate: function () {
+  componentDidUpdate: function() {
     this.renderAxis();
   },
 
-  componentDidMount: function () {
+  componentDidMount: function() {
     this.renderAxis();
   },
 
-  renderAxis: function () {
+  renderAxis: function() {
     var node = ReactDOM.findDOMNode(this);
-    d3.select(node).call(this.xAxis);
+    d3.select(node).call(this.axis);
   },
 
   render: function () {

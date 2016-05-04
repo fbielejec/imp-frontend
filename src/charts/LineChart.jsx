@@ -137,11 +137,11 @@ render : function() {
 
       return(
         <g >
+          <Axis className={xclassName} scale={this.state.xScale}  orient={xorient} innerTickSize={-setup.height} transform={xtransform}/>
+          <Axis className={yclassName} scale={this.state.yScale} orient={yorient} innerTickSize={-setup.width} transform={ytransform}/>
           <g className="linesLayer">
             { this.state.paths.map(this.makeLine) }
           </g>
-          <Axis className={xclassName} scale={this.state.xScale}  orient={xorient} innerTickSize={-setup.height} transform={xtransform}/>
-          <Axis className={yclassName} scale={this.state.yScale} orient={yorient} innerTickSize={-setup.width} transform={ytransform}/>
         </g>
       );
     }

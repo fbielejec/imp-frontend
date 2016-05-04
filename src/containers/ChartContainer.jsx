@@ -18,7 +18,7 @@ var LineChart = require('../charts/LineChart');
 //---MODULE EXPORTS---//
 
 var colors = colorbrewer.Set3[12];
-var defaultColorIndex = 0;
+var defaultColorIndex = 4;
 
 var styles = {
   row: {
@@ -43,7 +43,7 @@ var ChartContainer = React.createClass({
     return {
       rawData: [],
       color: colors[defaultColorIndex],
-      opacity: 1.0
+      opacity: 0.3
     };
   },
 
@@ -90,7 +90,8 @@ var ChartContainer = React.createClass({
 
             <Selector
               values={colorbrewer.Set3[12]}
-              handleChange={this.handleColorChange}/>
+              handleChange={this.handleColorChange}
+              selectedIndex={defaultColorIndex}/>
 
             <Slider
               label={"opacity"}

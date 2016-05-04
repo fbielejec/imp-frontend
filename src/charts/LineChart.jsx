@@ -11,6 +11,7 @@ var d3 = require('d3');
 var utils = require('../utils/utils.js');
 var setup = require('./setup.jsx');
 
+var Line = require('./Line');
 var Axis = require('./Axis');
 
 //---MODULE EXPORTS---//
@@ -20,13 +21,21 @@ var LineChart = React.createClass({
   propTypes : {
     data :  PropTypes.array.isRequired,
     width :  PropTypes.number.isRequired,
-    height :  PropTypes.number.isRequired
+    height :  PropTypes.number.isRequired,
+    color: PropTypes.string
   },
+
+getDefaultProps: function() {
+  return {
+    color : "black"
+  }
+},
 
   getInitialState : function() {
     return {
       paths: [],
-      xScale :null
+      xScale :null,
+      yScale :null
     };
   },
 
@@ -107,7 +116,8 @@ var LineChart = React.createClass({
       return (
         <Line
           path={path.path}
-          key={path.key}/>
+          key={path.key}
+          color={this.props.color}/>
       );
     },
 
@@ -130,30 +140,6 @@ render : function() {
           <Axis className={xclassName} scale={this.state.xScale}  orient={xorient} innerTickSize={-setup.height} transform={xtransform}/>
           <Axis className={yclassName} scale={this.state.yScale} orient={yorient} innerTickSize={-setup.width} transform={ytransform}/>
         </g>
-      );
-    }
-
-  });
-
-  var Line = React.createClass({
-
-    propTypes : {
-      path :  PropTypes.string,
-      color :  PropTypes.string,
-      strokeWidth :  PropTypes.number
-    },
-
-    getDefaultProps: function() {
-      return {path: '', color: 'blue', strokeWidth: 2}
-    },
-
-    render: function() {
-      return (
-        <path
-          d={this.props.path}
-          stroke={this.props.color}
-          strokeWidth={this.props.strokeWidth}
-          fill="none"/>
       );
     }
 

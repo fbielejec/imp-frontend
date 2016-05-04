@@ -17,6 +17,8 @@ var LineChart = require('../charts/LineChart');
 
 //---MODULE EXPORTS---//
 
+var colors = colorbrewer.Set3[12];
+
 var styles = {
   row: {
     display: 'flex',
@@ -37,7 +39,10 @@ var ChartContainer = React.createClass({
   },
 
   getInitialState : function() {
-    return {rawData: []};
+    return {
+      rawData: [],
+      color: colors[0]
+    };
   },
 
   componentWillMount: function() {
@@ -57,15 +62,12 @@ var ChartContainer = React.createClass({
   },
 
   handleColorChange: function(event) {
-    // set steate, pass state to chart
-    console.log(event.target.value);
-
+      this.setState({color: event.target.value });
   },
 
   handleOpacityChange: function(event) {
     // set steate, pass state to chart
     console.log(event.target.value);
-
   },
 
   render: function() {
@@ -105,7 +107,8 @@ var ChartContainer = React.createClass({
             <LineChart
               data={this.state.rawData}
               width = {setup.width}
-              height = {setup.height}/>
+              height = {setup.height}
+              color={this.state.color}/>
           </svg>
 
         </div>

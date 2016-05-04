@@ -4,15 +4,16 @@ var PropTypes = React.PropTypes;
 var Line = React.createClass({
 
   propTypes : {
-    path :  PropTypes.string,
+    path :  PropTypes.string.isRequired,
     color :  PropTypes.string,
+    opacity: PropTypes.number,
     strokeWidth :  PropTypes.number
   },
 
   getDefaultProps: function() {
     return {
-      path: '', //
       color: 'black', //
+      opacity: 1.0,
       strokeWidth: 2 //
     }
   },
@@ -22,6 +23,7 @@ var Line = React.createClass({
       <path
         d={this.props.path}
         stroke={this.props.color}
+        opacity={this.props.opacity}
         strokeWidth={this.props.strokeWidth}
         fill="none"/>
     );

@@ -22,12 +22,14 @@ var LineChart = React.createClass({
     data :  PropTypes.array.isRequired,
     width :  PropTypes.number.isRequired,
     height :  PropTypes.number.isRequired,
-    color: PropTypes.string
+    color: PropTypes.string,
+    opacity : PropTypes.number
   },
 
 getDefaultProps: function() {
   return {
-    color : "black"
+    color : "black",
+    opacity : 1.0
   }
 },
 
@@ -117,7 +119,8 @@ getDefaultProps: function() {
         <Line
           path={path.path}
           key={path.key}
-          color={this.props.color}/>
+          color={this.props.color}
+          opacity={this.props.opacity}/>
       );
     },
 

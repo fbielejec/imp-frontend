@@ -26,12 +26,12 @@ var LineChart = React.createClass({
     opacity : PropTypes.number
   },
 
-getDefaultProps: function() {
-  return {
-    color : "black",
-    opacity : 1.0
-  }
-},
+  getDefaultProps: function() {
+    return {
+      color : "black",
+      opacity : 1.0
+    }
+  },
 
   getInitialState : function() {
     return {
@@ -82,8 +82,10 @@ getDefaultProps: function() {
         });
       });
 
+      var offset =  0.1*ymax;
+
       var yScale = d3.scale.linear() //
-      .domain([ymin, ymax])
+      .domain([ymin -offset, ymax+offset])
       .range([props.height, 0]);
 
       // ---LINES ---//
@@ -124,21 +126,31 @@ getDefaultProps: function() {
       );
     },
 
-render : function() {
-  var xtransform = "translate(0," + this.props.height + ")";
-  var xorient = "bottom";
-  var xclassName = "x axis"
+    render : function() {
+      var xtransform = "translate(0," + this.props.height + ")";
+      var xorient = "bottom";
+      var xclassName = "x axis"
 
-  var ytransform = "translate(" + 0.1 + ",0)";
-  var yorient = "left";
-  var yclassName = "y axis"
+      var ytransform = "translate(" + 0.1 + ",0)";
+      var yorient = "left";
+      var yclassName = "y axis"
 
-  var ytransform;
+      var ytransform;
 
       return(
         <g >
-          <Axis className={xclassName} scale={this.state.xScale}  orient={xorient} innerTickSize={-setup.height} transform={xtransform}/>
-          <Axis className={yclassName} scale={this.state.yScale} orient={yorient} innerTickSize={-setup.width} transform={ytransform}/>
+          <Axis
+            className={xclassName}
+            scale={this.state.xScale}
+            orient={xorient}
+            innerTickSize={-setup.height}
+            transform={xtransform}/>
+          <Axis
+            className={yclassName}
+            scale={this.state.yScale}
+            orient={yorient}
+            innerTickSize={-setup.width}
+            transform={ytransform}/>
           <g className="linesLayer">
             { this.state.paths.map(this.makeLine) }
           </g>

@@ -103,7 +103,14 @@ var ChartContainer = React.createClass({
 
           </div>
 
-          <svg
+          <svg style={{
+
+            // 'marginBottom': '10px',
+            // 'backgroundColor': '#3f5175',
+            // 'borderRadius':'4px',
+            // 'boxShadow': '1px 1px 1px 0px rgba(37,41,51,1)'
+
+            }}
             preserveAspectRatio={preserveAspectRatio}
             viewBox={viewBox}
             transform={translate}>

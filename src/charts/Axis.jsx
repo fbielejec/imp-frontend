@@ -10,7 +10,6 @@ var PropTypes = React.PropTypes;
 var d3 = require('d3');
 
 var utils = require('../utils/utils.js');
-// require('../styles/Axis.css');
 
 var styles = {
   axis :{
@@ -26,7 +25,6 @@ var styles = {
     'font-size': '27px',
   }
 };
-
 
 //---MODULE EXPORTS---//
 
@@ -49,8 +47,7 @@ var Axis = React.createClass({
   },
 
   update_d3: function(props) {
-    this.axis = d3.svg.axis().scale(props.scale).orient(props.orient).innerTickSize(props.innerTickSize).outerTickSize(0)
-    ;
+    this.axis = d3.svg.axis().scale(props.scale).orient(props.orient).innerTickSize(props.innerTickSize).outerTickSize(0);
   },
 
   componentDidUpdate: function() {

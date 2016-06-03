@@ -1,0 +1,30 @@
+.rowDisplay {
+  display: flex;
+  flex-direction:  row;
+  /*justify-content: center;*/
+  align-items: center;
+  /*maxWidth: 300,*/
+  /*align-self: center;*/
+}
+
+
+   /*.row {
+     display: flex;
+     flexDirection: row;
+     alignItems: center;
+   }*/
+
+   .slider {
+     border: #ccc;
+     padding: 10;
+     min-height: 50;
+     ma-width: 300;
+   }
+
+   .span {
+      /*border: '#ccc',*/
+     padding: 10;
+     align-items: center;
+     /*minHeight: 50,
+     maxWidth: 300*/
+   }

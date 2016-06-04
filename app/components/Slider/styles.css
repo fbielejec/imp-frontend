@@ -8,9 +8,12 @@
 .slider {
   border: #ccc;
   padding: 10;
+  cursor: pointer;
 }
 
 .span {
+  composes: element-font-size from 'sharedStyles/styles.css';
+  composes: label-font-color from 'sharedStyles/styles.css';
   padding: 10;
   align-items: center;
 }

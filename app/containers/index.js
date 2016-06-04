@@ -4,3 +4,4 @@ export SelectAttributesContainer from './SelectAttributes/SelectAttributesContai
 export BurninSliderContainer from './BurninSlider/BurninSliderContainer'
 export SelectSlicesContainer from './SelectSlices/SelectSlicesContainer'
 export DecimalDateContainer from './DecimalDate/DecimalDateContainer'
+export LineChartContainer from './LineChart/LineChartContainer'

@@ -1,3 +1,15 @@
 .width {
   width: 35%;
 }
+
+.label-font-size {
+  font-size: 25px;
+}
+
+.label-font-color {
+  color: #5f5f5f;
+}
+
+.element-font-size {
+  font-size: 20px;
+}

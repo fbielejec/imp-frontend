@@ -1,5 +1,7 @@
 .dateInput {
-   composes: width from 'sharedStyles/styles.css';
+  composes: width from 'sharedStyles/styles.css';
+  composes: element-font-size from 'sharedStyles/styles.css';
+  composes: label-font-color from 'sharedStyles/styles.css';
   -webkit-transition: all 0.30s ease-in-out;
   -moz-transition: all 0.30s ease-in-out;
   -ms-transition: all 0.30s ease-in-out;
@@ -8,6 +10,7 @@
   padding: 3px 0px 3px 3px;
   margin: 5px 1px 3px 0px;
   border: 1px solid #DDDDDD;
+  cursor: pointer;
 }
 
 .dateInput:focus {

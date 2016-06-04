@@ -3,11 +3,12 @@
  */
 
 import React, {PropTypes} from 'react';
+import {Link} from 'react-router';
 import $ from 'jquery'
 import {putTrees, getAttributes, getnTrees} from 'helpers/server'
 import {LoadTrees, Button} from 'components'
 import {SelectAttributesContainer, BurninSliderContainer, SelectSlicesContainer, DecimalDateContainer} from 'containers'
-import {container, rowDisplay, link, label} from './styles.css'
+import {container, rowDisplay, render, label} from './styles.css'
 
 const HomeContainer = React.createClass({
 
@@ -90,7 +91,9 @@ getInitialState() {
             ,
 
             <div key={4} className = {container}>
-               <Button className={link} name={"Render"}/>
+              <Link to='/render'>
+                <Button className={render} name={"Render"}/>
+              </Link>
             </div>
             ,
 

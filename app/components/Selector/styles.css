@@ -1,14 +1,14 @@
 .selector {
-  /*width: 35%;*/
   composes: width from 'sharedStyles/styles.css';
+  composes: element-font-size from 'sharedStyles/styles.css';
   -webkit-appearance: none;
   -moz-appearance: none;
+  -webkit-border-radius: 5px;  
   border: 0 !important;
   color: #fff;
-  -webkit-border-radius: 5px;
   border-radius: 5px;
-  font-size: 14px;
   padding: 10px;
   background: #0d98e8 url(./drop-down-arrow.png) no-repeat right center;
   background-size: 40px 37px;
+  cursor: pointer;
 }

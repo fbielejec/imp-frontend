@@ -12,6 +12,7 @@ import {container, rowDisplay, link, label} from './styles.css'
 const HomeContainer = React.createClass({
 
   PropTypes: {},
+
 getInitialState() {
   return {
     treesLoaded: true,
@@ -93,7 +94,7 @@ getInitialState() {
             </div>
             ,
 
-          ]   : null}
+          ] : null}
         </div>
     );
   }

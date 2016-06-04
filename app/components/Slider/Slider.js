@@ -5,7 +5,7 @@
 //---MODULE IMPORTS---//
 
 import React, {PropTypes} from 'react';
-import { rowDisplay, slider, span } from './styles.css'
+import { sliderDisplay, slider, span } from './styles.css'
 
 //---MODULE EXPORTS---//
 
@@ -36,7 +36,7 @@ const Slider = React.createClass({
 
   render() {
     return (
-      <div className={rowDisplay}>
+      <div className={sliderDisplay}>
         <input
           className={slider}
           type="range"

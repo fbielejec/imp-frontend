@@ -1,16 +1,14 @@
-.rowDisplay {
+.sliderDisplay {
+  composes: width from 'sharedStyles/styles.css';
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 35%;
 }
 
 .slider {
   border: #ccc;
   padding: 10;
 }
-
-
 
 .span {
   padding: 10;

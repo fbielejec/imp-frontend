@@ -1,31 +1,24 @@
 .container {
   display: flex;
   flex-direction: column;
-  /*justify-content: center;*/
-    justify-content: space-between;
+  justify-content: space-between;
   align-items: center;
 }
 
 .rowDisplay {
-  /*display: table-row;
-  justify-content: space-between;
-    align-items: center;
-    height: 100%;*/
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  /*align-items: center;*/
+  align-items: center;
   padding: 5;
   width: 700px;
 }
-
 
 .link {
   background: #0085C3;
   padding: 10px 15px;
   font-size: 16px;
-  border: 0.1px   #004f75;
-  /*border-width: 0;*/
+  border: 0.1px #004f75;
   border-radius: 5px;
   color: #000;
 }

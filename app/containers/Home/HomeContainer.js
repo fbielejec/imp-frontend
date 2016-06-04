@@ -7,7 +7,7 @@ import $ from 'jquery'
 import {putTrees, getAttributes, getnTrees} from 'helpers/server'
 import {LoadTrees, Button} from 'components'
 import {SelectAttributesContainer, BurninSliderContainer, SelectSlicesContainer, DecimalDateContainer} from 'containers'
-import {container, rowDisplay, link} from './styles.css'
+import {container, rowDisplay, link, label} from './styles.css'
 
 const HomeContainer = React.createClass({
 
@@ -65,32 +65,30 @@ getInitialState() {
           [
 
             <div key={0} className = {rowDisplay}>
-              <label>
-                {"Select location attribute name: "}
-              </label>
-              <SelectAttributesContainer attributes={this.state.attributes}   />
+              <label className={label}> {"Select location attribute name: "} </label>
+              <SelectAttributesContainer attributes={this.state.attributes}/>
             </div>
             ,
 
             <div key={1} className = {rowDisplay}>
-              <label> {"Select burn-in: "} </label>
+              <label className={label}> {"Select burn-in: "} </label>
               <BurninSliderContainer maxValue={this.state.ntrees - 1}/>
             </div>
             ,
 
             <div key={2} className = {rowDisplay}>
-              <label> {"Select number of slices: "} </label>
+              <label className={label}> {"Select number of slices: "} </label>
                 <SelectSlicesContainer values = {[10,20,30,40,50,60,70,80,90,100]}/>
             </div>
             ,
 
             <div key={3} className = {rowDisplay}>
-              <label> {"Specify most recent sampling date: "} </label>
+              <label className={label}> {"Specify most recent sampling date: "} </label>
                <DecimalDateContainer/>
             </div>
             ,
 
-            <div key={4} className = {rowDisplay}>
+            <div key={4} className = {container}>
                <Button className={link} name={"Render"}/>
             </div>
             ,

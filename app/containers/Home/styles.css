@@ -1,15 +1,24 @@
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /*justify-content: center;*/
+    justify-content: space-between;
   align-items: center;
 }
 
 .rowDisplay {
+  /*display: table-row;
+  justify-content: space-between;
+    align-items: center;
+    height: 100%;*/
   display: flex;
   flex-direction: row;
-  align-items: center;
+  justify-content: space-between;
+  /*align-items: center;*/
+  padding: 5;
+  width: 700px;
 }
+
 
 .link {
   background: #0085C3;
@@ -23,4 +32,9 @@
 
 .link:hover {
   color: #fff;
+}
+
+.label {
+  font-size: 20px;
+  margin: 0;
 }

@@ -3,29 +3,25 @@
  */
 
 import React, {PropTypes} from 'react';
-import  $  from 'jquery'
-// import { Home } from 'components'
-import { putTrees, getAttributes,  getnTrees} from 'helpers/server'
-
-import { LoadTrees } from 'components'
-import { SelectAttributesContainer, BurninSliderContainer } from 'containers'
-
-import { container, rowDisplay } from './styles.css'
+import $ from 'jquery'
+import {putTrees, getAttributes, getnTrees} from 'helpers/server'
+import {LoadTrees, Button} from 'components'
+import {SelectAttributesContainer, BurninSliderContainer, SelectSlicesContainer, DecimalDateContainer} from 'containers'
+import {container, rowDisplay, link} from './styles.css'
 
 const HomeContainer = React.createClass({
 
   PropTypes: {},
-
-  getInitialState() {
-    return {
-      // treesLoaded: false,
-      treesLoaded: true,
-        // attributes: [ ],
-      attributes: ["a", "b"],
-      // ntrees: 0
-      ntrees: 10
-    };
-  },
+getInitialState() {
+  return {
+    treesLoaded: true,
+    attributes: [ "a", "b" ],
+    ntrees: 10
+    // treesLoaded: false,
+    // attributes: [ ],
+    // ntrees: 0
+  };
+},
 
   handleLoadTrees(event) {
 
@@ -82,8 +78,22 @@ const HomeContainer = React.createClass({
             </div>
             ,
 
+            <div key={2} className = {rowDisplay}>
+              <label> {"Select number of slices: "} </label>
+                <SelectSlicesContainer values = {[10,20,30,40,50,60,70,80,90,100]}/>
+            </div>
+            ,
 
+            <div key={3} className = {rowDisplay}>
+              <label> {"Specify most recent sampling date: "} </label>
+               <DecimalDateContainer/>
+            </div>
+            ,
 
+            <div key={4} className = {rowDisplay}>
+               <Button className={link} name={"Render"}/>
+            </div>
+            ,
 
           ]   : null}
         </div>

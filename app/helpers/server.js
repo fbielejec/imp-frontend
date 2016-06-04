@@ -2,6 +2,8 @@
  * @fbielejec
  */
 
+//---MODULE IMPORTS---//
+
 import $ from 'jquery'
 
 //---MODULE EXPORTS---//

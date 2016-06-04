@@ -42,9 +42,10 @@ const base = {
   },
   module: {
     loaders: [
-       { test: /\.json$/, loader: "json-loader" },
-      {test: /\.js|\.jsx$/, exclude: /node_modules/, loader: 'babel-loader'},
-      {test: /\.css$/, loader: 'style!css?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]'}
+      { test: /\.json$/, loader: "json-loader" },
+      { test: /\.js|\.jsx$/, exclude: /node_modules/, loader: 'babel-loader'},
+      { test: /\.css$/, loader: 'style!css?sourceMap&modules&localIdentName=[name]__[local]___[hash:base64:5]'},
+      { test: /\.png$/, loader: 'url-loader?limit=10000'}
     ]
   },
   resolve: {

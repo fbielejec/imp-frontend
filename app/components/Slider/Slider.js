@@ -50,7 +50,7 @@ const Slider = React.createClass({
           />
 
         <span id="span" className = {span}>
-          {this.props.label}:{this.props.value}
+          {this.props.label} {this.props.value}
         </span>
 
       </div>

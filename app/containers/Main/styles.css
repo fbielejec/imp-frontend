@@ -24,3 +24,16 @@ html, body {
   color: white;
   padding: 5;
 }
+
+.link {
+  background: tomato;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 1px solid #5B1D0B;
+  border-radius: 5px;
+  color: #000;
+}
+
+.link:hover {
+  color: #fff;
+}

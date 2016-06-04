@@ -3,19 +3,24 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  /*margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
-  background-color: blue;*/
 }
 
 .rowDisplay {
   display: flex;
-  flex-direction:  row;
-  /*justify-content: center;*/
+  flex-direction: row;
   align-items: center;
-  /*maxWidth: 300,*/
-  /*align-self: center;*/
+}
+
+.link {
+  background: #0085C3;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: 0.1px   #004f75;
+  /*border-width: 0;*/
+  border-radius: 5px;
+  color: #000;
+}
+
+.link:hover {
+  color: #fff;
 }

@@ -5,6 +5,7 @@
 //---MODULE IMPORTS---//
 
 import React, {PropTypes} from 'react'
+import {selector} from './styles.css'
 
 //---MODULE EXPORTS---//
 
@@ -22,7 +23,7 @@ const Selector = React.createClass({
 
   render: function() {
     return (
-      <select onChange={this.props.handleChange} defaultValue={this.props.values[this.props.selectedIndex]}>
+      <select className={selector} onChange={this.props.handleChange} defaultValue={this.props.values[this.props.selectedIndex]}>
         {this.props.values.map(function(value, i) {
           return (
             <option key={i} value={value}>

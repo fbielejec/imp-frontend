@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
-import { container, innerContainer, header } from './styles.css'
-
+import { container, innerContainer, header, link } from './styles.css'
+import {Button} from 'components'
 
 /**
  * @fbielejec
@@ -15,7 +15,7 @@ const MainContainer = React.createClass({
               <h2 >
                 {'Imp'}
               </h2>
-
+                <Button className={link} name={"Home"}/>
             </div>
 
 

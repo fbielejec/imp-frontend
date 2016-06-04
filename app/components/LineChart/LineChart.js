@@ -7,21 +7,21 @@
 import React, {PropTypes} from 'react';
 import d3 from 'd3';
 import {formDate} from 'helpers/utils'
-import {Line} from './Line'
-import {Axis} from './Axis'
+import Line from './Line'
+import Axis from './Axis'
 import {margin, width, height} from './setup'
 
 //---MODULE EXPORTS---//
 
 const LineChart = React.createClass({
 
-  PropTypes : {
-    data :  PropTypes.array.isRequired,
-    width :  PropTypes.number.isRequired,
-    height :  PropTypes.number.isRequired,
-    color: PropTypes.string,
-    opacity : PropTypes.number
-  },
+propTypes : {
+  data: PropTypes.array.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  color: PropTypes.string,
+  opacity: PropTypes.number
+},
 
   getDefaultProps() {
     return {
@@ -31,6 +31,9 @@ const LineChart = React.createClass({
   },
 
   getInitialState() {
+
+// console.log(Line);
+
     return {
       paths: [],
       xScale :null,
@@ -96,9 +99,9 @@ const LineChart = React.createClass({
         return yScale(d.distance);
       });
 
-      var paths = props.data.map(function (d) {
+      const paths = props.data.map(function (d) {
 
-        var pathMap = {
+        const pathMap = {
           key : d.name,
           path : line(d.values)
         }
@@ -138,15 +141,15 @@ const LineChart = React.createClass({
             className={xclassName}
             scale={this.state.xScale}
             orient={xorient}
-            innerTickSize={-setup.height}
+            innerTickSize={-height}
             transform={xtransform}/>
           <Axis
             className={yclassName}
             scale={this.state.yScale}
             orient={yorient}
-            innerTickSize={-setup.width}
+            innerTickSize={-width}
             transform={ytransform}/>
-          <g className="linesLayer">
+          <g className={"linesLayer"}>
             { this.state.paths.map(this.makeLine) }
           </g>
         </g>

@@ -1,0 +1,21 @@
+.loading {
+  composes: label-font-size from 'sharedStyles/styles.css';
+  composes: label-font-color from 'sharedStyles/styles.css';
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.box {
+  margin-top: 50px;
+    margin-bottom: 50px;
+  margin-right: 10px;
+  background-color: #3f5175;
+  border-radius:5px;
+  width : 900px;
+  box-shadow: 1px 1px 1px 0px rgba(37,41,51,1);
+}

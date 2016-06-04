@@ -5,6 +5,7 @@
 //---MODULE IMPORTS---//
 
 import React, {PropTypes} from 'react';
+import ReactDOM from 'react-dom';
 import d3 from 'd3';
 
 const styles = {

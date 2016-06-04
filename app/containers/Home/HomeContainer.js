@@ -12,7 +12,9 @@ import {container, rowDisplay, render, label} from './styles.css'
 
 const HomeContainer = React.createClass({
 
-  PropTypes: {},
+  propTypes: {
+
+  },
 
 getInitialState() {
   return {
@@ -42,7 +44,6 @@ getInitialState() {
       var content = e.target.result;
 
       $.when(putTrees(content)).done(function() {
-        // chaining multiple AJAX calls
         var attributes_call = getAttributes();
         var ntrees_call = getnTrees();
 

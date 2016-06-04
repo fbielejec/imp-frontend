@@ -21,7 +21,7 @@ lein run
 npm run dist
 
 cp dist/index.html $SERVER_LOCATION/resources/public/index.html
-cp dist/bundle.js $SERVER_LOCATION/resources/public/bundle.js
+cp dist/index_bundle.js $SERVER_LOCATION/resources/public/index_bundle.js
 
 run_server
 

@@ -3,10 +3,10 @@ import React, {PropTypes} from 'react';
 const Line = React.createClass({
 
   PropTypes : {
-    path :  PropTypes.string.isRequired,
-    color :  PropTypes.string,
+    path:  PropTypes.string.isRequired,
+    color:  PropTypes.string,
     opacity: PropTypes.number,
-    strokeWidth :  PropTypes.number
+    strokeWidth:  PropTypes.string
   },
 
   getDefaultProps() {

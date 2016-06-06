@@ -7,11 +7,11 @@
 import React, {PropTypes} from 'react';
 import d3 from 'd3';
 import {margin, width, height} from 'components/LineChart/setup'
-import {LineChart, ConfidenceChart, Button} from 'components';
+import {LineChart, ConfidenceChart, AreaChart, Button} from 'components';
 import {loading, container, box, header, download} from './styles.css'
 
 // TODO: development
-import {all, mean} from 'helpers/mocks'
+// import {all, mean} from 'helpers/mocks'
 
 //---MODULE EXPORTS---//
 
@@ -26,19 +26,18 @@ const ChartContainer = React.createClass({
     return {
       dataAll: [],
       dataMean: [],
-      lineColor: "#7dc7f4",
-      lineOpacity: 0.2
     };
   },
 
   componentWillMount() {
     // TODO: development
-    // this.loadRawData();
-      this.setState({dataAll: all });
-      this.setState({dataMean: mean });
+    this.loadRawData();
+      // this.setState({dataAll: all });
+      // this.setState({dataMean: mean });
   },
 
   loadRawData() {
+
     d3.json(this.props.dataAllUrl).get(function(error, rows) {
       if (error) {
         console.error(error);
@@ -50,6 +49,19 @@ const ChartContainer = React.createClass({
       }
       // inner this is outer this
     }.bind(this));
+
+    d3.json(this.props.dataMeanUrl).get(function(error, rows) {
+      if (error) {
+        console.error(error);
+        console.error(error.stack);
+      } else {
+        this.setState({
+          dataMean: rows,
+         });
+      }
+      // inner this is outer this
+    }.bind(this));
+
   },
 
   render: function() {
@@ -81,8 +93,9 @@ const ChartContainer = React.createClass({
                 data={this.state.dataAll}
                 width = {width}
                 height = {height}
-                color={this.state.lineColor}
-                opacity={this.state.lineOpacity}/>
+                color={'#7dc7f4'}
+                opacity={0.2}
+                strokeWidth={'2px'}/>
             </svg>
           </div>
 
@@ -97,12 +110,22 @@ const ChartContainer = React.createClass({
               preserveAspectRatio={preserveAspectRatio}
               viewBox={viewBox}
               transform={translate}>
+
+              <AreaChart
+                data={this.state.dataMean}
+                width = {width}
+                height = {height}
+                fill={'#7dc7f4'}
+                opacity={0.4}
+              />
+
               <ConfidenceChart
                 data={this.state.dataMean}
                 width = {width}
                 height = {height}
-                color={this.state.lineColor}
-                opacity={this.state.lineOpacity}/>
+                color={'#7dc7f4'}
+                opacity={1.0}
+                strokeWidth={'5.0px'}/>
             </svg>
           </div>
 

@@ -20,7 +20,8 @@ propTypes : {
   width: PropTypes.number.isRequired,
   height: PropTypes.number.isRequired,
   color: PropTypes.string,
-  opacity: PropTypes.number
+  opacity: PropTypes.number,
+  strokeWidth : PropTypes.string,
 },
 
   getDefaultProps() {
@@ -31,9 +32,6 @@ propTypes : {
   },
 
   getInitialState() {
-
-// console.log(Line);
-
     return {
       paths: [],
       xScale :null,

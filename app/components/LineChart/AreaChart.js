@@ -7,33 +7,33 @@
 import React, {PropTypes} from 'react';
 import d3 from 'd3';
 import {formDate} from 'helpers/utils'
-import Line from './Line'
-import Axis from './Axis'
-import {margin, width, height} from './setup'
+import Area from './Area'
+// import Axis from './Axis'
+// import {margin, width, height} from './setup'
 
 //---MODULE EXPORTS---//
 
-const ConfidenceChart = React.createClass({
+const AreaChart = React.createClass({
 
       propTypes: {
         data: PropTypes.array.isRequired,
         width: PropTypes.number.isRequired,
         height: PropTypes.number.isRequired,
-        color: PropTypes.string,
+        fill: PropTypes.string,
         opacity: PropTypes.number,
-        strokeWidth : PropTypes.string,
+        // strokeWidth : PropTypes.string,
       },
 
       getDefaultProps() {
         return {
-          color: "black",
-          opacity: 1.0
+          color: "grey",
+          opacity: 0.5
         }
       },
 
       getInitialState() {
         return {
-          line: null,
+          area: null,
           xScale: null,
           yScale: null
         };
@@ -78,74 +78,42 @@ const ConfidenceChart = React.createClass({
           .domain([ymin - offset, ymax + offset])
           .range([props.height, 0]);
 
-        // ---LINES ---//
+        // ---AREA ---//
 
-        const line = d3.svg.line() //
+        var area = d3.svg.area() //
           .x(function(d) {
-            const time = formDate(d.time)
+            const time = formDate(d.time);
             return xScale(time);
-          }). //
-        y(function(d) {
-          return yScale(d.mean_distance);
-        });
+          }) //
+          .y0(function(d) {
+            return yScale(d.lower_distance);
+          }) //
+          .y1(function(d) {
+            return yScale(d.upper_distance);
+          });
 
-        const path = line(props.data);
+        const path = area(props.data);
 
         this.setState({
-          line: path,
+          area: path,
           xScale: xScale,
           yScale: yScale
         });
-
       },
 
-    // makeLine(path) {
-    //   return (
-    //     <Line
-    //       path={path.path}
-    //       key={path.key}
-    //       color={this.props.color}
-    //       opacity={this.props.opacity}/>
-    //   );
-    // },
-
     render() {
-      const xtransform = "translate(0," + this.props.height + ")";
-      const xorient = "bottom";
-      const xclassName = "x axis"
-
-      const ytransform = "translate(" + 0.1 + ",0)";
-      const yorient = "left";
-      const yclassName = "y axis"
 
       return(
-        <g >
-          <Axis
-            className={xclassName}
-            scale={this.state.xScale}
-            orient={xorient}
-            innerTickSize={-height}
-            transform={xtransform}/>
-
-          <Axis
-            className={yclassName}
-            scale={this.state.yScale}
-            orient={yorient}
-            innerTickSize={-width}
-            transform={ytransform}/>
-
-          <g className={"linesLayer"}>
-            <Line
-              path={this.state.line}
-              color={this.props.color}
+          <g className={"areaLayer"}>
+            <Area
+              path={this.state.area}
+              fill={this.props.fill}
               opacity={this.props.opacity}
               strokeWidth={this.props.strokeWidth}/>
           </g>
-
-        </g>
       );
     }
 
   });
 
-export default ConfidenceChart
+export default AreaChart

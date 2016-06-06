@@ -13,17 +13,15 @@ import {container, rowDisplay, render, label} from './styles.css'
 const HomeContainer = React.createClass({
 
   propTypes: {
-
   },
 
 getInitialState() {
   return {
+    // TODO: development
     treesLoaded: true,
-    attributes: [ "a", "b" ],
-    ntrees: 10
     // treesLoaded: false,
-    // attributes: [ ],
-    // ntrees: 0
+    attributes: [ ],
+    ntrees: 0
   };
 },
 

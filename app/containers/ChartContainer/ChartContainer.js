@@ -6,9 +6,9 @@
 
 import React, {PropTypes} from 'react';
 import d3 from 'd3';
-import {margin, width, height} from 'components/LineChart/setup'
-import {LineChart, ConfidenceChart, AreaChart, Button} from 'components';
-import {loading, container, box, header, download} from './styles.css'
+import {margin, width, height} from 'components/Charts/setup'
+import {Loading, LineChart, ConfidenceChart, AreaChart, Button} from 'components';
+import {container, box, header, download} from './styles.css'
 
 // TODO: development
 // import {all, mean} from 'helpers/mocks'
@@ -26,12 +26,14 @@ const ChartContainer = React.createClass({
     return {
       dataAll: [],
       dataMean: [],
+      dataLoaded: false,
+      // dataLoaded: true,
     };
   },
 
-  componentWillMount() {
-    // TODO: development
-    this.loadRawData();
+   componentWillMount() {
+     this.loadRawData();
+         // TODO: development
       // this.setState({dataAll: all });
       // this.setState({dataMean: mean });
   },
@@ -45,6 +47,7 @@ const ChartContainer = React.createClass({
       } else {
         this.setState({
           dataAll: rows,
+          dataLoaded: true,
          });
       }
       // inner this is outer this
@@ -57,6 +60,7 @@ const ChartContainer = React.createClass({
       } else {
         this.setState({
           dataMean: rows,
+          dataLoaded: true,
          });
       }
       // inner this is outer this
@@ -65,9 +69,9 @@ const ChartContainer = React.createClass({
   },
 
   render: function() {
-    if (!this.state.dataAll.length) {
+    if (!this.state.dataLoaded) {
       return (
-        <h2 className={loading}>Loading data... </h2>
+        <Loading/>
       );
     } else {
 
@@ -101,7 +105,7 @@ const ChartContainer = React.createClass({
 
           <div className={box}>
             <div className={header}>
-              <h3> {'Mean distances from epidemic origin'}   </h3>
+              <h3> {'Mean distances from epidemic origin'}</h3>
               <Button
                 className={download}
                 name={'Download data'}/>

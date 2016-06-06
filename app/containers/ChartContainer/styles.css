@@ -1,7 +1,3 @@
-.loading {
-  composes: label-font-size from 'sharedStyles/styles.css';
-  composes: label-font-color from 'sharedStyles/styles.css';
-}
 
 .container {
   display: flex;

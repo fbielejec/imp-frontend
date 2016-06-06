@@ -1,0 +1,10 @@
+.loading {
+  composes: label-font-color from 'sharedStyles/styles.css';
+  font-size: 55px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

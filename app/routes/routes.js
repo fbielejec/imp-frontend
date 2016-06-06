@@ -12,7 +12,7 @@ import {MainContainer, HomeContainer, ChartContainer} from 'containers'
 
 const ChartContainerWrapper = function () {
      return (
-         <ChartContainer url={"/data/all"}/>
+         <ChartContainer dataAllUrl={"/data/all"} dataMeanUrl={"/data/mean"}/>
      );
    }
 

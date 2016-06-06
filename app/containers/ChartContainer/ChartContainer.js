@@ -6,64 +6,51 @@
 
 import React, {PropTypes} from 'react';
 import d3 from 'd3';
-import colorbrewer from 'colorbrewer';
 import {margin, width, height} from 'components/LineChart/setup'
-import {LineChart} from 'components';
-import {loading, container, box} from './styles.css'
+import {LineChart, Button} from 'components';
+import {loading, container, box, header, download} from './styles.css'
 
 // TODO: development
 import {all} from 'helpers/mocks'
 
 //---MODULE EXPORTS---//
 
-const colors = colorbrewer.Set3[12];
-const defaultColorIndex = 4;
-
-// const styles = {
-//   row: {
-//     display: 'flex',
-//     flexDirection: 'row',
-//     alignItems: 'center',
-//   },
-//   controls: {
-//     maxWidth: 300
-//   }
-// };
-
 const ChartContainer = React.createClass({
 
   propTypes : {
-    url : PropTypes.string.isRequired,
+    dataAllUrl : PropTypes.string.isRequired,
+    dataMeanUrl : PropTypes.string.isRequired,
   },
 
   getInitialState() {
     return {
-      rawData: [],
-      color: colors[defaultColorIndex],
-      opacity: 0.3
+      dataAll: [],
+      dataMean: [],
+      lineColor: "#7dc7f4",
+      lineOpacity: 0.2
     };
   },
 
   componentWillMount() {
     // TODO: development
     // this.loadRawData();
-      this.setState({rawData: all });
+      this.setState({dataAll: all });
   },
 
   loadRawData() {
-    d3.json(this.props.url).get(function(error, rows) {
+    d3.json(this.props.dataAllUrl).get(function(error, rows) {
       if (error) {
         console.error(error);
         console.error(error.stack);
       } else {
-        this.setState({rawData: rows });
+        this.setState({dataAll: rows });
       }
       // inner this is outer this
     }.bind(this));
   },
 
   render: function() {
-    if (!this.state.rawData.length) {
+    if (!this.state.dataAll.length) {
       return (
         <h2 className={loading}>Loading data... </h2>
       );
@@ -77,24 +64,25 @@ const ChartContainer = React.createClass({
         <div className={container}>
 
           <div className={box}>
+
+            <div className={header}>
+              <h3>
+                {'Summary of the distribution'}
+              </h3>
+              <Button
+                className={download}
+                name={'Download data'}/>
+            </div>
             <svg
-              style={{
-
-                // 'marginBottom': '10px',
-                // 'backgroundColor': '#3f5175',
-                // 'borderRadius':'4px',
-                // 'boxShadow': '1px 1px 1px 0px rgba(37,41,51,1)'
-
-              }}
               preserveAspectRatio={preserveAspectRatio}
               viewBox={viewBox}
               transform={translate}>
               <LineChart
-                data={this.state.rawData}
+                data={this.state.dataAll}
                 width = {width}
                 height = {height}
-                color={this.state.color}
-                opacity={this.state.opacity}/>
+                color={this.state.lineColor}
+                opacity={this.state.lineOpacity}/>
             </svg>
           </div>
 

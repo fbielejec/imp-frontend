@@ -10,16 +10,17 @@ import d3 from 'd3';
 
 const styles = {
   axis :{
-    'stroke' : 'black',
+    'stroke' : 'none',
     'fill': 'none',
     'shape-rendering': 'crispEdges'
   },
   grid:{
-    'stroke' : 'black',
-    'opacity': '0.1',
+    'stroke' : ' #4b5f87',
+    'opacity': '1.0',
   },
   text:{
-    'font-size': '27px',
+    'fill': '#bbc7d9',
+    'font-size': '14px',
   }
 };
 

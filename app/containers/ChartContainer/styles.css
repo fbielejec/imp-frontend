@@ -12,10 +12,38 @@
 
 .box {
   margin-top: 50px;
-    margin-bottom: 50px;
+  margin-bottom: 50px;
   margin-right: 10px;
   background-color: #3f5175;
   border-radius:5px;
   width : 900px;
   box-shadow: 1px 1px 1px 0px rgba(37,41,51,1);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #f8fdff;
+  color: #f8fdff;
+   padding-left: 20px;
+   padding-right: 20px;
+   padding-top: 20px;
+   opacity: 0.8;
+   font-weight: 400;
+   composes: label-font-size from 'sharedStyles/styles.css';
+}
+
+.download {
+  composes: label-font-size from 'sharedStyles/styles.css';
+  background: #3b5998;
+  color: #a4b2ce;
+  padding: 10px 15px;
+  border: 0px;
+  border-radius: 5px;
+  box-shadow: none;
+}
+
+.download:hover {
+  color: #fff;
 }

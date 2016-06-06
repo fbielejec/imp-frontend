@@ -12,6 +12,7 @@ const Button = React.createClass({
 
   PropTypes: {
     name : PropTypes.string,
+    className : PropTypes.string,
   },
 
   render: function() {

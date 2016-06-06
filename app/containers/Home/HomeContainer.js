@@ -7,7 +7,7 @@ import {Link} from 'react-router';
 import $ from 'jquery'
 import {putTrees, getAttributes, getnTrees} from 'helpers/server'
 import {LoadTrees, Button} from 'components'
-import {SelectAttributesContainer, BurninSliderContainer, SelectSlicesContainer, DecimalDateContainer} from 'containers'
+import {LoadingContainer, SelectAttributesContainer, BurninSliderContainer, SelectSlicesContainer, DecimalDateContainer} from 'containers'
 import {container, rowDisplay, render, label} from './styles.css'
 
 const HomeContainer = React.createClass({
@@ -18,10 +18,11 @@ const HomeContainer = React.createClass({
 getInitialState() {
   return {
     // TODO: development
-    treesLoaded: true,
-    // treesLoaded: false,
+    // treesLoaded: true,
+    treesLoaded: false,
+    busy : false,
     attributes: [ ],
-    ntrees: 0
+    ntrees: 0,
   };
 },
 
@@ -41,6 +42,10 @@ getInitialState() {
     reader.onload = function(e) {
       var content = e.target.result;
 
+      self.setState({ //
+        busy: true, //
+      });
+
       $.when(putTrees(content)).done(function() {
         var attributes_call = getAttributes();
         var ntrees_call = getnTrees();
@@ -49,7 +54,8 @@ getInitialState() {
           self.setState({ //
             treesLoaded: true, //
             attributes: attributes[0], //
-            ntrees: ntrees[0] //
+            ntrees: ntrees[0], //
+            busy: false, //
           });
         });
 

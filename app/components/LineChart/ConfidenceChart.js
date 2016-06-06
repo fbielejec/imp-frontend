@@ -11,7 +11,6 @@ import Line from './Line'
 import Axis from './Axis'
 import {margin, width, height} from './setup'
 
-
 //---MODULE EXPORTS---//
 
 const ConfidenceChart = React.createClass({
@@ -32,11 +31,8 @@ propTypes : {
   },
 
   getInitialState() {
-
-// console.log(Line);
-
     return {
-      paths: [],
+      line: null,
       xScale :null,
       yScale :null
     };
@@ -54,34 +50,28 @@ propTypes : {
 
     // --- X AXIS ---//
 
-    const xmin = d3.min(props.data, function(d) {
-      return d3.min(d.values, function(v) {
-        return formDate(v.time);
-      });
-    });
+const xmin = d3.min(props.data, function(d) {
+  return formDate(d.time);
+});
 
-    const xmax = d3.max(props.data, function(d) {
-      return d3.max(d.values, function(v) {
-        return formDate(v.time);
-      });
-    });
+const xmax = d3.max(props.data, function(d) {
+  return formDate(d.time);
+});
 
-    const xScale = d3.time.scale.utc().domain([xmin, xmax]).range(
+const xScale = d3.time.scale.utc().domain([xmin, xmax]).range(
       [0, props.width]);
 
       // --- Y AXIS ---//
 
-      const ymin = d3.min(props.data, function(d) {
-        return d3.min(d.values, function(v) {
-          return v.distance;
-        });
-      });
+const ymin = d3.min(props.data, function(d) {
+  return d.lower_distance;
+});
 
-      const ymax = d3.max(props.data, function(d) {
-        return d3.max(d.values, function(v) {
-          return v.distance;
-        });
-      });
+const ymax = d3.max(props.data, function(d) {
+  return d.upper_distance;
+});
+
+// console.log('xmin: ' + xmin + ' ymin: ' + ymin);
 
       const offset =  0.1 * ymax;
 
@@ -97,24 +87,17 @@ propTypes : {
         return xScale(time);
       }). //
       y(function(d) {
-        return yScale(d.distance);
+        return yScale(d.mean_distance);
       });
 
-      const paths = props.data.map(function (d) {
-
-        const pathMap = {
-          key : d.name,
-          path : line(d.values)
-        }
-
-        return(pathMap);
-      });
+      const path = line(props.data);
 
       this.setState({
-        paths: paths,
+        line: path,
         xScale : xScale,
         yScale : yScale
       });
+
     },
 
     makeLine(path) {
@@ -144,15 +127,21 @@ propTypes : {
             orient={xorient}
             innerTickSize={-height}
             transform={xtransform}/>
+
           <Axis
             className={yclassName}
             scale={this.state.yScale}
             orient={yorient}
             innerTickSize={-width}
             transform={ytransform}/>
+
           <g className={"linesLayer"}>
-            { this.state.paths.map(this.makeLine) }
+            <Line
+              path={this.state.line}
+              color={this.props.color}
+              opacity={this.props.opacity}/>
           </g>
+          
         </g>
       );
     }

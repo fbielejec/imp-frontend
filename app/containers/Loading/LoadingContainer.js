@@ -12,12 +12,16 @@ import {Loading} from 'components'
 const LoadingContainer = React.createClass({
 
       propTypes: {
-        busy: PropTypes.bool.isRequired
+        isBusy: PropTypes.bool.isRequired
       },
 
       render() {
-        return ( this.props.busy ? <Loading/> : null);
-      }
+        return (
+          <div>
+          {this.props.isBusy ? <Loading/> : null}
+            </div>
+      );
+          }
 
     });
 

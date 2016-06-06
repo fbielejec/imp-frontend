@@ -10,9 +10,6 @@ import { button, container } from './styles.css'
 
 //---MODULE EXPORTS---//
 
-// TODO: loading indicator
-// http://bootsnipp.com/snippets/featured/loading-button
-
 var LoadTrees = React.createClass({
 
   PropTypes : {

@@ -20,7 +20,8 @@ getInitialState() {
     // TODO: development
     // treesLoaded: true,
     treesLoaded: false,
-    busy : false,
+    // isBusy : true,
+    isBusy : false,
     attributes: [ ],
     ntrees: 0,
   };
@@ -43,7 +44,7 @@ getInitialState() {
       var content = e.target.result;
 
       self.setState({ //
-        busy: true, //
+        isBusy: true, //
       });
 
       $.when(putTrees(content)).done(function() {
@@ -55,7 +56,7 @@ getInitialState() {
             treesLoaded: true, //
             attributes: attributes[0], //
             ntrees: ntrees[0], //
-            busy: false, //
+            isBusy: false, //
           });
         });
 
@@ -65,33 +66,44 @@ getInitialState() {
   },
 
   render() {
+var self = this;
+
     return (
       <div className = {container}>
+
         <LoadTrees handleChange={this.handleLoadTrees}/>
         {this.state.treesLoaded ?
           [
 
             <div key={0} className = {rowDisplay}>
-              <label className={label}> {"Select location attribute name: "} </label>
+              <label className={label}>
+                {"Select location attribute name: "}
+              </label>
               <SelectAttributesContainer attributes={this.state.attributes}/>
             </div>
             ,
 
             <div key={1} className = {rowDisplay}>
-              <label className={label}> {"Select burn-in: "} </label>
+              <label className={label}>
+                {"Select burn-in: "}
+              </label>
               <BurninSliderContainer maxValue={this.state.ntrees - 1}/>
             </div>
             ,
 
             <div key={2} className = {rowDisplay}>
-              <label className={label}> {"Select number of slices: "} </label>
-                <SelectSlicesContainer values = {[10,20,30,40,50,60,70,80,90,100]}/>
+              <label className={label}>
+                {"Select number of slices: "}
+              </label>
+              <SelectSlicesContainer values = {[10,20,30,40,50,60,70,80,90,100]}/>
             </div>
             ,
 
             <div key={3} className = {rowDisplay}>
-              <label className={label}> {"Specify most recent sampling date: "} </label>
-               <DecimalDateContainer/>
+              <label className={label}>
+                {"Specify most recent sampling date: "}
+              </label>
+              <DecimalDateContainer/>
             </div>
             ,
 
@@ -102,7 +114,8 @@ getInitialState() {
             </div>
             ,
 
-          ] : null}
+          ] : null }
+          <LoadingContainer isBusy = {this.state.isBusy}/>
         </div>
     );
   }

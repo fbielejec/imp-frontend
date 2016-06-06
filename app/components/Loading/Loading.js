@@ -7,6 +7,8 @@
 import React, {PropTypes} from 'react';
 import {container, loading } from './styles.css'
 
+//---MODULE EXPORTS---//
+
 const Loading = React.createClass({
 
       propTypes: {

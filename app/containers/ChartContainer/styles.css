@@ -9,25 +9,26 @@
 .box {
   margin-top: 50px;
   margin-bottom: 50px;
-  margin-right: 10px;
-  background-color: #3f5175;
+  margin-right: 50px;
+  margin-left: 50px;
   border-radius:5px;
   width : 900px;
+  background-color: #3f5175;
   box-shadow: 1px 1px 1px 0px rgba(37,41,51,1);
 }
 
 .header {
+  composes: label-font-size from 'sharedStyles/styles.css';
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: #f8fdff;
   color: #f8fdff;
-   padding-left: 20px;
-   padding-right: 20px;
-   padding-top: 20px;
-   opacity: 0.8;
-   font-weight: 400;
-   composes: label-font-size from 'sharedStyles/styles.css';
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  opacity: 0.8;
+  font-weight: 400;
 }
 
 .download {

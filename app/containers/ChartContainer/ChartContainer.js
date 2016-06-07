@@ -11,7 +11,7 @@ import {Loading, LineChart, ConfidenceChart, AreaChart, Button} from 'components
 import {container, box, header, download} from './styles.css'
 
 // TODO: development
-// import {all, mean} from 'helpers/mocks'
+import {all, mean} from 'helpers/mocks'
 
 //---MODULE EXPORTS---//
 
@@ -27,6 +27,7 @@ const ChartContainer = React.createClass({
       dataAll: [],
       dataMean: [],
       dataLoaded: false,
+      // TODO: development
       // dataLoaded: true,
     };
   },

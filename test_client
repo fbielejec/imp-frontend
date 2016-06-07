@@ -10,7 +10,8 @@ function run_server {
 
 cd $SERVER_LOCATION
 
-lein run
+#lein run
+heroku local
 
 }
 

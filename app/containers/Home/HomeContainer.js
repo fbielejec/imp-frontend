@@ -66,8 +66,6 @@ getInitialState() {
   },
 
   render() {
-var self = this;
-
     return (
       <div className = {container}>
 

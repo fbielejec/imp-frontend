@@ -8,7 +8,10 @@ import $ from 'jquery'
 
 //---MODULE EXPORTS---//
 
-const rootURL = "http://localhost:8080";
+const port = window.document.location.port;
+const rootURL = window.location.protocol + "//" + window.location.hostname + ((port) ? ":"+port : "" );
+
+console.log("SERVER RUNNING ON " + rootURL);
 
 const settings = {
   attribute: "attribute",

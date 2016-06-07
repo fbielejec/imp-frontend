@@ -29,6 +29,6 @@ const routes = (
 //   <Router history= { hashHistory } >
 //     <Route path='/' component={ChartContainerWrapper} />
 //   </Router>
-// );
+// )
 
 export default routes

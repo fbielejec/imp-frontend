@@ -46,16 +46,13 @@ const ChartContainer = React.createClass({
       loadRawData() {
 
         var self = this;
-        this.setState({
-          isBusy: true,
-        });
+        this.setState(
+          Object.assign(self.getInitialState(), { isBusy: true } )
+        );
 
 
         d3.json(this.props.dataAllUrl).get(function(error, rows) {
           if (error) {
-
-            console.log(JSON.parse(error.response));
-            console.error(error.stack);
 
             // Error handling
             self.setState( //
@@ -77,9 +74,6 @@ const ChartContainer = React.createClass({
 
         d3.json(this.props.dataMeanUrl).get(function(error, rows) {
           if (error) {
-
-            console.log(JSON.parse(error.response));
-            console.error(error.stack);
 
             // Error handling
             self.setState( //
@@ -126,10 +120,11 @@ const ChartContainer = React.createClass({
         });
 
       },
+      
   render: function() {
 
 //TODO
-console.log(this.state);
+// console.log(this.state);
 
     if (this.state.isBusy) {
 

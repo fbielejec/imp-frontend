@@ -6,7 +6,6 @@
 
 import React, {PropTypes} from 'react'
 import { Selector } from 'components'
-
 import { settings, putSetting} from 'helpers/server'
 
 // var server = require('../utils/server.js');

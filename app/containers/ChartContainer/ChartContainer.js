@@ -7,73 +7,138 @@
 import React, {PropTypes} from 'react';
 import d3 from 'd3';
 import {margin, width, height} from 'components/Charts/setup'
-import {Loading, LineChart, ConfidenceChart, AreaChart, Button} from 'components';
+import {Loading,Error, LineChart, ConfidenceChart, AreaChart, Button} from 'components';
 import {container, box, header, download} from './styles.css'
+import $ from 'jquery'
+import { getDataAll, getDataMean} from 'helpers/server'
+import {saveAs} from 'file-saver'
 
 // TODO: development
-import {all, mean} from 'helpers/mocks'
+// import {all, mean} from 'helpers/mocks'
 
 //---MODULE EXPORTS---//
-
 const ChartContainer = React.createClass({
 
-  propTypes : {
-    dataAllUrl : PropTypes.string.isRequired,
-    dataMeanUrl : PropTypes.string.isRequired,
-  },
+      propTypes: {
+        dataAllUrl: PropTypes.string.isRequired,
+        dataMeanUrl: PropTypes.string.isRequired,
+      },
 
-  getInitialState() {
-    return {
-      dataAll: [],
-      dataMean: [],
-      dataLoaded: false,
-      // TODO: development
-      // dataLoaded: true,
-    };
-  },
+      getInitialState() {
+        return {
+          dataAll: [],
+          dataMean: [],
+          isBusy: false,
+          Error: "",
+        };
+      },
 
-   componentWillMount() {
-     this.loadRawData();
-         // TODO: development
-      // this.setState({dataAll: all });
-      // this.setState({dataMean: mean });
-  },
+      componentWillMount() {
+        this.loadRawData();
 
-  loadRawData() {
+        // TODO: development
+        // this.setState({
+        //     dataAll: all,
+        //     dataMean: mean,
+        //     });
+      },
 
-    d3.json(this.props.dataAllUrl).get(function(error, rows) {
-      if (error) {
-        console.error(error);
-        console.error(error.stack);
-      } else {
+      loadRawData() {
+
+        var self = this;
         this.setState({
-          dataAll: rows,
-          dataLoaded: true,
-         });
-      }
-      // inner this is outer this
-    }.bind(this));
+          isBusy: true,
+        });
 
-    d3.json(this.props.dataMeanUrl).get(function(error, rows) {
-      if (error) {
-        console.error(error);
-        console.error(error.stack);
-      } else {
-        this.setState({
-          dataMean: rows,
-          dataLoaded: true,
-         });
-      }
-      // inner this is outer this
-    }.bind(this));
 
-  },
+        d3.json(this.props.dataAllUrl).get(function(error, rows) {
+          if (error) {
 
+            console.log(JSON.parse(error.response));
+            console.error(error.stack);
+
+            // Error handling
+            self.setState( //
+              Object.assign(self.getInitialState(), {
+                isBusy: false
+              }, JSON.parse(error.response) || {
+                Error: "Server not responding"
+              })
+            );
+
+          } else {
+            this.setState({
+              dataAll: rows,
+              isBusy: false,
+            });
+          }
+          // inner this is outer this
+        }.bind(this));
+
+        d3.json(this.props.dataMeanUrl).get(function(error, rows) {
+          if (error) {
+
+            console.log(JSON.parse(error.response));
+            console.error(error.stack);
+
+            // Error handling
+            self.setState( //
+              Object.assign(self.getInitialState(), {
+                isBusy: false
+              }, JSON.parse(error.response) || {
+                Error: "Server not responding"
+              })
+            );
+
+          } else {
+            this.setState({
+              dataMean: rows,
+              isBusy: false,
+            });
+          }
+          // inner this is outer this
+        }.bind(this));
+
+      },
+
+      saveDataAll: function() {
+
+        var dataAll_call = getDataAll();
+        $.when(dataAll_call).done(function(json) {
+          const text = JSON.stringify(json);
+          var blob = new Blob([text], {
+            type: "text/plain;charset=utf-8"
+          });
+          saveAs(blob, "dataAll.json");
+        });
+
+      },
+
+      saveDataMean: function() {
+
+        var dataMean_call = getDataMean();
+        $.when(dataMean_call).done(function(json) {
+          const text = JSON.stringify(json);
+          var blob = new Blob([text], {
+            type: "text/plain;charset=utf-8"
+          });
+          saveAs(blob, "dataMean.json");
+        });
+
+      },
   render: function() {
-    if (!this.state.dataLoaded) {
-      return (
-        <Loading/>
-      );
+
+//TODO
+console.log(this.state);
+
+    if (this.state.isBusy) {
+
+      return <Loading/>
+
+    } else if(this.state.Error) {
+
+       return <Error message={this.state.Error}/>
+
     } else {
 
       const preserveAspectRatio = "xMinYMin meet";
@@ -87,6 +152,7 @@ const ChartContainer = React.createClass({
             <div className={header}>
               <h3> {'Distribution of distances from epidemic origin'} </h3>
               <Button
+                handleClick={this.saveDataAll}
                 className={download}
                 name={'Download data'}/>
             </div>
@@ -99,7 +165,7 @@ const ChartContainer = React.createClass({
                 width = {width}
                 height = {height}
                 color={'#7dc7f4'}
-                opacity={0.2}
+                opacity={0.1}
                 strokeWidth={'2px'}/>
             </svg>
           </div>
@@ -108,6 +174,7 @@ const ChartContainer = React.createClass({
             <div className={header}>
               <h3> {'Mean distances from epidemic origin'}</h3>
               <Button
+                handleClick={this.saveDataMean}
                 className={download}
                 name={'Download data'}/>
             </div>

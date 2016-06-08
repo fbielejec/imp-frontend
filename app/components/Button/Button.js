@@ -13,11 +13,12 @@ const Button = React.createClass({
   PropTypes: {
     name : PropTypes.string,
     className : PropTypes.string,
+    handleClick : PropTypes.func,
   },
 
   render: function() {
     return (
-          <button className={this.props.className} type='button'>{this.props.name}</button>
+          <button className={this.props.className} onClick={this.props.handleClick}>{this.props.name}</button>
     );
   }
 

@@ -19,7 +19,7 @@ const MainContainer = React.createClass({
 
         <div className={header}>
           <h2 >
-            {'Imp'}
+            {'Tree-Imp'}
           </h2>
           <Link to='/'>
             <Button className={link} name={"Home"}/>

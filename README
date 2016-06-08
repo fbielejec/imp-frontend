@@ -5,8 +5,9 @@ GNU Lesser General Public License v3.0
  
  PURPOSE
  -------
-Frontend for Imp, spatial stats web-app
- 
+React + D3 frontend for Imp, spatial stats web-app.
+http://tree-imp.herokuapp.com/
+
  USING
  ----- 
  * DEV

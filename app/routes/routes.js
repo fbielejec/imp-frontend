@@ -16,19 +16,19 @@ const ChartContainerWrapper = function () {
      );
    }
 
-const routes = (
-  <Router history={hashHistory}>
-    <Router path='/' component={MainContainer}>
-       <Route path='/render' component={ChartContainerWrapper} />
-      <IndexRoute component={HomeContainer}/>
-    </Router>
-  </Router>
-)
-
 // const routes = (
-//   <Router history= { hashHistory } >
-//     <Route path='/' component={ChartContainerWrapper} />
+//   <Router history={hashHistory}>
+//     <Router path='/' component={MainContainer}>
+//        <Route path='/render' component={ChartContainerWrapper} />
+//       <IndexRoute component={HomeContainer}/>
+//     </Router>
 //   </Router>
 // )
+
+const routes = (
+  <Router history= { hashHistory } >
+    <Route path='/' component={ChartContainerWrapper} />
+  </Router>
+)
 
 export default routes

@@ -12,7 +12,10 @@
   margin-right: 50px;
   margin-left: 50px;
   border-radius:5px;
-  width : 900px;
+
+  width : 1200px;
+  height: 650px;
+
   background-color: #3f5175;
   box-shadow: 1px 1px 1px 0px rgba(37,41,51,1);
 }

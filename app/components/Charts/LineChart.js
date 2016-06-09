@@ -129,7 +129,7 @@ propTypes : {
       const xorient = "bottom";
       const xclassName = "x axis"
 
-      const ytransform = "translate(" + 0.1 + ",0)";
+      const ytransform = "translate(" + 0.0 + ",0)";
       const yorient = "left";
       const yclassName = "y axis"
 

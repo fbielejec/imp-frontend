@@ -14,7 +14,7 @@ import { getDataAll, getDataMean} from 'helpers/server'
 import {saveAs} from 'file-saver'
 
 // TODO: development
-// import {all, mean} from 'helpers/mocks'
+import {all, mean} from 'helpers/mocks'
 
 //---MODULE EXPORTS---//
 const ChartContainer = React.createClass({
@@ -34,13 +34,13 @@ const ChartContainer = React.createClass({
       },
 
       componentWillMount() {
-        this.loadRawData();
+        // this.loadRawData();
 
         // TODO: development
-        // this.setState({
-        //     dataAll: all,
-        //     dataMean: mean,
-        //     });
+        this.setState({
+            dataAll: all,
+            dataMean: mean,
+            });
       },
 
       loadRawData() {
@@ -120,7 +120,7 @@ const ChartContainer = React.createClass({
         });
 
       },
-      
+
   render: function() {
 
 //TODO
@@ -137,7 +137,7 @@ const ChartContainer = React.createClass({
     } else {
 
       const preserveAspectRatio = "xMinYMin meet";
-      const viewBox = "0 0 " + ( width + margin.left +  margin.right) + " " + ( height + margin.top + margin.bottom);
+      const viewBox = (-margin.left) + " " + (-margin.right) + " " + ( width + margin.left +  margin.right) + " " + ( height + margin.top + margin.bottom);
       const translate = "translate(" + margin.left + "," +  margin.top + ")";
 
       return (
@@ -154,7 +154,7 @@ const ChartContainer = React.createClass({
             <svg
               preserveAspectRatio={preserveAspectRatio}
               viewBox={viewBox}
-              transform={translate}>
+              >
               <LineChart
                 data={this.state.dataAll}
                 width = {width}
